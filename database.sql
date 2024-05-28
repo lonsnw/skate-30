@@ -2,7 +2,7 @@
 -- You must use double quotes in every query that user is in:
 -- ex. SELECT * FROM "user";
 -- Otherwise you will have errors!
-CREATE TABLE "users" (
+CREATE TABLE "user" (
     "id" SERIAL PRIMARY KEY,
     "username" VARCHAR (80) UNIQUE NOT NULL,
     "password" VARCHAR (1000) NOT NULL, 
@@ -25,9 +25,10 @@ CREATE TABLE "events" (
 
 CREATE TABLE "rsvp" (
     "id" SERIAL PRIMARY KEY,
-    "event_id" integer NOT NULL REFERENCES events,
-    "user_id" integer REFERENCES users,
+    "event_id" integer NOT NULL REFERENCES "events",
+    "user_id" integer REFERENCES "user",
     "name" VARCHAR (50),
+    "position" BOOLEAN NOT NULL DEFAULT TRUE,
     "pucks" BOOLEAN NOT NULL DEFAULT FALSE,
     "tutor" BOOLEAN NOT NULL DEFAULT FALSE,
     "drinks" BOOLEAN NOT NULL DEFAULT FALSE
@@ -35,8 +36,8 @@ CREATE TABLE "rsvp" (
 
 CREATE TABLE "users_events" (
     "id" SERIAL PRIMARY KEY,
-    "user_id" integer NOT NULL REFERENCES users,
-    "event_id" integer NOT NULL REFERENCES events
+    "user_id" integer NOT NULL REFERENCES "user",
+    "event_id" integer NOT NULL REFERENCES "events"
 );
 
 INSERT INTO "events"
@@ -53,8 +54,8 @@ VALUES (1, 'Augsburg A', '2323 Riverside Ave', 'Can''t use locker rooms after sk
 (11, 'Hiawatha', '2701 E 44th St', 'Warming room is closed this season', TRUE, TRUE, TRUE, '2024-01-10', '18:30', 90);
 
 INSERT INTO "rsvp"
-VALUES (1, 7, 1, '', TRUE, FALSE, FALSE),
-(2, 7, 2, '', FALSE, FALSE, FALSE), 
-(3, 7, null, 'Kasey', FALSE, TRUE, TRUE), 
-(4, 2, 1, '', FALSE, TRUE, FALSE),
-(5, 8, 2, '', TRUE, FALSE, TRUE);
+VALUES (1, 7, 1, '', TRUE, TRUE, FALSE, FALSE),
+(2, 7, 2, '', TRUE, FALSE, FALSE, FALSE), 
+(3, 7, null, 'Kasey', FALSE, FALSE, FALSE, TRUE), 
+(4, 2, 1, '', TRUE, FALSE, TRUE, FALSE),
+(5, 8, 2, '', TRUE, TRUE, FALSE, TRUE);

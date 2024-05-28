@@ -1,5 +1,15 @@
 footer {
-  margin-top: 80px;
-  padding: 20px;
+  margin-top: 40px;
+  padding: 5px;
   text-align: center;
-}
+/* Background image is responsive and should scale to fit any screen */
+/* Help for this from stackoverflow: https://stackoverflow.com/a/20023286 */
+  background-image: url("../../../public/images/logo-bar.png");
+  background-repeat:no-repeat;
+  -webkit-background-size:cover;
+  -moz-background-size:cover;
+  -o-background-size:cover;
+  background-size:cover;
+  background-position:center;
+  font-size: 8px;
+};
