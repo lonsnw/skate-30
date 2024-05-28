@@ -8,49 +8,53 @@ import { useSelector } from 'react-redux';
 import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
-import { Button, Icon } from '@mui/material';
+import { Icon, IconButton } from '@mui/material';
 
 function Nav() {
   const user = useSelector((store) => store.user);
 
   const logoIcon = (
-    <Icon>
-      <img alt="logo" src="../../../public/images/skates.svg" />
+    <Icon style={{ fontSize: 80 }} >
+      <img src="../../../public/images/skates.svg" alt="logo" />
     </Icon>
   );
 
   return (
-    <div className="nav">
+    <div >
         {/* If no user is logged in, show these links */}
         {!user.id && (
           // If there's no user, show login/registration links
-          <div>
+          <div className="nav">
             <Link to="/login">
-              <AccountCircleIcon />
+              <IconButton color="primary">
+                <AccountCircleIcon style={{ fontSize: 60 }} />
+              </IconButton>
             </Link>
-
-            <Link to="/home">
-              {logoIcon}
-            </Link>
-
+            <div className="logo">
+              <Link to="/home">
+                {logoIcon}
+              </Link>
+            </div>
             <Link to="/input">
-              <AddBoxOutlinedIcon />
+              <IconButton color="primary">
+                <AddBoxOutlinedIcon style={{ fontSize: 60 }} />
+              </IconButton>
             </Link>
           </div>
         )}
         {/* If a user is logged in, show these links */}
         {user.id && (
-          <div>
+          <div className="nav">
             <Link to="/home">
-              <CalendarMonthOutlinedIcon />
+              <CalendarMonthOutlinedIcon style={{ fontSize: 60 }} />
             </Link>
 
             <Link to="/login">
-              <AccountCircleIcon />
+              <AccountCircleIcon style={{ fontSize: 60 }} />
             </Link>
 
             <Link to="/input">
-              <AddBoxOutlinedIcon />
+              <AddBoxOutlinedIcon style={{ fontSize: 60 }} />
             </Link>
           </div>
         )}
