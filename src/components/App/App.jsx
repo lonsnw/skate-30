@@ -33,14 +33,10 @@ function App() {
     palette: {
       mode: 'light',
       primary: {
-        main: '#5280ad',
-        light: '#97b3ce',
-        dark: '#213345',
+        main: '#213345',
       },
       secondary: {
-        main: '#ad5280',
-        light: '#ce97b3',
-        dark: '#452133',
+        main: '#97b3ce',
       },
       error: {
         main: '#d22d2f',
