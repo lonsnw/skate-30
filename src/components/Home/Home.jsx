@@ -10,6 +10,14 @@ import SearchIcon from '@mui/icons-material/Search';
 import Hero from '../Hero/Hero';
 import SearchBar from '../SearchBar/SearchBar';
 
+const goingClick = () => {
+
+};
+
+const browseClick = () => {
+
+};
+
 function Home() {
 
   return (
@@ -31,8 +39,8 @@ function Home() {
                 flexDirection='row'
                 justifyContent='center'
                 gap={1}>
-                <Chip label="See who's going" color="primary" />
-                <Chip label="Browse" color="primary" />
+                <Chip label="See who's going" color="primary" onClick={goingClick} />
+                <Chip label="Browse" color="primary" onClick={browseClick}  />
               </Box>
             </Box>
         </Box>
