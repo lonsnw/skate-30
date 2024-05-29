@@ -17,7 +17,7 @@ function SearchBar() {
 
   const sendSearch = (e) => {
     e.preventDefault();
-    dispatch({ type: '', payload: search });
+    dispatch({ type: 'SEARCH_DB', payload: search });
     console.log(search);
     history.push('/browse')
   }
