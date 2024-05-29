@@ -2,7 +2,7 @@ import React from 'react';
 
 // Add an about page for presentation, etc.
 
-function AboutPage() {
+function About() {
   return (
     <div className="container">
       <div>
@@ -12,4 +12,4 @@ function AboutPage() {
   );
 }
 
-export default AboutPage;
+export default About;

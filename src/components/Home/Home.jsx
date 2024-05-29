@@ -22,16 +22,14 @@ function Home() {
 
   const goingClick = () => {
     {/* If no user is logged in, do this */}
+    // STRETCH: update this to go to Log in - Search
     {!user.id && (
-      <div className="nav">
-
-      </div>
+      history.push('/login')
     )}
     {/* If a user is logged in, do this */}
+    // STRETCH: update this to go to Find Friends
     {user.id && (
-      <div className="nav">
-
-      </div>
+      history.push('/login')
     )}
   };
 
