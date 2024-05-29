@@ -65,7 +65,7 @@ function App() {
       typography: {
           fontFamily: "'Lato', sans-serif",
           h1: {
-            fontSize: 72,
+            fontSize: 48,
             fontWeight: 300,
           },
           h2: {
