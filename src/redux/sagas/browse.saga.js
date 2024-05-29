@@ -2,12 +2,13 @@ import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
 function* fetchEvents() {
+    console.log('in fetchEvents saga');
     try{
-        const eventsResponse = yield axios.get('/api/browse');
-        yield put ({ type: 'SET_EVENTS', payload: eventsResponse.data });
+        const events = yield axios.get('/api/browse');
+        yield put ({ type: 'SET_EVENTS', payload: events.data });
     } catch (error) {
         console.log(`Error fetching all events: ${error}`);
-        alert('Something went wrong with your search');
+        // alert('Something went wrong with your search');
     }
 }
 

@@ -4,14 +4,15 @@ const router = express.Router();
 
 // GET for all events
 router.get('/', (req, res) => {
+    console.log('In browser GET')
     const query = `
         SELECT * FROM "events"
         ORDER BY "date" ASC, "time" ASC, "rink" DESC;
         `;
     pool.query(query)
         .then((result) => {
-            res.send(result.rows);
-            res.sendStatus(200);
+            res.status(200)
+            .send(result.rows);
         })
         .catch((error) => {
             console.log(`Error on query: ${error}`);

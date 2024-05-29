@@ -20,6 +20,7 @@ import Home from '../Home/Home';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 
+// MUI imports
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import "@fontsource/lato";
 
@@ -59,10 +60,10 @@ function App() {
         light: '#b3ce97',
         dark: '#334521',
       },
-      // background: {
-      //   default: '#eef2f7',
-      //   paper: '#dce6ef',
-      // },
+      background: {
+        default: '#eef2f7',
+        paper: '#dce6ef',
+      },
       typography: {
           fontFamily: "'Lato', sans-serif",
           h1: {

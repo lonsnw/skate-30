@@ -9,7 +9,6 @@ import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 
 // CUSTOM COMPONENTS
-import Hero from '../Hero/Hero';
 import SearchBar from '../SearchBar/SearchBar';
 
 function Home() {
