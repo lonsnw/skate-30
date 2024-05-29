@@ -19,7 +19,7 @@ function SearchBar() {
     e.preventDefault();
     dispatch({ type: 'SEARCH_DB', payload: search });
     console.log(search);
-    history.push('/browse')
+    // history.push('/browse')
   }
 
   return (
@@ -43,7 +43,7 @@ function SearchBar() {
               fullWidth
           />
           <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-          <IconButton type="submit" sx={{ p: '10px' }} aria-label="search" onClick={() => {sendSearch}}>
+          <IconButton type="button" sx={{ p: '10px' }} aria-label="search" onClick={() => {sendSearch}}>
               <SearchIcon />
           </IconButton>
           </Paper>

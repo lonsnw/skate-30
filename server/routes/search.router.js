@@ -11,6 +11,7 @@ router.get('/', (req, res) => {
     pool.query(query)
         .then((result) => {
             res.send(result.rows);
+            res.sendStatus(200);
         })
         .catch((error) => {
             console.log(`Error on query: ${error}`);
@@ -20,7 +21,6 @@ router.get('/', (req, res) => {
 
 // GET using search term
 router.get('/search', (req, res) => {
-
     const query = `
         SELECT * FROM "events"
         WHERE ("rink" ILIKE '%$1%')
@@ -29,9 +29,10 @@ router.get('/search', (req, res) => {
         OR ("date" = '%$1%')
         OR ("time" = '%$1%');
         `;
-    pool.query(query)
+    pool.query(query, [req.params.search])
         .then((result) => {
             res.send(result.rows);
+            res.sendStatus(200);
         })
         .catch((error) => {
             console.log(`Error on query: ${error}`);
