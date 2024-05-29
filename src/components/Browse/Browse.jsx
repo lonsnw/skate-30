@@ -38,8 +38,8 @@ function Browse() {
       </Item>
       <Box
         width='100vw'
-        position="absolute"
-        bottom="0px">
+        bottom='0px'
+        marginTop='-40px'>
         <Footer />
       </Box>
     </div>
