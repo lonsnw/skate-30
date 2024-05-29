@@ -9,18 +9,18 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 
 import Nav from '../Nav/Nav';
-import Footer from '../Footer/Footer';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
-import AboutPage from '../AboutPage/AboutPage';
+import About from '../About/About';
 import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
-import LandingPage from '../LandingPage/LandingPage';
+import Home from '../Home/Home';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import "@fontsource/lato";
 
 import './App.css';
 
@@ -58,19 +58,19 @@ function App() {
         light: '#b3ce97',
         dark: '#334521',
       },
-      background: {
-        default: '#eef2f7',
-        paper: '#dce6ef',
-      },
+      // background: {
+      //   default: '#eef2f7',
+      //   paper: '#dce6ef',
+      // },
       typography: {
           fontFamily: "'Lato', sans-serif",
           h1: {
             fontSize: 48,
-            fontWeight: 600,
+            fontWeight: 300,
           },
           h2: {
             fontSize: 39,
-            fontWeight: 500,
+            fontWeight: 300,
           },
           h3: {
             fontSize: 33,
@@ -170,7 +170,7 @@ function App() {
 
   return (
     <Router>
-      <div>
+      <main>
         <ThemeProvider theme={theme}>
         <Nav />
         <Switch>
@@ -179,11 +179,11 @@ function App() {
 
           {/* Visiting localhost:5173/about will show the about page. */}
           <Route
-            // shows AboutPage at all times (logged in or not)
+            // shows About at all times (logged in or not)
             exact
             path="/about"
           >
-            <AboutPage />
+            <About />
           </Route>
 
           {/* For protected routes, the view could show one of several things on the same route.
@@ -244,7 +244,7 @@ function App() {
               <Redirect to="/user" />
               :
               // Otherwise, show the Landing page
-              <LandingPage />
+              <Home />
             }
           </Route>
 
@@ -253,9 +253,8 @@ function App() {
             <h1>404</h1>
           </Route>
         </Switch>
-        <Footer />
         </ThemeProvider>
-      </div>
+      </main>
     </Router>
   );
 }
