@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 function Browse() {
   const dispatch = useDispatch();
-  const eventList = useSelector((store) => store.search.browseAll);
+  const eventList = useSelector((store) => store.browse.browseAll);
 
   useEffect(() => {
     dispatch({ type: 'FETCH_EVENTS' });
