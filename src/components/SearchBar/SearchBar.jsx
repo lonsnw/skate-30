@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {useSelector} from 'react-redux';
+import './SearchBar.css';
 
 // MUI imports
 import { Divider, IconButton, InputBase, Paper } from '@mui/material';
