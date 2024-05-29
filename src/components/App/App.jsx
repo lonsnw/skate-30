@@ -13,6 +13,7 @@ import Nav from '../Nav/Nav';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 import About from '../About/About';
+import Browse from '../Browse/Browse'
 import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
 import Home from '../Home/Home';
@@ -184,6 +185,15 @@ function App() {
             path="/about"
           >
             <About />
+          </Route>
+
+          {/* Visiting localhost:5173/browse will GET all events if logged out and GET user's events if logged in. */}
+          <Route
+            // shows About at all times (logged in or not)
+            exact
+            path="/browse"
+          >
+            <Browse />
           </Route>
 
           {/* For protected routes, the view could show one of several things on the same route.
