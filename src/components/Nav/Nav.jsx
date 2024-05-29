@@ -13,7 +13,7 @@ function Nav() {
   const user = useSelector((store) => store.user);
 
   const logoIcon = (
-    <Icon style={{ fontSize: 80 }} >
+    <Icon style={{ fontSize: 60 }} >
       <img src="../../../public/images/skates.svg" alt="logo" />
     </Icon>
   );
@@ -26,7 +26,7 @@ function Nav() {
           <div className="nav">
             <Link to="/login">
               <IconButton color="primary">
-                <AccountCircleIcon style={{ fontSize: 60 }} />
+                <AccountCircleIcon style={{ fontSize: 40 }} />
               </IconButton>
             </Link>
             <div className="logo">
@@ -36,7 +36,7 @@ function Nav() {
             </div>
             <Link to="/input">
               <IconButton color="primary">
-                <AddBoxOutlinedIcon style={{ fontSize: 60 }} />
+                <AddBoxOutlinedIcon style={{ fontSize: 40 }} />
               </IconButton>
             </Link>
           </div>

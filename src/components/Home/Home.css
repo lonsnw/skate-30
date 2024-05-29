@@ -1,0 +1,13 @@
+.hero {
+  /* Background image is responsive and should scale to fit any screen */
+  /* Help for this from stackoverflow: https://stackoverflow.com/a/20023286 */
+  background-image: url("../../../public/images/hero.png");
+  width: 100vw;
+  height: 100vh;
+  background-repeat:no-repeat;
+  -webkit-background-size:cover;
+  -moz-background-size:cover;
+  -o-background-size:cover;
+  background-size:cover;
+  background-position:center;
+}

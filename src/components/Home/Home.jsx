@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import './LandingPage.css';
+import './Home.css';
 
 // This will become Home 
 // CUSTOM COMPONENTS
 import RegisterForm from '../RegisterForm/RegisterForm';
 
-function LandingPage() {
-  const [heading, setHeading] = useState('Welcome');
+function Home() {
   const history = useHistory();
 
   const onLogin = (event) => {
@@ -15,8 +14,9 @@ function LandingPage() {
   };
 
   return (
-    <div className="container">
-      <h2>{heading}</h2>
+    <div className="hero">
+      <h1>Find  ice times near you</h1>
+      <h5>Search for local pickups and open skates</h5>
         <div className="grid-col grid-col_4">
           <RegisterForm />
 
@@ -31,4 +31,4 @@ function LandingPage() {
   );
 }
 
-export default LandingPage;
+export default Home;
