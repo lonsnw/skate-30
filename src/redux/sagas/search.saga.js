@@ -5,7 +5,7 @@ function* searchDB(action) {
     try {
         const searchTerm = action.payload;
         console.log(searchTerm);
-        const dbResponse = yield axios.get('/api/search/search');
+        const dbResponse = yield axios.get('/api/search');
         yield put({ type: 'SET_SEARCH_RESULTS', payload: dbResponse.data });
     } catch (error) {
         console.log(`Error fetching search results: ${error}`);

@@ -2,17 +2,13 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-// GET using search term
+// GET for all events
 router.get('/', (req, res) => {
     const query = `
         SELECT * FROM "events"
-        WHERE ("rink" ILIKE '%$1%')
-        OR ("address" ILIKE '%$1%')
-        OR ("notes" ILIKE '%$1%')
-        OR ("date" = '%$1%')
-        OR ("time" = '%$1%');
+        ORDER BY "date" ASC, "time" ASC, "rink" DESC;
         `;
-    pool.query(query, [req.params.search])
+    pool.query(query)
         .then((result) => {
             res.send(result.rows);
             res.sendStatus(200);
