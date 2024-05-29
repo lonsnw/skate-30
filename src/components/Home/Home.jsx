@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import './Home.css';
 
 // MUI imports
@@ -10,15 +12,28 @@ import SearchIcon from '@mui/icons-material/Search';
 import Hero from '../Hero/Hero';
 import SearchBar from '../SearchBar/SearchBar';
 
-const goingClick = () => {
-
-};
-
-const browseClick = () => {
-
-};
-
 function Home() {
+  const user = useSelector((store) => store.user);
+  const history = useHistory();
+
+  const browseClick = () => {
+    history.push('/browse')
+  };
+
+  const goingClick = () => {
+    {/* If no user is logged in, do this */}
+    {!user.id && (
+      <div className="nav">
+
+      </div>
+    )}
+    {/* If a user is logged in, do this */}
+    {user.id && (
+      <div className="nav">
+
+      </div>
+    )}
+  };
 
   return (
     <div className="hero">

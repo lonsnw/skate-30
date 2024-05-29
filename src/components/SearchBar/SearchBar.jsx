@@ -15,7 +15,7 @@ function SearchBar() {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const handleSubmit = (e) => {
+  const sendSearch = (e) => {
     e.preventDefault();
     dispatch({ type: '', payload: search });
     console.log(search);
@@ -43,7 +43,7 @@ function SearchBar() {
               fullWidth
           />
           <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-          <IconButton type="submit" sx={{ p: '10px' }} aria-label="search" onClick={() => {handleSubmit}}>
+          <IconButton type="submit" sx={{ p: '10px' }} aria-label="search" onClick={() => {sendSearch}}>
               <SearchIcon />
           </IconButton>
           </Paper>
