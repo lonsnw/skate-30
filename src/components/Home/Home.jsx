@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import './Home.css';
@@ -12,6 +12,8 @@ import SearchBar from '../SearchBar/SearchBar';
 function Home() {
   const user = useSelector((store) => store.user);
   const history = useHistory();
+  const [results, setResults] = useState('');
+
 
   const browseClick = () => {
     history.push('/browse')
@@ -43,7 +45,7 @@ function Home() {
               marginTop='34vh' >
               <Typography variant="h3">Find  ice times near you</Typography>
               <Typography variant="h5">Search for local pickups and open skates</Typography>
-              <SearchBar />
+              <SearchBar setResults={setResults} />
               <Box
                 display='flex'
                 flexDirection='row'

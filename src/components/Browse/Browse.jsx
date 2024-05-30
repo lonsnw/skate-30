@@ -26,7 +26,7 @@ function Browse() {
   return (
     <div>
       <Item 
-        backgroundColor='secondary'
+        backgroundColor='#eef2f7'
         display='flex'
         flexDirection='column'>
           <Grid >

@@ -11,7 +11,6 @@ import SearchCard from '../SearchCard/SearchCard';
 import Footer from '../Footer/Footer'
 
 function Search() {
-
   const [results, setResults] = useState('');
 
   const Item = styled(Paper)(({ theme }) => ({
@@ -23,7 +22,7 @@ function Search() {
   return (
     <div>
       <Item 
-        backgroundColor='secondary'
+        backgroundColor='#baccde'
         display='flex'
         flexDirection='column'>
           <SearchBar setResults={setResults} />
