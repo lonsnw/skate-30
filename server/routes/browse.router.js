@@ -4,20 +4,29 @@ const router = express.Router();
 
 // GET for all events
 router.get('/', (req, res) => {
+    console.log('In browser GET')
+    // const query = `
+    //     SELECT * FROM "events"
+    //     ORDER BY "date" ASC, "time" ASC, "rink" DESC;
+    //     `;
     const query = `
-        SELECT * FROM "events"
-        ORDER BY "date" ASC, "time" ASC, "rink" DESC;
-        `;
+        SELECT (COUNT(NULLIF("position" = FALSE, TRUE))) AS "skaters", (COUNT(NULLIF("position" = TRUE, TRUE))) AS "goalies", "events"."rink", "events"."type", "events"."date", "events"."time", "events"."duration" FROM "events"
+        LEFT JOIN "rsvp" ON "events"."id" = "rsvp"."event_id"
+        GROUP BY "events"."id";     
+    `;
     pool.query(query)
         .then((result) => {
-            res.send(result.rows);
-            res.sendStatus(200);
+            res.status(200)
+            .send(result.rows);
         })
         .catch((error) => {
             console.log(`Error on query: ${error}`);
             res.sendStatus(500);
         })
 });
+
+// SELECT "events"."rink", "events"."type", "events"."date", "events"."time", "events"."duration", "rsvp"."position" FROM "events"
+// JOIN "rsvp" ON "events"."id" = "rsvp"."event_id";
 
 /**
  * POST route template
