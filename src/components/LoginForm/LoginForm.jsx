@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {useSelector} from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 // MUI imports
 import { Box, Button, Container, TextField, Typography } from '@mui/material';
@@ -10,6 +11,7 @@ function LoginForm() {
   const [password, setPassword] = useState('');
   const errors = useSelector(store => store.errors);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const login = (event) => {
     event.preventDefault();
@@ -50,6 +52,7 @@ function LoginForm() {
                 name="username"
                 required
                 variant="outlined"
+                fullWidth
                 label="User name"
                 value={username}
                 onChange={(event) => setUsername(event.target.value)}
@@ -63,6 +66,7 @@ function LoginForm() {
                 name="password"
                 required
                 variant="outlined"
+                fullWidth
                 label="Password"
                 value={password}
                 onChange={(event) => setPassword(event.target.value)}
@@ -74,17 +78,20 @@ function LoginForm() {
             justifyContent='center'
             gap={1}
             margin='10px'>
-            <Button className="btn" type="submit" name="submit" value="Log In">
-              Log in
-            </Button>
             <Button
               type="button"
-              className="btn btn_asLink"
-              onClick={() => {
-                history.push('/registration');
-              }}
-            >
+              variant="contained"
+              color="secondary"
+              name="register"
+              onClick={() => {history.push('/registration');}}>
               Register
+            </Button>
+            <Button 
+              type="submit" 
+              variant="contained"
+              name="login"
+              value="Log In">
+              Log in
             </Button>
           </Box>
         </Box>
