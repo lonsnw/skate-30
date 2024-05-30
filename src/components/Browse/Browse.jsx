@@ -26,19 +26,18 @@ function Browse() {
   return (
     <div>
       <Item 
-        backgroundColor='#eef2f7'
         display='flex'
         flexDirection='column'>
-          <Grid >
-              <Grid className="events" item>
+          <Grid className='events'>
+              <Grid >
                 <EventCard />
               </Grid>
           </Grid>
       </Item>
       <Box
         width='100vw'
-        bottom='0px'
-        marginTop='-40px'>
+        position='absolute'
+        bottom='0'>
         <Footer />
       </Box>
     </div>

@@ -1,4 +1,4 @@
 .events {
-    max-height: 75vh;
+    min-height: 74vh;
     overflow-y: scroll;
 }
