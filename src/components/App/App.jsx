@@ -19,6 +19,7 @@ import InfoPage from '../InfoPage/InfoPage';
 import Home from '../Home/Home';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import Search from '../Search/Search'
 
 // MUI imports
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -66,6 +67,7 @@ function App() {
       },
       typography: {
           fontFamily: "'Lato', sans-serif",
+          fontColor: "primary",
           h1: {
             fontSize: 48,
             fontWeight: 300,
@@ -195,6 +197,15 @@ function App() {
             path="/browse"
           >
             <Browse />
+          </Route>
+
+          {/* Visiting localhost:5173/browse will show search results. */}
+          <Route
+            // shows About at all times (logged in or not)
+            exact
+            path="/search"
+          >
+            <Search />
           </Route>
 
           {/* For protected routes, the view could show one of several things on the same route.

@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import './Home.css';
 
 // MUI imports
-import { Box, Chip, Container, Divider, IconButton, InputBase, Paper, Typography } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
-import SearchIcon from '@mui/icons-material/Search';
+import { Box, Chip, Container, Typography } from '@mui/material';
 
 // CUSTOM COMPONENTS
 import SearchBar from '../SearchBar/SearchBar';

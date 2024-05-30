@@ -8,7 +8,7 @@ function* fetchEvents() {
         yield put ({ type: 'SET_EVENTS', payload: events.data });
     } catch (error) {
         console.log(`Error fetching all events: ${error}`);
-        // alert('Something went wrong with your search');
+        alert('Something went wrong with your search');
     }
 }
 

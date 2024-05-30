@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 
 const searchResults = (state = [], action) => {
     switch (action.type) {
-      case 'SET_SEARCH_RESULTS':
+      case 'SET_SEARCH':
         return action.payload;
       default:
         return state;
@@ -10,6 +10,5 @@ const searchResults = (state = [], action) => {
   };
 
 export default combineReducers({
-    searchResults,
-    
+    searchResults
   });

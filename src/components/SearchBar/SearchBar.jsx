@@ -17,15 +17,16 @@ function SearchBar() {
 
   const sendSearch = (e) => {
     e.preventDefault();
-    dispatch({ type: 'SEARCH_DB', payload: search });
     console.log(search);
-    // history.push('/browse')
+    dispatch({ type: 'FETCH_SEARCH', payload: search });
+    console.log(search);
+    history.push('/search')
   }
 
   return (
     <div className="search-bar">
         <div >
-        {/* If no user is logged in, show these links */}
+        {/* If no user is logged in, show simple search */}
         {!user.id && (
           <Paper
           component="form"
@@ -43,12 +44,12 @@ function SearchBar() {
               fullWidth
           />
           <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-          <IconButton type="button" sx={{ p: '10px' }} aria-label="search" onClick={() => {sendSearch}}>
+          <IconButton sx={{ p: '10px' }} aria-label="search" onClick={() => {sendSearch}}>
               <SearchIcon />
           </IconButton>
           </Paper>
         )}
-        {/* If a user is logged in, show these links */}
+        {/* STRETCH -- If a user is logged in, show layered search */}
         {user.id && (
           <Paper
           component="form"

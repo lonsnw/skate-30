@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import './Browse.css';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
 // MUI imports
-import { Box, Grid, Icon, Paper } from '@mui/material';
+import { Box, Grid, Paper } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 // CUSTOM COMPONENTS
@@ -12,7 +11,6 @@ import Footer from '../Footer/Footer'
 
 function Browse() {
   const dispatch = useDispatch();
-  const eventList = useSelector((store) => store.browse.browseAll);
 
   useEffect(() => {
     dispatch({ type: 'FETCH_EVENTS' });
