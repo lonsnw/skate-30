@@ -48,7 +48,8 @@ function Home() {
                 display='flex'
                 flexDirection='row'
                 justifyContent='center'
-                gap={1}>
+                gap={1}
+                margin='10px'>
                 <Chip label="See who's going" color="primary" onClick={goingClick} />
                 <Chip label="Browse" color="primary" onClick={browseClick}  />
               </Box>

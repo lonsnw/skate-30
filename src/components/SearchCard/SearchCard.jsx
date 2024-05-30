@@ -1,14 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import './SearchCard.css'
 
 // MUI imports
 import { styled } from '@mui/material/styles';
 import { Paper, Typography } from '@mui/material';
 
-function SearchCard() {
+function SearchCard({results}) {
     const dispatch = useDispatch();
-    const events = useSelector((store) => store.search.searchDB);
+    const events = useSelector((store) => store.browse.browseAll);
     const history = useHistory();
 
     // sending event ID to saga to load when details page opens
@@ -27,8 +26,9 @@ function SearchCard() {
     }));
 
     return(
-        <div>
-            {events.map(event => {
+        <div className="results-list">
+            {/* claiming that results.map isn't a function */}
+            {results.map(event => {
                 return (
                     <Item 
                         key={event.id}

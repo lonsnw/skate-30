@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import './Browse.css'
 
 // MUI imports
 import { Box, Grid, Paper } from '@mui/material';
@@ -23,13 +24,13 @@ function Browse() {
   }));
 
   return (
-    <div className="events">
+    <div>
       <Item 
         backgroundColor='secondary'
         display='flex'
         flexDirection='column'>
-          <Grid>
-              <Grid item>
+          <Grid >
+              <Grid className="events" item>
                 <EventCard />
               </Grid>
           </Grid>
