@@ -13,7 +13,7 @@ function Search() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch({ type: 'FETCH_SEARCH' });
+    dispatch({ type: 'FETCH_EVENTS' });
   }, []);
 
   const Item = styled(Paper)(({ theme }) => ({
