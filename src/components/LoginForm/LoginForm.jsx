@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {useSelector} from 'react-redux';
 
+// MUI imports
+import { Box, Button, Container, TextField, Typography } from '@mui/material';
+
 function LoginForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -25,41 +28,65 @@ function LoginForm() {
   }; // end login
 
   return (
-    <form className="formPanel" onSubmit={login}>
-      <h2>Login</h2>
-      {errors.loginMessage && (
-        <h3 className="alert" role="alert">
-          {errors.loginMessage}
-        </h3>
-      )}
-      <div>
-        <label htmlFor="username">
-          Username:
-          <input
-            type="text"
-            name="username"
-            required
-            value={username}
-            onChange={(event) => setUsername(event.target.value)}
-          />
-        </label>
-      </div>
-      <div>
-        <label htmlFor="password">
-          Password:
-          <input
-            type="password"
-            name="password"
-            required
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-          />
-        </label>
-      </div>
-      <div>
-        <input className="btn" type="submit" name="submit" value="Log In" />
-      </div>
-    </form>
+    <Container>
+      <Box
+        component='form'
+        display='flex'
+        flexDirection='column'
+        justifyContent='center'
+        alignContent='center'
+        onSubmit={login}>
+          <Typography variant="h3">Log in</Typography>
+          {errors.loginMessage && (
+            <Typography variant="p2" className="alert" role="alert">
+              {errors.loginMessage}
+            </Typography>
+          )}
+          <div>
+            <Typography variant="h6">User name</Typography>            
+              <TextField
+                type="text"
+                name="username"
+                required
+                variant="outlined"
+                label="User name"
+                value={username}
+                onChange={(event) => setUsername(event.target.value)}
+              />
+          </div>
+          <div>
+            <Typography variant="h6">Password</Typography>
+              <TextField
+                type="password"
+                name="password"
+                required
+                variant="outlined"
+                label="Password"
+                value={password}
+                onChange={(event) => setPassword(event.target.value)}
+              />
+          </div>
+          <Box
+            display='flex'
+            flexDirection='row'
+            justifyContent='center'
+            gap={1}
+            margin='10px'>
+            <Button className="btn" type="submit" name="submit" value="Log In">
+              Log in
+            </Button>
+            <Button
+              type="button"
+              className="btn btn_asLink"
+              onClick={() => {
+                history.push('/registration');
+              }}
+            >
+              Register
+            </Button>
+          </Box>
+        </Box>
+    </Container>
   );
 }
 
