@@ -9,12 +9,11 @@ import { Divider, IconButton, InputBase, Paper } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 
-function SearchBar() {
+function SearchBar({setResults}) {
 
   const [input, setInput] = useState("");
 
   const fetchData = (value) => {
-    // i might need to make this async await?  not sure?
     axios.get('api/search').then((response) => {
       console.log('Data:', response.data);
       const results = response.data.filter((event) => {
@@ -25,7 +24,8 @@ function SearchBar() {
           event.rink.toLowerCase().includes(value)
         );
       });
-      console.log(results)
+      console.log(results);
+      setResults(results)
     }).catch((error) => {
       // console.log(`Error on search: ${error}`);
       alert('Something went wrong searching your database')
