@@ -45,6 +45,7 @@ function LoginForm() {
           <div>
             <Typography variant="h6">User name</Typography>            
               <TextField
+                sx={{ backgroundColor: "#eef2f7" }}
                 type="text"
                 name="username"
                 required
@@ -57,6 +58,7 @@ function LoginForm() {
           <div>
             <Typography variant="h6">Password</Typography>
               <TextField
+                sx={{ backgroundColor: "#eef2f7" }}
                 type="password"
                 name="password"
                 required
