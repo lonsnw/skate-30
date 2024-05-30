@@ -20,16 +20,13 @@ function EventCard() {
 
     const Item = styled(Paper)(({ theme }) => ({
         padding: theme.spacing(1),
+        borderColor: '#7599BD',
         borderStyle: 'solid',
+        borderWidth: '1px',
         textAlign: 'left',
     }));
 
     return(
-        // <Item className="events">
-        //     <Typography variant="h6"> <li>Pickup - Augsburg A </li></Typography>
-        //     <Typography variant="subtitle1">Monday, June 3 - 8:30PM - 90 mins</Typography>
-        //     <Typography variant="subtitle2">3 Skaters | 1 Goalie</Typography>
-        // </Item>
         <div>
             {events.map(event => {
                 return (
@@ -38,8 +35,8 @@ function EventCard() {
                         onClick={() => {getID(event.id)}} >
                         <Typography variant="h6"> <li>{event.type ? 'Pickup' : 'Open Skate'} - {event.rink} </li></Typography>
                         <Typography variant="subtitle1">{new Date(event.date).toLocaleDateString('en-us', { weekday:"long", month:"short", day:"numeric"})} - {event.time} - {event.duration} mins</Typography>
-                        <Typography variant="subtitle2">3 Skaters | 1 Goalie</Typography>
-                    </Item>
+                        <Typography variant="subtitle2">{event.skaters} Skaters | {event.goalies} Goalies</Typography>
+                    </Item >
                 );
             })}
         </div>
