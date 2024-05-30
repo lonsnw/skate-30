@@ -28,7 +28,7 @@ function SearchCard({results}) {
     return(
         <div className="results-list">
             {/* claiming that results.map isn't a function */}
-            {results.map(event => {
+            {/* {results.map(event => {
                 return (
                     <Item 
                         key={event.id}
@@ -38,7 +38,8 @@ function SearchCard({results}) {
                         <Typography variant="subtitle2">{event.skaters} Skaters | {event.goalies} Goalies</Typography>
                     </Item >
                 );
-            })}
+            })} */}
+            test
         </div>
     )
 }
