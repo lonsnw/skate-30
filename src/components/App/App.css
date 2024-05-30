@@ -16,7 +16,7 @@ img {
 
 /* Adding custom bullet */
 li {
-  list-style-image: url("../../../public/images/skate-bullet.svg");
+  list-style-image: url("/images/skate-bullet.svg");
 }
 
 /* --------------------------------------------------------------------------------
