@@ -6,8 +6,8 @@ import { styled } from '@mui/material/styles';
 import { Paper, Typography } from '@mui/material';
 
 function SearchResults({results}) {
-
     const dispatch = useDispatch();
+    const events = useSelector((store) => store.browse.browseAll);
     const history = useHistory();
 
     // sending event ID to saga to load when details page opens
@@ -28,7 +28,7 @@ function SearchResults({results}) {
     return(
         <div className="results-list">
             {/* claiming that results.map isn't a function */}
-            {/* {results.map(event => {
+            {results.map(event => {
                 return (
                     <Item 
                         key={event.id}
@@ -38,9 +38,7 @@ function SearchResults({results}) {
                         <Typography variant="subtitle2">{event.skaters} Skaters | {event.goalies} Goalies</Typography>
                     </Item >
                 );
-            })} */}
-            test
-            
+            })}
         </div>
     )
 }
