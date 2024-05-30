@@ -6,7 +6,7 @@ import { Box, Chip, Container, Typography } from '@mui/material';
 
 // CUSTOM COMPONENTS
 import SearchBar from '../SearchBar/SearchBar';
-import SearchResults from '../SearchResults/SearchResults';
+import SearchCard from '../SearchCard/SearchCard';
 
 function Search() {
 
@@ -15,7 +15,7 @@ function Search() {
   return (
     <div className="search">
       <SearchBar setResults={setResults} />
-      <SearchResults results={results} />
+      <SearchCard results={results} />
     </div>
   )
 }

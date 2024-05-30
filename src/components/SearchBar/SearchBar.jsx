@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import './SearchBar.css';
 
 // MUI imports
 import { Divider, IconButton, InputBase, Paper } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 
 function SearchBar({setResults}) {
@@ -39,8 +36,20 @@ function SearchBar({setResults}) {
 
   return (
     <div className="input-wrapper">
-      <SearchIcon />
-      <input placeholder="Type to search" value={input} onChange={(e) => handleChange(e.target.value)} />
+      <Paper
+          component="form"
+          sx={{ p: '2px 4px', display: 'flex', alignItems: 'center' }}
+          >
+        <InputBase 
+          sx={{ ml: 1, flex: 1 }}
+          placeholder="Search for ice"
+          value={input} 
+          onChange={(e) => handleChange(e.target.value)} />
+        <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
+          <IconButton sx={{ p: '10px' }} aria-label="search" onClick={() => {sendSearch}}>
+              <SearchIcon />
+        </IconButton>
+      </Paper>
     </div>
   )
 }

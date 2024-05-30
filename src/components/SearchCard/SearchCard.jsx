@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 import { Paper, Typography } from '@mui/material';
 
-function SearchResults({results}) {
+function SearchCard({results}) {
     const dispatch = useDispatch();
     const events = useSelector((store) => store.browse.browseAll);
     const history = useHistory();
@@ -43,4 +43,4 @@ function SearchResults({results}) {
     )
 }
 
-export default SearchResults;
+export default SearchCard;

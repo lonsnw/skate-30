@@ -24,11 +24,16 @@ const router = express.Router();
 //         })
 // });
 
-// this is working in that it is connecting to the server
-// but it is not filtering at all
+// removed (COUNT(NULLIF("position" = FALSE, TRUE))) AS "skaters", (COUNT(NULLIF("position" = TRUE, TRUE))) AS "goalies", 
+// seemed to be limiting the search to that
+
 router.get('/', (req, res) => {
     console.log("In GET request");
-    let queryText = 'SELECT * from "events" ORDER BY "id"';
+    let queryText = `
+    SELECT "events"."id", "events"."rink", "events"."type", "events"."date", "events"."time", "events"."duration" FROM "events"
+    LEFT JOIN "rsvp" ON "events"."id" = "rsvp"."event_id"
+    GROUP BY "events"."id";     
+    `;
     pool.query(queryText).then((result) => {
         res.send(result.rows);
     }).catch((error) => {
