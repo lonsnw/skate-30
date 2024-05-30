@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 import './SearchBar.css';
 
 // MUI imports
@@ -9,69 +10,39 @@ import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 
 function SearchBar() {
-  const user = useSelector((store) => store.user);
-  const [search, setSearch] = useState("");
 
-  const history = useHistory();
-  const dispatch = useDispatch();
+  const [input, setInput] = useState("");
 
-  const sendSearch = (e) => {
-    e.preventDefault();
-    console.log(search);
-    dispatch({ type: 'FETCH_SEARCH', payload: search });
-    console.log(search);
-    history.push('/search')
+  const fetchData = (value) => {
+    // i might need to make this async await?  not sure?
+    axios.get('api/search').then((response) => {
+      console.log('Data:', response.data);
+      const results = response.data.filter((event) => {
+        return (
+          value && 
+          event && 
+          event.rink && 
+          event.rink.toLowerCase().includes(value)
+        );
+      });
+      console.log(results)
+    }).catch((error) => {
+      // console.log(`Error on search: ${error}`);
+      alert('Something went wrong searching your database')
+    });
+  }
+
+  const handleChange = (value) => {
+    setInput(value);
+    fetchData(value)
   }
 
   return (
-    <div className="search-bar">
-        <div >
-        {/* If no user is logged in, show simple search */}
-        {!user.id && (
-          <Paper
-          component="form"
-          sx={{ p: '2px 4px', display: 'flex', alignItems: 'center' }}
-          >
-          <InputBase
-              sx={{ ml: 1, flex: 1 }}
-              placeholder="Search for ice"
-              type="text"
-              name="search"
-              value={search}
-              onChange={(e) => {setSearch(e.target.value)}}
-              label="Search"
-              required
-              fullWidth
-          />
-          <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-          <IconButton sx={{ p: '10px' }} aria-label="search" onClick={() => {sendSearch}}>
-              <SearchIcon />
-          </IconButton>
-          </Paper>
-        )}
-        {/* STRETCH -- If a user is logged in, show layered search */}
-        {user.id && (
-          <Paper
-          component="form"
-          sx={{ p: '2px 4px', display: 'flex', alignItems: 'center' }}
-          >
-          <IconButton sx={{ p: '10px' }} aria-label="menu">
-              <MenuIcon />
-          </IconButton>
-          <InputBase
-              sx={{ ml: 1, flex: 1 }}
-              placeholder="Search for ice"
-              inputProps={{ 'aria-label': 'search for ice' }}
-          />
-          <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-          <IconButton type="submit" sx={{ p: '10px' }} aria-label="search">
-              <SearchIcon />
-          </IconButton>
-          </Paper>
-        )}
+    <div className="input-wrapper">
+      <SearchIcon />
+      <input placeholder="Type to search" value={input} onChange={(e) => handleChange(e.target.value)} />
     </div>
-    </div>    
-  );
+  )
 }
 
 export default SearchBar;
