@@ -11,14 +11,8 @@ function* searchResults(action) {
     }
 }
 
-// function* sendSearch(action) {
-//     console.log('in sendSearch saga');
-//     yield put ({ type: 'SET_SEARCH', payload: action.payload })
-// }
-
 function* searchSaga() {
     yield takeLatest('SEARCH_RESULTS', searchResults);
-    yield takeLatest('SEND_SEARCH', sendSearch);
 }
 
 export default searchSaga;

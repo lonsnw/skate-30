@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import './Search.css';
@@ -8,7 +8,6 @@ import { Box, Grid, Paper } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 // CUSTOM COMPONENTS
-import SearchBar from '../SearchBar/SearchBar';
 import SearchCard from '../SearchCard/SearchCard';
 import Footer from '../Footer/Footer'
 
