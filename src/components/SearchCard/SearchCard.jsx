@@ -8,7 +8,7 @@ import { Paper, Typography } from '@mui/material';
 function SearchCard() {
     const dispatch = useDispatch();
     const history = useHistory();  
-    const events = useSelector((store) => store.search.searchResults);
+    const events = useSelector((store) => store.search.sendSearch);
 
     // sending event ID to saga to load when details page opens
     const getID = (eventId) => {

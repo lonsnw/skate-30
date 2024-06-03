@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
-import './Search.css';
 
 // MUI imports
 import { Box, Button, Grid, Paper, Typography } from '@mui/material';
@@ -15,7 +14,7 @@ function Search() {
   const input = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
-  const events = useSelector((store) => store.search.searchResults);
+  const events = useSelector((store) => store.search.sendSearch);
 
   useEffect(() => {
     dispatch({ type: 'SEARCH_RESULTS', payload: input });

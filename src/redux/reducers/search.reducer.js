@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-const searchResults = (state = [], action) => {
+const sendSearch = (state = [], action) => {
     switch (action.type) {
       case 'SEND_SEARCH':
         return action.payload;
@@ -10,5 +10,5 @@ const searchResults = (state = [], action) => {
   };
   
 export default combineReducers({
-    searchResults
+    sendSearch
   });
