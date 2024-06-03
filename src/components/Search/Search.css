@@ -1,4 +1,4 @@
 .events {
-    height: 67vh;
+    min-height: 74vh;
     overflow-y: scroll;
 }

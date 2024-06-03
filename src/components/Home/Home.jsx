@@ -11,8 +11,6 @@ import SearchBar from '../SearchBar/SearchBar';
 function Home() {
   const user = useSelector((store) => store.user);
   const history = useHistory();
-  const [results, setResults] = useState('');
-
 
   const browseClick = () => {
     history.push('/browse')
@@ -44,7 +42,7 @@ function Home() {
               marginTop='34vh' >
               <Typography variant="h3">Find  ice times near you</Typography>
               <Typography variant="h5">Search for local pickups and open skates</Typography>
-              <SearchBar setResults={setResults} />
+              <SearchBar />
               <Box
                 display='flex'
                 flexDirection='row'

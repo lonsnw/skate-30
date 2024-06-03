@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import './SearchBar.css';
 
@@ -6,14 +8,16 @@ import './SearchBar.css';
 import { Divider, IconButton, InputBase, Paper } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 
-function SearchBar({setResults}) {
-
+function SearchBar() {
+  const history = useHistory();
+  const dispatch = useDispatch()
   const [input, setInput] = useState("");
+  const [search, setSearch] = useState([])
 
   const fetchData = (value) => {
     axios.get('api/search').then((response) => {
       console.log('Data:', response.data);
-      const results = response.data.filter((event) => {
+      let results = response.data.filter((event) => {
         return (
           value && 
           event && 
@@ -22,16 +26,22 @@ function SearchBar({setResults}) {
         );
       });
       console.log(results);
-      setResults(results)
+      setSearch(results)
     }).catch((error) => {
       console.log(`Error on search: ${error}`);
-      // alert('Something went wrong searching your database')
+      alert('Something went wrong searching your database')
     });
   }
 
   const handleChange = (value) => {
     setInput(value);
     fetchData(value)
+  }
+
+  const getTerm = (input) => {
+    console.log('search results:', search);
+    dispatch({ type: 'SEND_SEARCH', payload: search});
+    history.push(`/search/${input}`);
   }
 
   return (
@@ -47,7 +57,8 @@ function SearchBar({setResults}) {
           onChange={(e) => handleChange(e.target.value)} />
         <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
           <IconButton sx={{ p: '10px' }} aria-label="search" >
-              <SearchIcon />
+              <SearchIcon 
+              onClick={() => {getTerm(input)}} />
         </IconButton>
       </Paper>
     </div>

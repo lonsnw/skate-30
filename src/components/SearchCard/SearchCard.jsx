@@ -5,9 +5,8 @@ import { useHistory } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 import { Paper, Typography } from '@mui/material';
 
-function SearchCard({results}) {
+function SearchCard({events}) {
     const dispatch = useDispatch();
-    const events = useSelector((store) => store.browse.browseAll);
     const history = useHistory();
 
     // sending event ID to saga to load when details page opens
@@ -27,8 +26,7 @@ function SearchCard({results}) {
 
     return(
         <div className="results-list">
-            {/* occasionally claiming that results.map isn't a function but then sometimes working???? */}
-            {results.map(event => {
+            {events.map(event => {
                 return (
                     <Item 
                         key={event.id}
