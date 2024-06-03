@@ -26,7 +26,6 @@ function SearchCard({events}) {
 
     return(
         <div className="results-list">
-            {/* occasionally claiming that results.map isn't a function but then sometimes working???? */}
             {events.map(event => {
                 return (
                     <Item 
