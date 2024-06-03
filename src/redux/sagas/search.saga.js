@@ -4,8 +4,7 @@ import { put, takeLatest } from 'redux-saga/effects';
 function* searchResults(action) {
     console.log('in searchResults saga');
     try {
-        const searchResponse = yield axios.get(`/api/search/`, action.payload);
-        yield put ({ type: 'SEND_SEARCH', payload: searchResponse.data })
+        yield put ({ type: 'SEND_SEARCH', payload: action.data })
     } catch {
         console.log('Error with searchResults saga');
     }

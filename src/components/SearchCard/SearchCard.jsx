@@ -10,7 +10,6 @@ function SearchCard() {
     const history = useHistory();  
     const events = useSelector((store) => store.search.searchResults);
 
-
     // sending event ID to saga to load when details page opens
     const getID = (eventId) => {
         dispatch({ type: 'FETCH_DETAILS', payload: eventId });
