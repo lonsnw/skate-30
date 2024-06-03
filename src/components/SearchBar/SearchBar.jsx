@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import './SearchBar.css';
 
@@ -7,6 +8,7 @@ import { Divider, IconButton, InputBase, Paper } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 
 function SearchBar({setResults}) {
+  const history = useHistory();
 
   const [input, setInput] = useState("");
 
@@ -34,6 +36,10 @@ function SearchBar({setResults}) {
     fetchData(value)
   }
 
+  const getTerm = (input) => {
+    history.push(`/search/${input}`)
+  }
+
   return (
     <div className="input-wrapper">
       <Paper
@@ -47,7 +53,8 @@ function SearchBar({setResults}) {
           onChange={(e) => handleChange(e.target.value)} />
         <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
           <IconButton sx={{ p: '10px' }} aria-label="search" >
-              <SearchIcon />
+              <SearchIcon 
+              onClick={() => {getTerm(input)}} />
         </IconButton>
       </Paper>
     </div>

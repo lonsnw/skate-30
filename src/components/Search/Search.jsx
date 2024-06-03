@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import './Search.css';
 
 // MUI imports
@@ -11,7 +13,13 @@ import SearchCard from '../SearchCard/SearchCard';
 import Footer from '../Footer/Footer'
 
 function Search() {
-  const [results, setResults] = useState('');
+  const input = useParams();
+  const dispatch = useDispatch();
+  const events = useSelector((store) => store.search.searchResults);
+
+  useEffect(() => {
+    dispatch({ type: 'SEARCH_RESULTS', payload: input });
+  }, []);
 
   const Item = styled(Paper)(({ theme }) => ({
     padding: theme.spacing(1),
@@ -22,20 +30,18 @@ function Search() {
   return (
     <div>
       <Item 
-        backgroundColor='#baccde'
         display='flex'
         flexDirection='column'>
-          <SearchBar setResults={setResults} />
-          <Grid >
-              <Grid className="events" item>
-                <SearchCard results={results} />              
+          <Grid className='events'>
+              <Grid >
+                <SearchCard events={events} />              
               </Grid>
           </Grid>
       </Item>
       <Box
         width='100vw'
-        bottom='0px'
-        marginTop='-40px'>
+        position='absolute'
+        bottom='0'>
         <Footer />
       </Box>
     </div>

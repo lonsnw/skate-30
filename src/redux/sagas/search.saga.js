@@ -1,21 +1,18 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
-function* searchDB(action) {
-    console.log('in searchDB saga');
+function* searchResults(action) {
+    console.log('in searchResults saga');
     try {
-        const searchTerm = action.payload;
-        console.log(searchTerm);
-        const dbResponse = yield axios.get('/api/search');
-        yield put({ type: 'SET_SEARCH', payload: dbResponse.data });
-    } catch (error) {
-        console.log(`Error fetching search results: ${error}`);
-        alert('Something went wrong with your search');
+        const searchResponse = yield axios.get(`/api/search/${action.payload}`);
+        yield put ({ type: 'SET_SEARCH', payload: searchResponse.data })
+    } catch {
+        console.log('Error on with searchResults saga');
     }
 }
 
 function* searchSaga() {
-    yield takeLatest('FETCH_SEARCH', searchDB);
+    yield takeLatest('SEARCH_RESULTS', searchResults);
 }
 
 export default searchSaga;

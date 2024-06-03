@@ -203,7 +203,7 @@ function App() {
           <Route
             // shows About at all times (logged in or not)
             exact
-            path="/search"
+            path="/search/:input"
           >
             <Search />
           </Route>
