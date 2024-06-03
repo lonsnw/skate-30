@@ -35,40 +35,71 @@ function Search() {
               <Grid >
                 {
                   events.length === 0 ? (
-                    <>
-                      <Box 
-                        sx={{ height: '74vh' }}
+                    <Box 
+                      sx={{ height: '74vh' }}
+                      display='flex'
+                      flexDirection='column'
+                      justifyContent='center'
+                      textAlign='center'>
+                      <Typography variant="h5">No entries were found.</Typography>
+                      <Box
                         display='flex'
-                        flexDirection='column'
+                        flexDirection='row'
                         justifyContent='center'
-                        textAlign='center'>
-                        <Typography variant="h5">No entries were found.</Typography>
-                        <Box
-                          display='flex'
-                          flexDirection='row'
-                          justifyContent='center'
-                          gap={1}
-                          margin='10px'>
-                          <Button
-                            type="button"
-                            variant="contained"
-                            color="secondary"
-                            name="input"
-                            onClick={() => {history.push('/input');}}>
-                            Add event
-                          </Button>
-                          <Button
-                            type="button"
-                            variant="contained"
-                            name="try-again"
-                            onClick={() => {history.push('/');}}>
-                            Try again
-                          </Button>
-                        </Box>
+                        gap={1}
+                        margin='10px'>
+                        <Button
+                          type="button"
+                          variant="contained"
+                          color="secondary"
+                          name="input"
+                          onClick={() => {history.push('/input');}}>
+                          Add event
+                        </Button>
+                        <Button
+                          type="button"
+                          variant="contained"
+                          name="try-again"
+                          onClick={() => {history.push('/');}}>
+                          Try again
+                        </Button>
                       </Box>
-                    </>
+                    </Box>
                   ) : (
-                    <SearchCard />  
+                    <Box 
+                    sx={{ height: '74vh' }}
+                    display='flex'
+                    flexDirection='column'
+                    textAlign='center'>
+                      <SearchCard />
+                     {/* Removed because the styling puts it over the last card */}
+                      {/* <Box
+                        display='flex'
+                        flexDirection='row'
+                        justifyContent='center'
+                        gap={1}
+                        position='absolute'
+                        bottom='18vh'
+                        left='0'
+                        right='0'
+                        margin='auto'>
+                        <Button
+                          type="button"
+                          variant="contained"
+                          color="secondary"
+                          name="input"
+                          onClick={() => {history.push('/input');}}>
+                          Add event
+                        </Button>
+                        <Button
+                          type="button"
+                          variant="contained"
+                          name="try-again"
+                          onClick={() => {history.push('/');}}>
+                          New search
+                        </Button>
+                      </Box>   */}
+                    </Box>
                   )
                 }            
               </Grid>
