@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import './Search.css';
 
 // MUI imports
-import { Box, Grid, Paper } from '@mui/material';
+import { Box, Button, Grid, Paper, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 // CUSTOM COMPONENTS
@@ -14,6 +14,8 @@ import Footer from '../Footer/Footer'
 function Search() {
   const input = useParams();
   const dispatch = useDispatch();
+  const history = useHistory();
+  const events = useSelector((store) => store.search.searchResults);
 
   useEffect(() => {
     dispatch({ type: 'SEARCH_RESULTS', payload: input });
@@ -32,7 +34,31 @@ function Search() {
         flexDirection='column'>
           <Grid className='events'>
               <Grid >
-                <SearchCard />              
+                {
+                  events.length === 0 ? (
+                    <>
+                      <Box 
+                        sx={{ height: '70vh' }}
+                        display='flex'
+                        flexDirection='column'
+                        justifyContent='center'
+                        textAlign='center'>
+                        <Typography variant="h5">No entries were found.</Typography>
+                        <Box>
+                          <Button
+                            type="button"
+                            variant="contained"
+                            name="try-again"
+                            onClick={() => {history.push('/');}}>
+                            Try again
+                          </Button>
+                        </Box>
+                      </Box>
+                    </>
+                  ) : (
+                    <SearchCard />  
+                  )
+                }            
               </Grid>
           </Grid>
       </Item>
