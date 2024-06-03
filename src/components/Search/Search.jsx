@@ -16,10 +16,6 @@ function Search() {
   const history = useHistory();
   const events = useSelector((store) => store.search.sendSearch);
 
-  useEffect(() => {
-    dispatch({ type: 'SEARCH_RESULTS', payload: input });
-  }, []);
-
   const Item = styled(Paper)(({ theme }) => ({
     padding: theme.spacing(1),
     textAlign: 'left',

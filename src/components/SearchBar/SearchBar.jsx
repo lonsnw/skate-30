@@ -40,7 +40,7 @@ function SearchBar() {
 
   const getTerm = (input) => {
     console.log('search results from SearchBar:', search);
-    dispatch({ type: 'SEND_SEARCH', payload: search});
+    dispatch({ type: 'SET_SEARCH', payload: search});
     history.push(`/search/${input}`);
   }
 

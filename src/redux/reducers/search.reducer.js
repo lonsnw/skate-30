@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 
 const sendSearch = (state = [], action) => {
     switch (action.type) {
-      case 'SEND_SEARCH':
+      case 'SET_SEARCH':
         return action.payload;
       default:
         return state;
