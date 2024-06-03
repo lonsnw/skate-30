@@ -39,8 +39,8 @@ function SearchBar() {
   }
 
   const getTerm = (input) => {
-    console.log('search results:', search);
-    dispatch({ type: 'SEND_SEARCH', payload: search});
+    console.log('search results from SearchBar:', search);
+    dispatch({ type: 'SET_SEARCH', payload: search});
     history.push(`/search/${input}`);
   }
 
@@ -56,9 +56,8 @@ function SearchBar() {
           value={input} 
           onChange={(e) => handleChange(e.target.value)} />
         <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-          <IconButton sx={{ p: '10px' }} aria-label="search" >
-              <SearchIcon 
-              onClick={() => {getTerm(input)}} />
+          <IconButton sx={{ p: '10px' }} aria-label="search" onClick={() => {getTerm(input)}} >
+              <SearchIcon />
         </IconButton>
       </Paper>
     </div>

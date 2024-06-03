@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import './Browse.css'
 
 // MUI imports
 import { Box, Grid, Paper } from '@mui/material';

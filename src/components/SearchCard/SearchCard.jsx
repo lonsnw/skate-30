@@ -5,9 +5,10 @@ import { useHistory } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 import { Paper, Typography } from '@mui/material';
 
-function SearchCard({events}) {
+function SearchCard() {
     const dispatch = useDispatch();
-    const history = useHistory();
+    const history = useHistory();  
+    const events = useSelector((store) => store.search.sendSearch);
 
     // sending event ID to saga to load when details page opens
     const getID = (eventId) => {
