@@ -37,7 +37,7 @@ function Search() {
                   events.length === 0 ? (
                     <>
                       <Box 
-                        sx={{ height: '70vh' }}
+                        sx={{ height: '74vh' }}
                         display='flex'
                         flexDirection='column'
                         justifyContent='center'
