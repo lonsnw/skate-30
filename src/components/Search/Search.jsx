@@ -14,7 +14,6 @@ import Footer from '../Footer/Footer'
 function Search() {
   const input = useParams();
   const dispatch = useDispatch();
-  const events = useSelector((store) => store.search.searchResults);
 
   useEffect(() => {
     dispatch({ type: 'SEARCH_RESULTS', payload: input });
@@ -33,7 +32,7 @@ function Search() {
         flexDirection='column'>
           <Grid className='events'>
               <Grid >
-                <SearchCard events={events} />              
+                <SearchCard />              
               </Grid>
           </Grid>
       </Item>
