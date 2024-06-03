@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 // MUI imports
 import { Box, Button, Grid, Paper, Typography } from '@mui/material';
@@ -11,8 +11,6 @@ import SearchCard from '../SearchCard/SearchCard';
 import Footer from '../Footer/Footer'
 
 function Search() {
-  const input = useParams();
-  const dispatch = useDispatch();
   const history = useHistory();
   const events = useSelector((store) => store.search.sendSearch);
 
