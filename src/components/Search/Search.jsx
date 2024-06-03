@@ -44,7 +44,20 @@ function Search() {
                         justifyContent='center'
                         textAlign='center'>
                         <Typography variant="h5">No entries were found.</Typography>
-                        <Box>
+                        <Box
+                          display='flex'
+                          flexDirection='row'
+                          justifyContent='center'
+                          gap={1}
+                          margin='10px'>
+                          <Button
+                            type="button"
+                            variant="contained"
+                            color="secondary"
+                            name="input"
+                            onClick={() => {history.push('/input');}}>
+                            Add event
+                          </Button>
                           <Button
                             type="button"
                             variant="contained"
