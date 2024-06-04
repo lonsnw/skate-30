@@ -20,6 +20,7 @@ import Home from '../Home/Home';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import Search from '../Search/Search'
+import Details from '../Details/Details'
 
 // MUI imports
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -199,13 +200,22 @@ function App() {
             <Browse />
           </Route>
 
-          {/* Visiting localhost:5173/browse will show search results. */}
+          {/* Visiting localhost:5173/search will show search results. */}
           <Route
-            // shows About at all times (logged in or not)
+            // shows Search results at all times (logged in or not)
             exact
             path="/search/:input"
           >
             <Search />
+          </Route>
+
+          {/* Visiting localhost:5173/details will show details from a selected event. */}
+          <Route
+            // shows Details at all times (logged in or not)
+            exact
+            path="/details"
+          >
+            <Details />
           </Route>
 
           {/* For protected routes, the view could show one of several things on the same route.

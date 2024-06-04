@@ -6,10 +6,11 @@ const router = express.Router();
 router.get('/:id', (req, res) => {
     console.log('in details GET');
     const query = `
-    SELECT (COUNT(NULLIF("position" = FALSE, TRUE))) AS "skaters", (COUNT(NULLIF("position" = TRUE, TRUE))) AS "goalies", "events"."id", "events"."rink", "events"."type", "events"."date", "events"."time", "events"."duration" FROM "events"
+    SELECT "rsvp"."event_id", "rsvp"."user_id", CONCAT("rsvp"."name", "user"."name") AS "attendees", "events"."rink", "events"."type", "events"."date", "events"."time", "events"."duration",  "events"."address", "events"."level", "events"."exposure", "events"."notes" FROM "events"
     LEFT JOIN "rsvp" ON "events"."id" = "rsvp"."event_id"
-    WHERE "id"=$1
-    GROUP BY "events"."id";
+    LEFT JOIN "user" ON "rsvp"."user_id" = "user"."id"
+    WHERE "events"."id"=$1
+    ORDER BY "attendees" ASC;
     `;
     pool.query(query, [req.params.id])
       .then(result => {

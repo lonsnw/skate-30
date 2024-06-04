@@ -14,7 +14,7 @@ function EventCard() {
     const getID = (eventId) => {
         dispatch({ type: 'FETCH_DETAILS', payload: eventId });
         console.log(eventId);
-        history.push('/details')
+        history.push(`/details`)
     }
 
     const Item = styled(Paper)(({ theme }) => ({

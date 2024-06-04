@@ -9,7 +9,7 @@ function Footer() {
 
   const logoIcon = (
     <Icon style={{ fontSize: 80 }} >
-      <img src="../../../public/images/skates.svg" alt="logo" />
+      <img src="/images/skates.svg" alt="logo" />
     </Icon>
   );
 
