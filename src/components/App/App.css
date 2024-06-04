@@ -35,11 +35,17 @@ li {
 }
 
 /* --------------------------------------------------------------------------------
-Scroll container on Browse/Search
+Scroll container on Browse/Search, Details
 -------------------------------------------------------------------------------- */
 
 .events {
   max-height: 74vh;
+  overflow-y: scroll;
+}
+
+.details {
+  margin-top: 20px;
+  max-height: 76vh;
   overflow-y: scroll;
 }
 

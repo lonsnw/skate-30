@@ -14,17 +14,12 @@ function Details(){
     const details = useSelector(store => store.details.details);
     const user = useSelector((store) => store.user);
 
-    const handleClick = () => {
-        history.push('/browse');
-  }
-
 // STYLING
     const Item = styled(Paper)(({ theme }) => ({
         padding: theme.spacing(1),
         borderColor: '#7599BD',
         borderStyle: 'solid',
         borderWidth: '1px',
-        textAlign: 'left',
     }));
 
     const AntSwitch = styled(Switch)(({ theme }) => ({
@@ -70,7 +65,7 @@ function Details(){
 
 
     return(
-        <Grid className="events">
+        <Grid className="details">
         {/* PostgreSQL pulls all RSVPs for one event
         Adding data to the page by pulling the info from the first event in the array
         All event details in the array are the same, but the event is multiplied by the number of RSVPs */}
@@ -80,15 +75,19 @@ function Details(){
                 flexDirection='column'>
             <Grid>
                 <Item >
+                    {/* On load, it sometimes throws an error that .type isn't recognized; if I comment out and then let it load, it works and I can comment it back in. */}
                     <Typography variant='h6'><li>{ details[0].type ? 'Pickup' : 'Open Skate' } - { details[0].rink }</li></Typography>
                     <Typography variant="subtitle1">{new Date(details[0].date).toLocaleDateString('en-us', { weekday:"long", month:"short", day:"numeric"})} - {details[0].time} - {details[0].duration} mins</Typography>
                 </Item>
-                <Box>
-                    <Typography variant='subtitle1'>RSVP</Typography>
+                <Box
+                    display='flex'
+                    flexDirection='column'
+                    alignItems='center'
+                    padding='5px'>
+                    <Typography variant='h6'>RSVP</Typography>
                     <Stack 
                         direction="row" 
-                        spacing={1} 
-                        alignItems="center">
+                        spacing={1} >
                         <Typography>No</Typography>
                         <AntSwitch inputProps={{ 'aria-label': 'ant design' }} />
                         <Typography>Yes</Typography>
@@ -103,46 +102,59 @@ function Details(){
                         { details[0].address }
                     </Stack>
                 </Item>
-                <Box>
+                <Box
+                    display='flex'
+                    flexDirection='column'
+                    alignItems='center'
+                    padding='5px'>
                     <Typography>Skill level: { details[0].level ? 'Advanced' : 'Beginner' }</Typography>
                     <Typography> { details[0].exposure ? 'Outdoor' : 'Indoor' } </Typography>
                 {/* Mapping through RSVPs to get the names of attendees if a user is authenticated */}
-                    <Box>
-                        <Typography>Who's going:</Typography>
-                        {/* If no user is logged in, do this */}
-                        {!user.id && (
-                        <div>
-                            <Card
-                                sx={{ 
-                                maxWidth: '80vw', 
-                                backgroundColor: '#baccde', 
-                                color: 'primary.light',
-                                margin:'auto', 
-                                minHeight: '10vh', 
-                                padding:'5px',
-                                textAlign: 'center',
-                                alignContent: 'center'
-                                }}>
-                                { details[0].attendees.length } people have RSVPed.
-                                <br />
-                                <Link href="/login">Log in</Link> to see more information.
-                            </Card>
-                        </div>
-                        )}
-                        {/* If a user is logged in, do this */}
-                        {user.id && (
-                        <div>
-                            {details.map(event => {
-                                return (
-                                <div key={event.id} >
-                                    <Typography variant="p1">{event.attendees}</Typography>
-                                </div>
-                                );
-                            })}
-                        </div>
-                        )}
+                </Box>
+                <Box
+                    display='flex'
+                    flexDirection='column'
+                    alignItems='center'
+                    padding='5px'>
+                    <Typography>Who's going:</Typography>
+                    {/* If no user is logged in, do this */}
+                    {!user.id && (
+                    <div>
+                        <Card
+                            sx={{  
+                            backgroundColor: '#baccde', 
+                            color: 'primary',
+                            margin:'auto', 
+                            minHeight: '10vh', 
+                            padding:'5px',
+                            textAlign: 'center',
+                            alignContent: 'center'
+                            }}>
+                            { details.length } RSVP(s).
+                            <br />
+                            <Link href="/login">Log in</Link> to see more information.
+                        </Card>
+                    </div>
+                    )}
+                    {/* If a user is logged in, do this */}
+                    {user.id && (
+                    <div>
+                        {details.map(event => {
+                            return (
+                            <div key={event.id} >
+                                <Typography variant="p1">{event.attendees}</Typography>
+                            </div>
+                            );
+                        })}
+                    </div>
+                    )}
 
-                    </Box>
+                </Box>
+                <Box
+                    display='flex'
+                    flexDirection='column'
+                    alignItems='center'
+                    padding='5px'>
                     <Typography>Notes:</Typography>
                     <Card
                         sx={{ 
@@ -159,13 +171,22 @@ function Details(){
                     </Card>
                 </Box>
             </Grid>
+            <Box
+                display='flex'
+                flexDirection='row'
+                justifyContent='center'
+                gap={1}
+                margin='10px'>
+                <Button 
+                    type="button"
+                    variant="contained"
+                    color="primary"
+                    name="back"
+                    onClick={() => {history.push('/browse');}}>
+                    Back
+                </Button>
+            </Box>
             </Item>
-            <Button 
-                onClick={() => {handleClick()}} 
-                size="large"
-                color="secondary" >
-                Back
-            </Button>
             <Box
                 width='100vw'
                 position='absolute'
