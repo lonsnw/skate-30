@@ -3,11 +3,13 @@ import { useHistory } from 'react-router-dom';
 
 // MUI imports
 import { styled } from '@mui/material/styles';
-import { Box, Button, Card, Grid, Link, Paper, Stack, Switch, Typography } from '@mui/material';
+import { Box, Card, Grid, Link, Paper, Stack, Switch, Typography } from '@mui/material';
 
 // CUSTOM COMPONENTS
 import Footer from '../Footer/Footer';
-import Loading from '../Loading/Loading'
+import GoogleMap from '../GoogleMap/GoogleMap';
+import Loading from '../Loading/Loading';
+
 
 function Details(){
 
@@ -118,6 +120,7 @@ function Details(){
                             spacing={1} 
                             alignItems="center">
                             <Typography variant='subtitle1'>Address</Typography>
+                            <GoogleMap />
                             { details[0].address }
                         </Stack>
                     </Item>
