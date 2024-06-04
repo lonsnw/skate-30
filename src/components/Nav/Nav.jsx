@@ -44,15 +44,21 @@ function Nav() {
         {user.id && (
           <div className="nav">
             <Link to="/home">
-              <CalendarMonthOutlinedIcon style={{ fontSize: 60 }} />
+              <IconButton color="primary">
+                <CalendarMonthOutlinedIcon style={{ fontSize: 40 }} />
+              </IconButton>
             </Link>
 
             <Link to="/login">
-              <AccountCircleIcon style={{ fontSize: 60 }} />
+              <IconButton color="primary">
+                <AccountCircleIcon style={{ fontSize: 40 }} />
+              </IconButton>
             </Link>
 
             <Link to="/input">
-              <AddBoxOutlinedIcon style={{ fontSize: 60 }} />
+              <IconButton color="primary">
+                <AddBoxOutlinedIcon style={{ fontSize: 40 }} />
+              </IconButton>
             </Link>
           </div>
         )}
