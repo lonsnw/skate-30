@@ -14,6 +14,10 @@ function Details(){
     const details = useSelector(store => store.details.details);
     const user = useSelector((store) => store.user);
 
+    const handleChange = () => {
+        
+    }
+
 // STYLING
     const Item = styled(Paper)(({ theme }) => ({
         padding: theme.spacing(1),
@@ -59,6 +63,7 @@ function Details(){
         '& .MuiSwitch-track': {
           borderRadius: 16 / 2,
           opacity: 1,
+          backgroundColor: '#97b3ce',
           boxSizing: 'border-box',
         },
       }));
@@ -89,7 +94,9 @@ function Details(){
                         direction="row" 
                         spacing={1} >
                         <Typography>No</Typography>
-                        <AntSwitch inputProps={{ 'aria-label': 'ant design' }} />
+                        <AntSwitch 
+                            inputProps={{ 'aria-label': 'ant design' }} 
+                            onChange={handleChange} />
                         <Typography>Yes</Typography>
                     </Stack>
                 </Box>
