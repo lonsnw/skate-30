@@ -138,7 +138,17 @@ function Details(){
                     )}
                     {/* If a user is logged in, do this */}
                     {user.id && (
-                    <div>
+                    <Card
+                    sx={{  
+                    backgroundColor: '#baccde', 
+                    color: 'primary',
+                    margin:'auto', 
+                    minHeight: '10vh',
+                    minWidth: '50vw', 
+                    padding:'5px',
+                    textAlign: 'center',
+                    alignContent: 'center'
+                    }}>
                         {details.map(event => {
                             return (
                             <div key={event.id} >
@@ -146,7 +156,7 @@ function Details(){
                             </div>
                             );
                         })}
-                    </div>
+                    </Card>
                     )}
 
                 </Box>
@@ -162,7 +172,8 @@ function Details(){
                             backgroundColor: '#fff', 
                             color: 'primary.light',
                             margin:'auto', 
-                            minHeight: '10vh', 
+                            minHeight: '10vh',
+                            width: '70vw', 
                             padding:'5px',
                             textAlign: 'center',
                             alignContent: 'center'
