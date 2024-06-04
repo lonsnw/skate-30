@@ -16,8 +16,12 @@ function Details(){
     const user = useSelector((store) => store.user);
 
     const handleChange = () => {
-        
-    }
+        {/* If no user is logged in, do this */}
+        {!user.id && (history.push(`/login`))}
+        {/* If a user is logged in, do this */}
+        // NEEDS TO BE UPDATED
+        {user.id && (history.push(`/home`))}
+      };
 
 // STYLING
     const Item = styled(Paper)(({ theme }) => ({
