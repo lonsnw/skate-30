@@ -14,8 +14,9 @@ router.get('/:id', (req, res) => {
     `;
     pool.query(query, [req.params.id])
       .then(result => {
-        // Testing Loading page
-        setTimeout(() => {res.send(result.rows);}, 2000);
+        // For testing Loading page
+        // setTimeout(() => {res.send(result.rows);}, 2000);
+        res.send(result.rows);
       })
       .catch(error => {
         console.log('Error getting details', error);

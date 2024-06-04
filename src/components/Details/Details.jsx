@@ -71,7 +71,7 @@ function Details(){
 
 
     return(
-        <>
+        <div>
         { 
             details.length === 0 ? (
             <div>
@@ -198,15 +198,15 @@ function Details(){
                     </Box>
                 </Grid>
                 </Item>
-                <Box
-                    width='100vw'
-                    position='absolute'
-                    bottom='0'>
-                    <Footer />
-                </Box>
             </Grid>
         )}
-        </>
+        <Box
+            width='100vw'
+            position='absolute'
+            bottom='0'>
+            <Footer />
+        </Box>
+        </div>
     )
 }
 
