@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 // MUI imports
 import { Box, Grid, Paper } from '@mui/material';
@@ -10,10 +10,18 @@ import EventCard from '../EventCard/EventCard';
 import Footer from '../Footer/Footer'
 
 function Browse() {
+  const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch({ type: 'FETCH_EVENTS' });
+    {/* If no user is logged in, do this */}
+    {!user.id && (
+    dispatch({ type: 'FETCH_EVENTS' })
+    )}
+    {/* If a user is logged in, do this */}
+    {user.id && (
+    dispatch({ type: 'FETCH_SCHEDULE' })
+    )}
   }, []);
 
   const Item = styled(Paper)(({ theme }) => ({
