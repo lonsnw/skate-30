@@ -1,26 +1,28 @@
 import React from 'react';
 
-import { useHistory } from 'react-router-dom';
+// MUI imports
+import { Box, Container } from '@mui/material';
+
+// CUSTOM COMPONENTS
 import RegisterForm from '../RegisterForm/RegisterForm';
 
 function RegisterPage() {
-  const history = useHistory();
 
   return (
-    <div>
-      <RegisterForm />
-
-      <center>
-        <button
-          type="button"
-          className="btn btn_asLink"
-          onClick={() => {
-            history.push('/login');
-          }}
-        >
-          Login
-        </button>
-      </center>
+    <div className="hero">
+      <Container>
+        <Box 
+          sx={{ height: '50vh' }}
+          display='flex'
+          flexDirection='column'
+          justifyContent='center'
+          marginTop='20px' >
+          <Box
+            marginTop='34vh' >
+            <RegisterForm />
+          </Box>
+        </Box>
+      </Container>
     </div>
   );
 }
