@@ -8,9 +8,8 @@ import { Box, Button, Container, TextField, Typography } from '@mui/material';
 function RegisterForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [mobile, setMobile] = useState('')
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
   const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -25,14 +24,13 @@ function RegisterForm() {
         password: password,
         name: name, 
         email: email, 
-        mobile: mobile,
       },
     });
   }; // end registerUser
 
   return (
     <>
-        <Container>
+    <Container>
       <Box
         component='form'
         display='flex'
@@ -99,19 +97,6 @@ function RegisterForm() {
                 label="Email"
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
-              />
-          </div>
-          <div>
-            <Typography variant="h6">Mobile</Typography>
-              <TextField
-                sx={{ backgroundColor: "#eef2f7" }}
-                type="mobile"
-                name="mobile"
-                variant="outlined"
-                fullWidth
-                label="Mobile"
-                value={mobile}
-                onChange={(event) => setMobile(event.target.value)}
               />
           </div>
           <Box
