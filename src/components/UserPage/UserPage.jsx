@@ -5,6 +5,8 @@ import { useHistory } from 'react-router-dom';
 // MUI imports
 import { Box, Button, Container, TextField, Typography } from '@mui/material';
 
+// CUSTOM COMPONENTS
+import LogOutButton from '../LogOutButton/LogOutButton';
 
 function UserPage() {
   const user = useSelector((store) => store.user);
@@ -90,6 +92,7 @@ function UserPage() {
               value="Update">
               Update
             </Button>
+            <LogOutButton />
           </Box>
         </Box>
     </Container>
