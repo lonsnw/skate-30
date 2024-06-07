@@ -12,8 +12,21 @@ function* fetchEvents() {
     }
 }
 
+function* fetchSchedule(action) {
+    try {
+      // Get the details:
+      const userId = action.payload;
+      console.log(userId);
+      const detailsResponse = yield axios.get(`/api/details/${userId}`);
+      yield put({ type: 'SET_SCHEDULE', payload: detailsResponse.data })
+    } catch (error) {
+      console.log('fetchDetails error', error);
+    }
+  }
+
 function* browseSaga() {
     yield takeLatest('FETCH_EVENTS', fetchEvents);
+    yield takeLatest('FETCH_SCHEDULE', fetchSchedule);
 }
 
 export default browseSaga;
