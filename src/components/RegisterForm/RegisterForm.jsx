@@ -81,7 +81,7 @@ function RegisterForm() {
                 required
                 variant="outlined"
                 fullWidth
-                label="Name"
+                label="First name and last name or initial"
                 value={name}
                 onChange={(event) => setName(event.target.value)}
               />
