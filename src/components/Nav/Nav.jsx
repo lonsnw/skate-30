@@ -43,7 +43,7 @@ function Nav() {
         {/* If a user is logged in, show these links */}
         {user.id && (
           <div className="nav">
-            <Link to="/home">
+            <Link to="/schedule">
               <IconButton color="primary">
                 <CalendarMonthOutlinedIcon style={{ fontSize: 40 }} />
               </IconButton>

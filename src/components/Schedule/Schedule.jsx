@@ -6,7 +6,7 @@ import { Box, Grid, Paper } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 // CUSTOM COMPONENTS
-import EventCard from '../EventCard/EventCard';
+import ScheduleCard from '../ScheduleCard/ScheduleCard';
 import Footer from '../Footer/Footer'
 
 function Browse() {
@@ -14,7 +14,8 @@ function Browse() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch({ type: 'FETCH_EVENTS' })
+    dispatch({ type: 'FETCH_SCHEDULE', payload: user.id }),
+    console.log('logged in')
   }, []);
 
   const Item = styled(Paper)(({ theme }) => ({
@@ -30,7 +31,7 @@ function Browse() {
         flexDirection='column'>
           <Grid className='events'>
               <Grid >
-                <EventCard />
+                <ScheduleCard />
               </Grid>
           </Grid>
       </Item>
