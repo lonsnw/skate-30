@@ -181,25 +181,42 @@ function Details(){
                         )}
                         {/* If a user is logged in, do this */}
                         {user.id && (
-                        <Card
-                        sx={{  
-                        backgroundColor: '#baccde', 
-                        color: 'primary',
-                        margin:'auto', 
-                        minHeight: '10vh',
-                        minWidth: '50vw', 
-                        padding:'5px',
-                        textAlign: 'center',
-                        alignContent: 'center'
-                        }}>
-                            {details.map(event => {
-                                return (
-                                <div key={event.user_id} >
-                                    <Typography variant="p1">{event.attendees}</Typography>
-                                </div>
-                                );
-                            })}
-                        </Card>
+                            <div>
+                                {!details[0].event_id ? (
+                                <Card
+                                sx={{  
+                                backgroundColor: '#baccde', 
+                                color: 'primary',
+                                margin:'auto', 
+                                minHeight: '10vh', 
+                                padding:'5px',
+                                textAlign: 'center',
+                                alignContent: 'center'
+                                }}>
+                                No one has signed up yet.
+                            </Card>
+                            ) : (
+                                <Card
+                                sx={{  
+                                backgroundColor: '#baccde', 
+                                color: 'primary',
+                                margin:'auto', 
+                                minHeight: '10vh',
+                                minWidth: '50vw', 
+                                padding:'5px',
+                                textAlign: 'center',
+                                alignContent: 'center'
+                                }}>
+                                    {details.map(event => {
+                                        return (
+                                        <div key={event.user_id} >
+                                            <Typography variant="p1">{event.attendees}</Typography>
+                                        </div>
+                                        );
+                                    })}
+                                </Card>
+                            ) }
+                            </div>
                         )}
     
                     </Box>
