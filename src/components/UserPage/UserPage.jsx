@@ -11,14 +11,18 @@ import Footer from '../Footer/Footer'
 
 function UserPage() {
   const user = useSelector((store) => store.user);
+  const errors = useSelector((store) => store.errors);
   const [username, setUsername] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  // DO I WANT TO ADD A TAP TO CHANGE FEATURE?
+  // const [isUsernameSelected, setIsUsernameSelected] = useState(false);
+  // const [isNameSelected, setIsNameSelected] = useState(false);
+  // const [isEmailSelected, setIsEmailSelected] = useState(false);
   const dispatch = useDispatch();
 
   const updateUser = (event) => {
     event.preventDefault();
-
     dispatch({
       type: 'UPDATE_USER',
       payload: {
@@ -41,6 +45,11 @@ function UserPage() {
         marginTop='40px'
         onSubmit={updateUser}>
           <Typography variant="h4">User profile</Typography>
+          {errors.registrationMessage && (
+            <Typography variant="p2" className="alert" role="alert">
+              {errors.registrationMessage}
+            </Typography>
+          )}
           <div>
             <Typography variant="h6">User name</Typography>            
               <TextField
