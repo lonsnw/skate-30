@@ -1,37 +1,55 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 // MUI imports
-import { Box, Button, Container, TextField, Typography } from '@mui/material';
+import { Box, Button, Container, Divider, Paper, TextField, Typography } from '@mui/material';
+import { styled } from '@mui/material/styles';
 
 // CUSTOM COMPONENTS
 import LogOutButton from '../LogOutButton/LogOutButton';
 import Footer from '../Footer/Footer'
 
+// FUTURE GOALS:
+// Allow users to change their username and password
+// Not currently implemented because the password process is involved
+// And usernames would need to be checked for conflicts with other usernames
+
 function UserPage() {
   const user = useSelector((store) => store.user);
-  const errors = useSelector((store) => store.errors);
-  const [username, setUsername] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  // DO I WANT TO ADD A TAP TO CHANGE FEATURE?
-  // const [isUsernameSelected, setIsUsernameSelected] = useState(false);
-  // const [isNameSelected, setIsNameSelected] = useState(false);
-  // const [isEmailSelected, setIsEmailSelected] = useState(false);
+  const [isNameSelected, setIsNameSelected] = useState(false);
+  const [isEmailSelected, setIsEmailSelected] = useState(false);
   const dispatch = useDispatch();
+  const history = useHistory();
+
+  useEffect(() => {
+    setName(user.name);
+    setEmail(user.email);
+  }, [])
 
   const updateUser = (event) => {
     event.preventDefault();
+    // {!name ? (setName(user.name)) : (name)};
+    // {!email ? (setEmail(user.email)) : (email)};
+    console.log(name, email);
     dispatch({
       type: 'UPDATE_USER',
       payload: {
-        username: username,
         name: name, 
         email: email, 
       },
     });
-  }; // end registerUser
+    window.location.reload();
+  };
+
+  const Item = styled(Paper)(({ theme }) => ({
+    padding: '16px',
+    textAlign: 'left',
+    backgroundColor: "#eef2f7",
+    border: '1px solid',
+  }));
 
   return (
     <>
@@ -45,27 +63,24 @@ function UserPage() {
         marginTop='40px'
         onSubmit={updateUser}>
           <Typography variant="h4">User profile</Typography>
-          {errors.registrationMessage && (
-            <Typography variant="p2" className="alert" role="alert">
-              {errors.registrationMessage}
-            </Typography>
-          )}
+          <Typography variant="p1">Double tap the fields below to update your name or email</Typography>
+          <Divider />
           <div>
-            <Typography variant="h6">User name</Typography>            
-              <TextField
-                sx={{ backgroundColor: "#eef2f7" }}
-                type="text"
-                name="username"
-                variant="outlined"
-                fullWidth
-                label={user.username}
-                value={username}
-                onChange={(event) => setUsername(event.target.value)}
-              />
+            <br />
+            <Typography variant="h6">User name</Typography>
+              <Item>
+                {user.username}
+              </Item>           
           </div>
           <div>
             <Typography variant="h6">Name</Typography>
-              <TextField
+              {!isNameSelected ? (
+                <Item
+                  onClick={() => setIsNameSelected(true)}>
+                  {user.name}
+                </Item>  
+              ) : (
+                <TextField
                 sx={{ backgroundColor: "#eef2f7" }}
                 type="name"
                 name="name"
@@ -74,20 +89,30 @@ function UserPage() {
                 label={user.name}
                 value={name}
                 onChange={(event) => setName(event.target.value)}
+                onBlur={(event) => setIsNameSelected(false)}
               />
+              )}
           </div>
           <div>
             <Typography variant="h6">Email</Typography>
-              <TextField
-                sx={{ backgroundColor: "#eef2f7" }}
-                type="email"
-                name="email"
-                variant="outlined"
-                fullWidth
-                label={user.email}
-                value={email}
-                onChange={(event) => setEmail(event.target.value)}
-              />
+              {!isEmailSelected ? (
+                  <Item
+                    onClick={() => setIsEmailSelected(true)}>
+                    {user.email}
+                  </Item>  
+              ) : (
+                  <TextField
+                  sx={{ backgroundColor: "#eef2f7" }}
+                  type="email"
+                  name="email"
+                  variant="outlined"
+                  fullWidth
+                  label={user.email}
+                  value={email}
+                  onChange={(event) => setEmail(event.target.value)}
+                  onBlur={(event) => setIsEmailSelected(false)}
+                />
+              )}
           </div>
           <Box
             display='flex'

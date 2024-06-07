@@ -35,16 +35,14 @@ router.post('/register', (req, res, next) => {
 
 // PUT request to update user profile information
 router.put('/', (req, res) => {
-  const username = req.body.username;
   const name = req.body.name;
   const email = req.body.email;
   const query = `UPDATE "user"
-	SET "username" = $1,
-		"name" = $2,
-		"email" = $3
-    WHERE "id"=$4;
+	SET "name" = $1,
+		"email" = $2
+    WHERE "id"=$3;
   `;
-  pool.query(query, [username, name, email, req.user.id])
+  pool.query(query, [name, email, req.user.id])
     .then((result) => {
       res.status(200)
       .send(result.rows);
