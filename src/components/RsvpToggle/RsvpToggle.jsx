@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
@@ -10,19 +10,49 @@ function RsvpToggle() {
     const history = useHistory();
     const details = useSelector(store => store.details.details);
     const user = useSelector((store) => store.user);
+    const [toggle, setToggle] = useState(false);
+    // currentUser is the array of RSVP information for the current user
+    const [currentUser, setCurrentUser] = useState();
+
 
     const handleChange = () => {
         {/* If no user is logged in, do this */}
         {!user.id && (history.push(`/login`))}
         {/* If a user is logged in, do this */}
-        {user.id && (history.push(`/rsvp/${details[0].id}`))}
+        {user.id && (history.push(`/rsvp/${details[0].id}`)
+        )}
       };
+
+
+    useEffect(() => {
+        console.log(user.id);
+        // Giving time to load
+        setTimeout(() => {
+         }, 500);
+        // On load setting currentUser if user has RSVPed
+        for(let detail of details){
+        {detail.user_id === user.id ? (
+            setCurrentUser([detail])
+        ) : (
+            ''
+        );}}
+        console.log('current user', currentUser)
+        {!currentUser ? (
+            setToggle(false)
+        ) : (
+            setToggle(true)
+        )}
+        console.log(toggle);
+    }, []);
+
+
 
 // STYLING
     const AntSwitch = styled(Switch)(({ theme }) => ({
         width: 36,
         height: 20,
         padding: 0,
+        checked: {toggle},
         borderRadius: 20,
         display: 'flex',
         '&:active': {
