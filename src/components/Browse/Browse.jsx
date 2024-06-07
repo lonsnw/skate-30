@@ -20,7 +20,7 @@ function Browse() {
     )}
     {/* If a user is logged in, do this */}
     {user.id && (
-    dispatch({ type: 'FETCH_SCHEDULE' })
+    dispatch({ type: 'FETCH_SCHEDULE', payload: user.id })
     )}
   }, []);
 

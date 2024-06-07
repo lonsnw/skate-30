@@ -152,6 +152,7 @@ function Details(){
                                 textAlign: 'center',
                                 alignContent: 'center'
                                 }}>
+                            {/* THIS NEEDS TO BE EDITED; IT REGISTERS AS HAVING AN RSVP BECAUSE THEY'RE ALL AT LEAST ONE */}
                                 { details.length } RSVP(s).
                                 <br />
                                 <Link href="/login">Log in</Link> to see more information.
