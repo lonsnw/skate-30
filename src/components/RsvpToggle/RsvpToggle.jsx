@@ -29,7 +29,7 @@ function RsvpToggle() {
         // Giving time to load
         setTimeout(() => {
          }, 500);
-        // On load setting currentUser if user has RSVPed
+        // On load setting currentUser with user RSVP (or undefined)
         for(let detail of details){
         {detail.user_id === user.id ? (
             setCurrentUser([detail])
@@ -38,6 +38,8 @@ function RsvpToggle() {
         );}}
         console.log('current user', currentUser)
         {!currentUser ? (
+            // sets toggle to false if no currentUser (i.e. no RSVP)
+            // and true if there is a currentUser
             setToggle(false)
         ) : (
             setToggle(true)
@@ -52,7 +54,6 @@ function RsvpToggle() {
         width: 36,
         height: 20,
         padding: 0,
-        checked: {toggle},
         borderRadius: 20,
         display: 'flex',
         '&:active': {
@@ -98,6 +99,7 @@ function RsvpToggle() {
             spacing={1} >
             <Typography>No</Typography>
             <AntSwitch 
+                checked={toggle}
                 onChange={handleChange} />
             <Typography>Yes</Typography>
         </Stack>
