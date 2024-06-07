@@ -142,7 +142,12 @@ function Details(){
                         {/* If no user is logged in, do this */}
                         {!user.id && (
                         <div>
-                            <Card
+                            {/* Conditional rendering: if there's an "event_id" (i.e. an entry in the RSVP table),
+                            then this will show the details.length as an RSVP.  Otherwise it shows 0.  This is to 
+                            prevent the length being counted as an auto-rsvp because there is an entry for every event
+                            regardless of RSVPs. */}
+                            {!details[0].event_id ? (
+                                <Card
                                 sx={{  
                                 backgroundColor: '#baccde', 
                                 color: 'primary',
@@ -152,11 +157,26 @@ function Details(){
                                 textAlign: 'center',
                                 alignContent: 'center'
                                 }}>
-                            {/* THIS NEEDS TO BE EDITED; IT REGISTERS AS HAVING AN RSVP BECAUSE THEY'RE ALL AT LEAST ONE */}
+                                0 RSVP(s).
+                                <br />
+                                <Link href="/login">Log in</Link> to see more information.
+                            </Card>
+                            ) : (
+                                <Card
+                                sx={{  
+                                backgroundColor: '#baccde', 
+                                color: 'primary',
+                                margin:'auto', 
+                                minHeight: '10vh', 
+                                padding:'5px',
+                                textAlign: 'center',
+                                alignContent: 'center'
+                                }}>
                                 { details.length } RSVP(s).
                                 <br />
                                 <Link href="/login">Log in</Link> to see more information.
                             </Card>
+                            ) }  
                         </div>
                         )}
                         {/* If a user is logged in, do this */}
