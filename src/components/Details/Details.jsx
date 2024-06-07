@@ -174,7 +174,7 @@ function Details(){
                         }}>
                             {details.map(event => {
                                 return (
-                                <div key={event.id} >
+                                <div key={event.user_id} >
                                     <Typography variant="p1">{event.attendees}</Typography>
                                 </div>
                                 );
