@@ -15,7 +15,6 @@ function UserPage() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const dispatch = useDispatch();
-  const history = useHistory();
 
   const updateUser = (event) => {
     event.preventDefault();
@@ -41,7 +40,7 @@ function UserPage() {
         alignContent='center'
         marginTop='40px'
         onSubmit={updateUser}>
-          <Typography variant="h4">User information</Typography>
+          <Typography variant="h4">User profile</Typography>
           <div>
             <Typography variant="h6">User name</Typography>            
               <TextField
