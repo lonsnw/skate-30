@@ -66,33 +66,6 @@ function Search() {
                     flexDirection='column'
                     textAlign='center'>
                       <SearchCard />
-                     {/* Removed because the styling puts it over the last card */}
-                      {/* <Box
-                        display='flex'
-                        flexDirection='row'
-                        justifyContent='center'
-                        gap={1}
-                        position='absolute'
-                        bottom='18vh'
-                        left='0'
-                        right='0'
-                        margin='auto'>
-                        <Button
-                          type="button"
-                          variant="contained"
-                          color="secondary"
-                          name="input"
-                          onClick={() => {history.push('/input');}}>
-                          Add event
-                        </Button>
-                        <Button
-                          type="button"
-                          variant="contained"
-                          name="try-again"
-                          onClick={() => {history.push('/');}}>
-                          New search
-                        </Button>
-                      </Box>   */}
                     </Box>
                   )
                 }            
