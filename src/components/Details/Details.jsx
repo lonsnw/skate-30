@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
@@ -9,21 +10,12 @@ import { Box, Card, Grid, Link, Paper, Stack, Switch, Typography } from '@mui/ma
 import Footer from '../Footer/Footer';
 import GoogleMap from '../GoogleMap/GoogleMap';
 import Loading from '../Loading/Loading';
-
+import RsvpToggle from '../RsvpToggle/RsvpToggle'
 
 function Details(){
-
     const history = useHistory();
     const details = useSelector(store => store.details.details);
     const user = useSelector((store) => store.user);
-
-    const handleChange = () => {
-        {/* If no user is logged in, do this */}
-        {!user.id && (history.push(`/login`))}
-        {/* If a user is logged in, do this */}
-        // NEEDS TO BE UPDATED
-        {user.id && (history.push(`/home`))}
-      };
 
 // STYLING
     const Item = styled(Paper)(({ theme }) => ({
@@ -32,49 +24,6 @@ function Details(){
         borderStyle: 'solid',
         borderWidth: '1px',
     }));
-
-    const AntSwitch = styled(Switch)(({ theme }) => ({
-        width: 36,
-        height: 20,
-        padding: 0,
-        borderRadius: 20,
-        display: 'flex',
-        '&:active': {
-          '& .MuiSwitch-thumb': {
-            width: 15,
-          },
-          '& .MuiSwitch-switchBase.Mui-checked': {
-            transform: 'translateX(9px)',
-          },
-        },
-        '& .MuiSwitch-switchBase': {
-          padding: 2,
-          '&.Mui-checked': {
-            transform: 'translateX(16px)',
-            color: '#fff',
-            '& + .MuiSwitch-track': {
-              opacity: 1,
-              backgroundColor: 'primary',
-      },
-          },
-        },
-        '& .MuiSwitch-thumb': {
-          boxShadow: '0 2px 4px 0 rgb(0 35 11 / 20%)',
-          width: 16,
-          height: 16,
-          borderRadius: 20,
-          transition: theme.transitions.create(['width'], {
-            duration: 200,
-          }),
-        },
-        '& .MuiSwitch-track': {
-          borderRadius: 16 / 2,
-          opacity: 1,
-          backgroundColor: '#97b3ce',
-          boxSizing: 'border-box',
-        },
-      }));
-
 
     return(
         <div>
@@ -104,15 +53,7 @@ function Details(){
                         alignItems='center'
                         padding='5px'>
                         <Typography variant='h6'>RSVP</Typography>
-                        <Stack 
-                            direction="row" 
-                            spacing={1} >
-                            <Typography>No</Typography>
-                            <AntSwitch 
-                                inputProps={{ 'aria-label': 'ant design' }} 
-                                onChange={handleChange} />
-                            <Typography>Yes</Typography>
-                        </Stack>
+                        <RsvpToggle />
                     </Box>
                     <Item>
                         <Stack 
@@ -218,7 +159,6 @@ function Details(){
                             ) }
                             </div>
                         )}
-    
                     </Box>
                     <Box
                         display='flex'
