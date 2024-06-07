@@ -7,6 +7,7 @@ import { Box, Button, Container, TextField, Typography } from '@mui/material';
 
 // CUSTOM COMPONENTS
 import LogOutButton from '../LogOutButton/LogOutButton';
+import Footer from '../Footer/Footer'
 
 function UserPage() {
   const user = useSelector((store) => store.user);
@@ -38,6 +39,7 @@ function UserPage() {
         flexDirection='column'
         justifyContent='center'
         alignContent='center'
+        marginTop='40px'
         onSubmit={updateUser}>
           <Typography variant="h4">User information</Typography>
           <div>
@@ -96,6 +98,12 @@ function UserPage() {
           </Box>
         </Box>
     </Container>
+    <Box
+      width='100vw'
+      position='absolute'
+      bottom='0'>
+      <Footer />
+    </Box>
     </>
   );
 }
