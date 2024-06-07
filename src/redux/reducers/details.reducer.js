@@ -10,5 +10,5 @@ const details = (state = [], action) => {
   }
 
 export default combineReducers({
-    details
+    details,
   });

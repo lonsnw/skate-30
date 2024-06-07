@@ -21,6 +21,7 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import Search from '../Search/Search'
 import Details from '../Details/Details'
+import Schedule from '../Schedule/Schedule'
 
 // MUI imports
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -236,6 +237,14 @@ function App() {
             path="/info"
           >
             <InfoPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows Browse for user else shows LoginPage
+            exact
+            path="/schedule"
+          >
+            <Schedule />
           </ProtectedRoute>
 
           <Route
