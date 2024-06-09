@@ -1,26 +1,29 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 // MUI imports
 import { styled } from '@mui/material/styles';
 import { Box, Card, Grid, Link, Paper, Stack, Switch, Typography } from '@mui/material';
 
-function RsvpToggle() {
+function RsvpToggle(eventId) {
     const history = useHistory();
+    const dispatch = useDispatch();
     const details = useSelector(store => store.details.details);
     const user = useSelector((store) => store.user);
     const [toggle, setToggle] = useState(false);
     // currentUser is the array of RSVP information for the current user
     const [currentUser, setCurrentUser] = useState();
 
-
-    const handleChange = () => {
+    const handleChange = (eventId) => {
+        console.log('event id:', eventId);
         {/* If no user is logged in, do this */}
         {!user.id && (history.push(`/login`))}
         {/* If a user is logged in, do this */}
-        {user.id && (history.push(`/rsvp/${details[0].id}`)
-        )}
+        {user.id && 
+            dispatch({ type: 'FETCH_RSVP', payload: eventId })
+            (history.push(`/rsvp`))
+        }
       };
 
 
@@ -100,7 +103,7 @@ function RsvpToggle() {
             <Typography>No</Typography>
             <AntSwitch 
                 checked={toggle}
-                onChange={handleChange} />
+                onChange={() => {handleChange(eventId)}} />
             <Typography>Yes</Typography>
         </Stack>
         </>

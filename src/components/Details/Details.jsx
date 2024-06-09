@@ -53,7 +53,7 @@ function Details(){
                         alignItems='center'
                         padding='5px'>
                         <Typography variant='h6'>RSVP</Typography>
-                        <RsvpToggle />
+                        <RsvpToggle eventId={details[0].id} />
                     </Box>
                     <Item>
                         <Stack 
@@ -115,7 +115,8 @@ function Details(){
                                 }}>
                                 { details.length } RSVP(s).
                                 <br />
-                                <Link href="/login">Log in</Link> to see more information.
+                                {/* Added # to link here because it was redirecting Home instead without # */}
+                                <Link href="#/login">Log in</Link> to see more information.
                             </Card>
                             ) }  
                         </div>
