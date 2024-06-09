@@ -89,6 +89,7 @@ function RSVP(){
                                     control={<Radio />} />
                             </Stack>
                             <Stack 
+                            // THIS IS TOO BIG; resize once functional
                                 direction="column"
                                 spacing={1.3}
                                 marginTop={.7} >
