@@ -17,7 +17,10 @@ function PlayerToggle(eventId) {
 
     const handleChange = (eventId) => {
         console.log('event id:', eventId);
-        dispatch({ type: 'FETCH_RSVP', payload: eventId })
+        dispatch({ type: 'POSITION_RSVP', payload: {
+            event_id: eventId,
+            position: position
+        } })
       };
 
 

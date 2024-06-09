@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 // MUI imports
 import { styled } from '@mui/material/styles';
-import { Box, Card, FormControlLabel, Grid, Paper, Radio, Stack, TextField, Typography } from '@mui/material';
+import { Box, Button, Card, Checkbox, FormControlLabel, Grid, Paper, Stack, TextField, Typography } from '@mui/material';
 
 // CUSTOM COMPONENTS
 import Footer from '../Footer/Footer';
@@ -12,25 +12,31 @@ import Loading from '../Loading/Loading';
 import PlayerToggle from '../PlayerToggle/PlayerToggle'
 import RsvpToggle from '../RsvpToggle/RsvpToggle'
 
-function RSVP(){
+function RSVP({eventId}){
+    const dispatch = useDispatch();
     const details = useSelector(store => store.details.details);
+    const rsvp = useSelector(store => store.rsvp.rsvp);
     const user = useSelector((store) => store.user);
     const [notes, setNotes] = useState();
     const [pucks, setPucks] = useState();
     const [tutor, setTutor] = useState();
     const [drinks, setDrinks] = useState();
 
-    const handlePucks = () => {
-
-    };
-
-    const handleTutor = () => {
-
-    };
-
-    const handleDrinks = () => {
-
-    };
+    const sendRsvp = (event) => {
+        event.preventDefault();
+        // Sending RSVP info to RSVP table
+        dispatch ({ type: 'RSVP', payload: {
+            pucks: pucks,
+            tutor: tutor,
+            drinks: drinks
+        } 
+        });
+        // Sending notes to event table to add to event
+        dispatch ({ type: 'RSVP_NOTES', payload: {
+            id: eventId,
+            notes: notes }
+            });
+    }
 
 // STYLING
     const Item = styled(Paper)(({ theme }) => ({
@@ -48,7 +54,14 @@ function RSVP(){
             <Loading />
             </div>
         ) : (
-            <Grid className="details">
+            <Box 
+                className="details"
+                component='form'
+                display='flex'
+                flexDirection='column'
+                justifyContent='center'
+                alignContent='center'
+                onSubmit={sendRsvp}>
             {/* PostgreSQL pulls all RSVPs for one event
             Adding data to the page by pulling the info from the first event in the array
             All event details in the array are the same, but the event is multiplied by the number of RSVPs */}
@@ -75,18 +88,25 @@ function RSVP(){
                         padding='5px'>
                         <Typography variant='h5'>Bringing:</Typography>
                         <Stack
-                            direction="row">
+                            direction="row"
+                            marginLeft="40px">
                             <Stack 
                                 direction="column">
                                 <FormControlLabel 
                                     value="pucks"
-                                    control={<Radio />} />
+                                    checked={pucks}
+                                    control={<Checkbox />} 
+                                    onChange={() => {setPucks}} />
                                 <FormControlLabel 
-                                    value="pucks"
-                                    control={<Radio />} />
+                                    value="tutor"
+                                    checked={tutor}
+                                    control={<Checkbox />} 
+                                    onChange={() => {setTutor}} />
                                 <FormControlLabel 
-                                    value="pucks"
-                                    control={<Radio />} />
+                                    value="drinks"
+                                    checked={drinks}
+                                    control={<Checkbox />} 
+                                    onChange={() => {setDrinks}} />
                             </Stack>
                             <Stack 
                             // THIS IS TOO BIG; resize once functional
@@ -130,8 +150,22 @@ function RSVP(){
                         </Card>
                     </Box>
                 </Grid>
+                <Box
+                    display='flex'
+                    flexDirection='row'
+                    justifyContent='center'
+                    gap={1}
+                    margin='10px'>
+                    <Button 
+                    type="submit" 
+                    variant="contained"
+                    name="register"
+                    value="Register">
+                    Register
+                    </Button>
+                </Box>
                 </Item>
-            </Grid>
+            </Box>
         )}
         <Box
             width='100vw'
