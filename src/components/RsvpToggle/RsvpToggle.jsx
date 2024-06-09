@@ -13,39 +13,31 @@ function RsvpToggle(eventId) {
     const user = useSelector((store) => store.user);
     const [toggle, setToggle] = useState();
     // currentUser is the array of RSVP information for the current user
-    const [currentUser, setCurrentUser] = useState();
+    let currentUser = {};
 
     const handleChange = (eventId) => {
         console.log('event id:', eventId);
         setToggle(!toggle)
-        console.log(toggle);
+        // when changed to no, will be a DELETE
+        
       };
 
-
-    useEffect(() => {
-        console.log(user.id);
-        // Giving time to load
-        setTimeout(() => {
-         }, 500);
+      useEffect(() => {
         // On load setting currentUser with user RSVP (or undefined)
         for(let detail of details){
-        {detail.user_id === user.id ? (
-            setCurrentUser([detail])
-        ) : (
-            setCurrentUser('')
-        );}}
-        console.log('current user', currentUser)
-        {!currentUser ? (
-            // sets toggle to false if no currentUser (i.e. no RSVP)
-            // and true if there is a currentUser
-            setToggle(false)
-        ) : (
-            setToggle(true)
-        )}
-        console.log(toggle);
+        // Using an if statement to remove the possibility of the loop continuing after
+        // finding a match
+            console.log(detail.user_id);
+            if (detail.user_id === user.id) {
+                console.log('console logging detail', detail);
+                // setCurrentUser seems to be the point of failure
+                currentUser = detail;
+            }
+        }
+        // sets toggle to false if no currentUser (i.e. no RSVP)
+        // and true if there is a currentUser
+        {Object.keys(currentUser).length > 0 && setToggle(!toggle)}
     }, []);
-
-
 
 // STYLING
     const AntSwitch = styled(Switch)(({ theme }) => ({

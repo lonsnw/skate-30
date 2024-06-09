@@ -28,7 +28,7 @@ CREATE TABLE "rsvp" (
     "event_id" integer NOT NULL REFERENCES "events",
     "user_id" integer REFERENCES "user",
     "name" VARCHAR (50),
-    "position" BOOLEAN NOT NULL DEFAULT TRUE,
+    "position" BOOLEAN NOT NULL DEFAULT FALSE,
     "pucks" BOOLEAN NOT NULL DEFAULT FALSE,
     "tutor" BOOLEAN NOT NULL DEFAULT FALSE,
     "drinks" BOOLEAN NOT NULL DEFAULT FALSE
