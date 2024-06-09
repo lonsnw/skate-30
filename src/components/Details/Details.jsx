@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 // MUI imports
@@ -9,11 +9,18 @@ import { Box, Card, Grid, Link, Paper, Stack, Typography } from '@mui/material';
 import Footer from '../Footer/Footer';
 import GoogleMap from '../GoogleMap/GoogleMap';
 import Loading from '../Loading/Loading';
-import RsvpToggle from '../RsvpToggle/RsvpToggle'
+import DetailRsvpToggle from '../DetailRsvpToggle/DetailRsvpToggle'
 
 function Details(){
     const details = useSelector(store => store.details.details);
     const user = useSelector((store) => store.user);
+
+    useEffect(() => {
+        console.log(user.id);
+        // Giving time to load
+        setTimeout(() => {
+         }, 100);
+    }, []);
 
 // STYLING
     const Item = styled(Paper)(({ theme }) => ({
@@ -51,7 +58,7 @@ function Details(){
                         alignItems='center'
                         padding='5px'>
                         <Typography variant='h6'>RSVP</Typography>
-                        <RsvpToggle eventId={details[0].id} />
+                        <DetailRsvpToggle eventId={details[0].id} />
                     </Box>
                     <Item>
                         <Stack 

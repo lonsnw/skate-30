@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 import { Stack, Switch, Typography } from '@mui/material';
 
-function RsvpToggle(eventId) {
+function DetailRsvpToggle(eventId) {
     const history = useHistory();
     const dispatch = useDispatch();
     const details = useSelector(store => store.details.details);
@@ -17,8 +17,12 @@ function RsvpToggle(eventId) {
 
     const handleChange = (eventId) => {
         console.log('event id:', eventId);
-        setToggle(!toggle)
-        console.log(toggle);
+        dispatch({ type: 'FETCH_RSVP', payload: eventId })
+        {/* If no user is logged in, do this */}
+        {!user.id && (history.push(`/login`))}
+        {/* If a user is logged in, do this */}
+        {user.id && (history.push(`/rsvp`))
+        }
       };
 
 
@@ -32,9 +36,10 @@ function RsvpToggle(eventId) {
         {detail.user_id === user.id ? (
             setCurrentUser([detail])
         ) : (
-            ''
+            setCurrentUser('')
         );}}
         console.log('current user', currentUser)
+        console.log('toggle at start', toggle);
         {!currentUser ? (
             // sets toggle to false if no currentUser (i.e. no RSVP)
             // and true if there is a currentUser
@@ -105,4 +110,4 @@ function RsvpToggle(eventId) {
     )
 }
 
-export default RsvpToggle;
+export default DetailRsvpToggle;
