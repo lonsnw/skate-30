@@ -11,8 +11,8 @@ function DetailRsvpToggle(eventId) {
     const dispatch = useDispatch();
     const details = useSelector(store => store.details.details);
     const user = useSelector((store) => store.user);
-    let toggle = false;
-    // const [toggle, setToggle] = useState(false);
+    // let toggle = false;
+    const [toggle, setToggle] = useState(false);
     // currentUser will be the object of RSVP information for the current user
     let currentUser = {};
 
@@ -26,20 +26,11 @@ function DetailRsvpToggle(eventId) {
         }
       };
 
-
     useEffect(() => {
-        console.log('user id', user.id);
-        console.log(details)
-        // Giving time to load
         // On load setting currentUser with user RSVP (or undefined)
         for(let detail of details){
-        // {detail.user_id === user.id ? (
-        //     setCurrentUser(detail)
-        // ) : (
-        //     setCurrentUser({})
-        // );}
-        // Trying to remove the possibility of the loop continuing after
-        // finding a match; does not solve the issue
+        // Using an if statement to remove the possibility of the loop continuing after
+        // finding a match
             console.log(detail.user_id);
             if (detail.user_id === user.id) {
                 console.log('console logging detail', detail);
@@ -47,26 +38,10 @@ function DetailRsvpToggle(eventId) {
                 currentUser = detail;
             }
         }
-        console.log('current user', currentUser)
-        console.log('toggle at start', toggle);
-        // {!currentUser ? (
-        //     // sets toggle to false if no currentUser (i.e. no RSVP)
-        //     // and true if there is a currentUser
-        //     setToggle(toggle)
-        // ) : (
-        //     setToggle(!toggle)
-        // )}
-        // {Object.keys(currentUser).length === 0 ? (
-        //     toggle
-        // ) : (
-        //     toggle = !toggle
-        // )}
-        {Object.keys(currentUser).length > 0 && (toggle = !toggle)}
-        console.log('after setting toggle:', toggle);
-        setTimeout(() => {}, 800);
+        // sets toggle to false if no currentUser (i.e. no RSVP)
+        // and true if there is a currentUser
+        {Object.keys(currentUser).length > 0 && setToggle(!toggle)}
     }, []);
-
-
 
 // STYLING
     const AntSwitch = styled(Switch)(({ theme }) => ({

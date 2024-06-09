@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 
 // MUI imports
@@ -15,12 +15,6 @@ function Details(){
     const details = useSelector(store => store.details.details);
     const user = useSelector((store) => store.user);
 
-    useEffect(() => {
-        console.log("USERID:", user.id);
-        // Giving time to load
-        setTimeout(() => {
-         }, 1000);
-    }, []);
 
 // STYLING
     const Item = styled(Paper)(({ theme }) => ({
