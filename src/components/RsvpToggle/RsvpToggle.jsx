@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 
 // MUI imports
 import { styled } from '@mui/material/styles';
-import { Box, Card, Grid, Link, Paper, Stack, Switch, Typography } from '@mui/material';
+import { Stack, Switch, Typography } from '@mui/material';
 
 function RsvpToggle(eventId) {
     const history = useHistory();
@@ -17,12 +17,11 @@ function RsvpToggle(eventId) {
 
     const handleChange = (eventId) => {
         console.log('event id:', eventId);
+        dispatch({ type: 'FETCH_RSVP', payload: eventId })
         {/* If no user is logged in, do this */}
         {!user.id && (history.push(`/login`))}
         {/* If a user is logged in, do this */}
-        {user.id && 
-            dispatch({ type: 'FETCH_RSVP', payload: eventId })
-            (history.push(`/rsvp`))
+        {user.id && (history.push(`/rsvp`))
         }
       };
 

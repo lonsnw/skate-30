@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 
 // MUI imports
 import { styled } from '@mui/material/styles';
-import { Box, Card, Grid, Link, Paper, Stack, Switch, Typography } from '@mui/material';
+import { Box, Card, Grid, Link, Paper, Stack, Typography } from '@mui/material';
 
 // CUSTOM COMPONENTS
 import Footer from '../Footer/Footer';
@@ -13,7 +12,6 @@ import Loading from '../Loading/Loading';
 import RsvpToggle from '../RsvpToggle/RsvpToggle'
 
 function Details(){
-    const history = useHistory();
     const details = useSelector(store => store.details.details);
     const user = useSelector((store) => store.user);
 
