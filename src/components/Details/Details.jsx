@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 
 // MUI imports
 import { styled } from '@mui/material/styles';
-import { Box, Card, Grid, Link, Paper, Stack, Typography } from '@mui/material';
+import { Box, Card, Grid, Link, Paper, Stack, Switch, Typography } from '@mui/material';
 
 // CUSTOM COMPONENTS
 import Footer from '../Footer/Footer';
@@ -16,10 +16,10 @@ function Details(){
     const user = useSelector((store) => store.user);
 
     useEffect(() => {
-        console.log(user.id);
+        console.log("USERID:", user.id);
         // Giving time to load
         setTimeout(() => {
-         }, 100);
+         }, 1000);
     }, []);
 
 // STYLING
@@ -29,6 +29,8 @@ function Details(){
         borderStyle: 'solid',
         borderWidth: '1px',
     }));
+
+    console.log('testing123')
 
     return(
         <div>

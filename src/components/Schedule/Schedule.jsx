@@ -17,6 +17,7 @@ function Browse() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    setTimeout(() => {}, 500);
     dispatch({ type: 'FETCH_SCHEDULE', payload: user.id }),
     console.log('logged in')
   }, []);

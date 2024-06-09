@@ -32,7 +32,7 @@ function RsvpToggle(eventId) {
         {detail.user_id === user.id ? (
             setCurrentUser([detail])
         ) : (
-            ''
+            setCurrentUser('')
         );}}
         console.log('current user', currentUser)
         {!currentUser ? (
