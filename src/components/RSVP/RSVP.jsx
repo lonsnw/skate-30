@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -8,7 +7,6 @@ import { Box, Button, Card, CardContent, Checkbox, FormControlLabel, Grid, Paper
 
 // CUSTOM COMPONENTS
 import Footer from '../Footer/Footer';
-import Loading from '../Loading/Loading';
 
 function RSVP(){
     const dispatch = useDispatch();
@@ -16,9 +14,9 @@ function RSVP(){
     const rsvp = useSelector(store => store.rsvp.rsvp);
     const user = useSelector((store) => store.user);
     const [position, setPosition] = useState();
-    const [pucks, setPucks] = useState(rsvp.pucks);
-    const [tutor, setTutor] = useState(rsvp.tutor);
-    const [drinks, setDrinks] = useState(rsvp.drinks);
+    const [pucks, setPucks] = useState();
+    const [tutor, setTutor] = useState();
+    const [drinks, setDrinks] = useState();
     const [notes, setNotes] = useState();
     const rsvpId = rsvp.rsvp_id;
 
@@ -43,14 +41,11 @@ function RSVP(){
     }
 
     useEffect(() => {
-        console.log('user id:', user.id);
-        console.log('rsvp:', rsvp)
-        console.log('rsvp id:', rsvp.rsvp_id)
+        // Setting initial values for RSVP form if there's an existing RSVP
+        setPucks(rsvp.pucks);
+        setTutor(rsvp.tutor);
+        setDrinks(rsvp.drinks);
     }, []);
-
-    const handlePosition = () => {
-        setPosition();
-    }
 
 // STYLING
     const Item = styled(Paper)(({ theme }) => ({
@@ -105,12 +100,6 @@ function RSVP(){
 
     return(
         <div>
-        { 
-            details.length === 0 ? (
-            <div>
-            <Loading />
-            </div>
-        ) : (
             <Box>
                 <Box 
                     className="details"
@@ -231,22 +220,19 @@ function RSVP(){
                             variant="contained"
                             color="secondary"
                             name="Remove"
-                            value="Remove me"
-                            onClick={() => {deleteRsvp(rsvpId)}} >
+                            onClick={() => deleteRsvp(rsvpId)} >
                             Remove me
                         </Button>
                         <Button 
                             type="submit" 
                             variant="contained"
-                            name="register"
-                            value="Register">
+                            name="register">
                             Register
                         </Button>
                     </Box>
                     </Item>
                 </Box>
             </Box>
-        )}
         <Box
             width='100vw'
             position='absolute'
