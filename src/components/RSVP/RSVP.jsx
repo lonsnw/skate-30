@@ -18,24 +18,7 @@ function RSVP(){
     const [pucks, setPucks] = useState();
     const [tutor, setTutor] = useState();
     const [drinks, setDrinks] = useState();
-    const [notes, setNotes] = useState();
-
-    const sendRsvp = () => {
-        // Sending RSVP info to RSVP table
-        dispatch ({ type: 'RESPOND_SVP', payload: {
-            event: rsvp.event_id,
-            position: position,
-            pucks: pucks,
-            tutor: tutor,
-            drinks: drinks
-        }} );
-        // Sending notes to event table to add to event
-        dispatch ({ type: 'RSVP_NOTES', payload: {
-            event: rsvp.event_id,
-            notes: (rsvp.notes, "|", notes) }
-            });
-        window.location.reload();
-    }
+    const [notes, setNotes] = useState('');
 
     useEffect(() => {
         // Setting initial values for RSVP form if there's an existing RSVP
@@ -43,6 +26,26 @@ function RSVP(){
         setTutor(rsvp.tutor);
         setDrinks(rsvp.drinks);
     }, []);
+
+    const sendRsvp = (event) => {
+        console.log('testing1');
+        event.preventDefault();
+        console.log('testing');
+        // Sending RSVP info to RSVP table
+        dispatch ({ type: 'RESPOND_SVP', payload: {
+            event: rsvp.event_id,
+            position: position,
+            pucks: pucks,
+            tutor: tutor,
+            drinks: drinks,
+        },} );
+        // Sending notes to event table to add to event
+        dispatch ({ type: 'RSVP_NOTES', payload: {
+            event: rsvp.event_id,
+            notes: (rsvp.notes, "|", notes),
+        }, });
+        // window.location.reload();
+    }
 
 // STYLING
     const Item = styled(Paper)(({ theme }) => ({
@@ -103,7 +106,9 @@ function RSVP(){
         ) : ( (details[0].length === 0 ? (
             <Loading />
         ) : (
-            <form onSubmit={sendRsvp}>
+            <Box
+                component='form'
+                onSubmit={sendRsvp}>
                 <Box 
                     className="details"
                     display='flex'
@@ -218,13 +223,14 @@ function RSVP(){
                         <Button 
                             type="submit" 
                             variant="contained"
-                            name="register">
+                            name="register"
+                            value="Register">
                             Register
                         </Button>
                     </Box>
                     </Item>
                 </Box>
-            </form>
+            </Box>
         )))}
         <Box
             width='100vw'
