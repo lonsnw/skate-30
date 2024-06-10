@@ -19,12 +19,7 @@ function RSVP(){
     const [pucks, setPucks] = useState(false);
     const [tutor, setTutor] = useState(false);
     const [drinks, setDrinks] = useState(false);
-    const [notes, setNotes] = useState('');
-    const eventId = details[0].event_id;
-    // let {eventId} = useParams();
-
-    console.log('eventId', event);
-    console.log('DEETS', details);
+    // const [notes, setNotes] = useState('');
 
     const sendRsvp = (event) => {
         console.log('testing1');
