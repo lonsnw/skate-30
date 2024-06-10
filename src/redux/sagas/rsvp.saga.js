@@ -5,7 +5,7 @@ function* fetchRsvp(action) {
     try {
         // Get the RSVP:
         const eventId = action.payload;
-        console.log(eventId);
+        console.log('in fetchRSVP', eventId);
         const rsvpResponse = yield axios.get(`/api/rsvp/${eventId}`);
         yield put({ type: 'SET_RSVP', payload: rsvpResponse.data })
     } catch (error) {
@@ -34,7 +34,7 @@ function* deleteSvp(action) {
 function* rsvpNotes(action) {
     try {
         const eventId = action.payload.event;
-        yield axios.put(`/api/rsvp/notes/${eventId}`, action.payload.notes);
+        yield axios.put(`/api/rsvp/notes/${eventId}`, action.payload);
     } catch (error) {
         console.log('rsvpNotes error', error);
     }

@@ -14,15 +14,13 @@ function RSVP(){
     const dispatch = useDispatch();
     const details = useSelector(store => store.details.details);
     const rsvp = useSelector(store => store.rsvp.rsvp);
-    const user = useSelector((store) => store.user);
     const [position, setPosition] = useState();
     const [pucks, setPucks] = useState();
     const [tutor, setTutor] = useState();
     const [drinks, setDrinks] = useState();
     const [notes, setNotes] = useState();
 
-    const sendRsvp = (event) => {
-        event.preventDefault();
+    const sendRsvp = () => {
         // Sending RSVP info to RSVP table
         dispatch ({ type: 'RESPOND_SVP', payload: {
             event: rsvp.event_id,
@@ -34,7 +32,7 @@ function RSVP(){
         // Sending notes to event table to add to event
         dispatch ({ type: 'RSVP_NOTES', payload: {
             event: rsvp.event_id,
-            notes: notes }
+            notes: (rsvp.notes, "|", notes) }
             });
         window.location.reload();
     }
@@ -105,15 +103,13 @@ function RSVP(){
         ) : ( (details[0].length === 0 ? (
             <Loading />
         ) : (
-            <Box>
+            <form onSubmit={sendRsvp}>
                 <Box 
                     className="details"
-                    component='form'
                     display='flex'
                     flexDirection='column'
                     justifyContent='center'
-                    alignContent='center'
-                    onSubmit={sendRsvp}>
+                    alignContent='center'>
                 {/* PostgreSQL pulls all RSVPs for one event
                 Adding data to the page by pulling the info from the first event in the array
                 All event details in the array are the same, but the event is multiplied by the number of RSVPs */}
@@ -169,7 +165,6 @@ function RSVP(){
                                         onChange={() => {setDrinks}} />
                                 </Stack>
                                 <Stack 
-                                // THIS IS TOO BIG; resize once functional
                                     direction="column"
                                     spacing={1.1}
                                     marginTop={1.4} >
@@ -229,7 +224,7 @@ function RSVP(){
                     </Box>
                     </Item>
                 </Box>
-            </Box>
+            </form>
         )))}
         <Box
             width='100vw'
