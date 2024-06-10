@@ -47,7 +47,7 @@ function RSVP(){
         borderColor: '#7599BD',
         borderStyle: 'solid',
         borderWidth: '1px',
-        marginTop: '50px',
+        height: '74vh',
     }));
 
     const AntSwitch = styled(Switch)(({ theme }) => ({
@@ -104,17 +104,11 @@ function RSVP(){
                 component='form'
                 onSubmit={sendRsvp}>
                 <Box 
-                    className="details"
-                    display='flex'
-                    flexDirection='column'
-                    justifyContent='center'
-                    alignContent='center'>
+                    className="rsvp">
                 {/* PostgreSQL pulls all RSVPs for one event
                 Adding data to the page by pulling the info from the first event in the array
                 All event details in the array are the same, but the event is multiplied by the number of RSVPs */}
-                    <Item 
-                        display='flex'
-                        flexDirection='column'>
+                    <Item >
                     <Grid>
                         <Box
                             display='flex'
@@ -138,12 +132,10 @@ function RSVP(){
                         <Box
                             display='flex'
                             flexDirection='column'
-                            alignItems='center'
-                            padding='5px'>
+                            alignItems='center'>
                             <Typography variant='h6'>Bringing:</Typography>
                             <Stack
-                                direction="row"
-                                marginLeft="40px">
+                                direction="row">
                                 <Stack 
                                     direction="column"
                                     spacing={-0.5}>

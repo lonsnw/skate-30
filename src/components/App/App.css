@@ -50,7 +50,9 @@ Scroll container on Browse/Search, Details
 }
 
 .rsvp {
-  height: 60vh;
+  margin-top: 20px;
+  height: 76vh;
+  background-color: #DCE6EF;
   overflow-y: scroll;
 }
 
