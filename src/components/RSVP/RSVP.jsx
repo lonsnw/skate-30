@@ -46,6 +46,14 @@ function RSVP(){
         console.log('user id:', user.id);
     }, []);
 
+    const handleAttend = () => {
+        setAttend();
+    }
+
+    const handlePosition = () => {
+        setPosition();
+    }
+
 // STYLING
     const Item = styled(Paper)(({ theme }) => ({
         padding: theme.spacing(1),
@@ -135,7 +143,7 @@ function RSVP(){
                                 <Typography>No</Typography>
                                 <AntSwitch 
                                     checked={attend}
-                                    onChange={() => {setAttend}} />
+                                    onChange={() => {handleAttend()}} />
                                 <Typography>Yes</Typography>
                             </Stack>
                             <Stack 
@@ -145,7 +153,7 @@ function RSVP(){
                                 <Typography>Skater</Typography>
                                 <AntSwitch 
                                     checked={position}
-                                    onChange={() => {setPosition}} />
+                                    onChange={() => {handlePosition()}} />
                                 <Typography>Goalie</Typography>
                             </Stack>
                         </Box>
