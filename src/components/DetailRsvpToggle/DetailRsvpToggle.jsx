@@ -6,19 +6,19 @@ import { useHistory } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 import { Stack, Switch, Typography } from '@mui/material';
 
-function DetailRsvpToggle(eventId) {
+function DetailRsvpToggle({eventId}) {
     const history = useHistory();
     const dispatch = useDispatch();
     const details = useSelector(store => store.details.details);
     const user = useSelector((store) => store.user);
-    // let toggle = false;
     const [toggle, setToggle] = useState(false);
     // currentUser will be the object of RSVP information for the current user
     let currentUser = {};
 
     const handleChange = (eventId) => {
         console.log('event id:', eventId);
-        dispatch({ type: 'FETCH_RSVP', payload: eventId })
+        dispatch({ type: 'RESPOND_SVP', payload: {event: eventId} })
+        dispatch({ type: 'DELETE_SVP', payload: {event: eventId} })
         {/* If no user is logged in, do this */}
         {!user.id && (history.push(`/login`))}
         {/* If a user is logged in, do this */}
@@ -31,7 +31,6 @@ function DetailRsvpToggle(eventId) {
         for(let detail of details){
         // Using an if statement to remove the possibility of the loop continuing after
         // finding a match
-            console.log(detail.user_id);
             if (detail.user_id === user.id) {
                 console.log('console logging detail', detail);
                 // setCurrentUser seems to be the point of failure

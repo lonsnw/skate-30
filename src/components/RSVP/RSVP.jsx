@@ -3,45 +3,47 @@ import { useDispatch, useSelector } from 'react-redux';
 
 // MUI imports
 import { styled } from '@mui/material/styles';
-import { Box, Button, Card, CardContent, Checkbox, FormControlLabel, Grid, Paper, Stack, TextField, Typography } from '@mui/material';
+import { Box, Button, Card, CardContent, Checkbox, FormControlLabel, Grid, Paper, Stack, Switch, TextField, Typography } from '@mui/material';
 
 // CUSTOM COMPONENTS
 import Footer from '../Footer/Footer';
 import Loading from '../Loading/Loading';
-import PlayerToggle from '../PlayerToggle/PlayerToggle'
-import RsvpToggle from '../RsvpToggle/RsvpToggle'
 
-function RSVP({eventId}){
+function RSVP(){
     const dispatch = useDispatch();
     const details = useSelector(store => store.details.details);
-    const rsvp = useSelector(store => store.rsvp.rsvp);
     const user = useSelector((store) => store.user);
     const [notes, setNotes] = useState();
+    const [attend, setAttend] = useState(true);
+    const [position, setPosition] = useState(false);
     const [pucks, setPucks] = useState();
     const [tutor, setTutor] = useState();
     const [drinks, setDrinks] = useState();
 
     const sendRsvp = (event) => {
         event.preventDefault();
-        // Sending RSVP info to RSVP table
-        dispatch ({ type: 'RSVP', payload: {
-            pucks: pucks,
-            tutor: tutor,
-            drinks: drinks
-        } 
-        });
+        {
+            attend === false ? (
+                // DELETE if RSVP is no
+                dispatch ({ type: 'DELETE_RSVP', payload: tutor })
+            ) : (
+                // Sending RSVP info to RSVP table
+                dispatch ({ type: 'RESPOND_SVP', payload: {
+                    attending: attend,
+                    position: position,
+                    pucks: pucks,
+                    tutor: tutor,
+                    drinks: drinks
+                }} )
+        )};
         // Sending notes to event table to add to event
         dispatch ({ type: 'RSVP_NOTES', payload: {
-            id: eventId,
             notes: notes }
             });
     }
 
     useEffect(() => {
-        console.log(user.id);
-        // Giving time to load
-        setTimeout(() => {
-         }, 500);
+        console.log('user id:', user.id);
     }, []);
 
 // STYLING
@@ -51,6 +53,48 @@ function RSVP({eventId}){
         borderStyle: 'solid',
         borderWidth: '1px',
         marginTop: '50px',
+    }));
+
+    const AntSwitch = styled(Switch)(({ theme }) => ({
+        width: 36,
+        height: 20,
+        padding: 0,
+        borderRadius: 20,
+        display: 'flex',
+        '&:active': {
+        '& .MuiSwitch-thumb': {
+            width: 15,
+        },
+        '& .MuiSwitch-switchBase.Mui-checked': {
+            transform: 'translateX(9px)',
+        },
+        },
+        '& .MuiSwitch-switchBase': {
+        padding: 2,
+        '&.Mui-checked': {
+            transform: 'translateX(16px)',
+            color: '#fff',
+            '& + .MuiSwitch-track': {
+            opacity: 1,
+            backgroundColor: 'primary',
+    },
+        },
+        },
+        '& .MuiSwitch-thumb': {
+        boxShadow: '0 2px 4px 0 rgb(0 35 11 / 20%)',
+        width: 16,
+        height: 16,
+        borderRadius: 20,
+        transition: theme.transitions.create(['width'], {
+            duration: 200,
+        }),
+        },
+        '& .MuiSwitch-track': {
+        borderRadius: 16 / 2,
+        opacity: 1,
+        backgroundColor: '#97b3ce',
+        boxSizing: 'border-box',
+        },
     }));
 
     return(
@@ -85,8 +129,25 @@ function RSVP({eventId}){
                             <Typography variant='h4'>RSVP</Typography>
                             <Typography variant='h6'>{ details[0].type ? 'Pickup' : 'Open Skate' } - { details[0].rink }</Typography>
                             <Typography variant="subtitle1">{new Date(details[0].date).toLocaleDateString('en-us', { weekday:"long", month:"short", day:"numeric"})} - {details[0].time} - {details[0].duration} mins</Typography>
-                            <RsvpToggle eventId={details[0].id} />
-                            <PlayerToggle />
+                            <Stack 
+                                direction="row" 
+                                spacing={1} >
+                                <Typography>No</Typography>
+                                <AntSwitch 
+                                    checked={attend}
+                                    onChange={() => {setAttend}} />
+                                <Typography>Yes</Typography>
+                            </Stack>
+                            <Stack 
+                                direction="row" 
+                                paddingRight='6px'
+                                spacing={1} >
+                                <Typography>Skater</Typography>
+                                <AntSwitch 
+                                    checked={position}
+                                    onChange={() => {setPosition}} />
+                                <Typography>Goalie</Typography>
+                            </Stack>
                         </Box>
                         <Box
                             display='flex'
@@ -119,10 +180,11 @@ function RSVP({eventId}){
                                 <Stack 
                                 // THIS IS TOO BIG; resize once functional
                                     direction="column"
-                                    spacing={2.25}
+                                    spacing={1.1}
                                     marginTop={1.4} >
                                     <Typography variant='p1'>Pucks</Typography>
-                                    <Typography variant='p1'>Shooter tutor</Typography>
+                                    <Typography variant='p1'>Shooter
+                                    <br />tutor</Typography>
                                     <Typography variant='p1'>Drinks</Typography>
                                 </Stack>
                             </Stack>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 // MUI imports
@@ -15,7 +15,6 @@ function Details(){
     const details = useSelector(store => store.details.details);
     const user = useSelector((store) => store.user);
 
-
 // STYLING
     const Item = styled(Paper)(({ theme }) => ({
         padding: theme.spacing(1),
@@ -23,8 +22,6 @@ function Details(){
         borderStyle: 'solid',
         borderWidth: '1px',
     }));
-
-    console.log('testing123')
 
     return(
         <div>
@@ -54,7 +51,7 @@ function Details(){
                         alignItems='center'
                         padding='5px'>
                         <Typography variant='h6'>RSVP</Typography>
-                        <DetailRsvpToggle eventId={details[0].id} />
+                        <DetailRsvpToggle eventId={details[0].event_id} />
                     </Box>
                     <Item>
                         <Stack 

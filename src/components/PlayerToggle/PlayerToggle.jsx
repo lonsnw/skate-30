@@ -11,16 +11,16 @@ function PlayerToggle(eventId) {
     const dispatch = useDispatch();
     const details = useSelector(store => store.details.details);
     const user = useSelector((store) => store.user);
-    const [toggle, setToggle] = useState(false);
+    const [position, setPosition] = useState(false);
     // currentUser is the array of RSVP information for the current user
     let currentUser = {};
 
     const handleChange = (eventId) => {
         console.log('event id:', eventId);
-        dispatch({ type: 'POSITION_RSVP', payload: {
-            event_id: eventId,
-            position: position
-        } })
+        setPosition(!position)
+        console.log(position)
+        // Sending RSVP info to RSVP table
+        dispatch({ type: 'ADD_RSVP', payload: {position: position} });
       };
 
 
@@ -39,7 +39,7 @@ function PlayerToggle(eventId) {
         // sets toggle to false if no currentUser (i.e. no RSVP)
         // and true if there is a currentUser
         console.log('what position:', currentUser.position)
-        {currentUser.position === true && setToggle(!toggle)}
+        {currentUser.position === true && setPosition(!position)}
     }, []);
 
 
@@ -95,8 +95,8 @@ function PlayerToggle(eventId) {
             spacing={1} >
             <Typography>Skater</Typography>
             <AntSwitch 
-                checked={toggle}
-                onChange={() => {handleChange(eventId)}} />
+                checked={position}
+                onChange={() => {setPosition}} />
             <Typography>Goalie</Typography>
         </Stack>
         </>

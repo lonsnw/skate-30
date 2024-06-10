@@ -6,7 +6,7 @@ const router = express.Router();
 router.get('/:id', (req, res) => {
     console.log('in details GET');
     const query = `
-    SELECT "rsvp"."event_id", "rsvp"."position", "rsvp"."pucks", "rsvp"."tutor", "rsvp"."drinks", "rsvp"."user_id", CONCAT("rsvp"."name", "user"."name") AS "attendees", "events"."rink", "events"."type", "events"."date", "events"."id", "events"."time", "events"."duration",  "events"."address", "events"."level", "events"."exposure", "events"."notes" FROM "events"
+    SELECT "rsvp"."event_id", "rsvp"."position", "rsvp"."pucks", "rsvp"."tutor", "rsvp"."drinks", "rsvp"."user_id", "rsvp"."id" AS "rsvp_id", CONCAT("rsvp"."name", "user"."name") AS "attendees", "events"."rink", "events"."type", "events"."date", "events"."id", "events"."time", "events"."duration",  "events"."address", "events"."level", "events"."exposure", "events"."notes" FROM "events"
     LEFT JOIN "rsvp" ON "events"."id" = "rsvp"."event_id"
     LEFT JOIN "user" ON "rsvp"."user_id" = "user"."id"
     WHERE "events"."id"=$1

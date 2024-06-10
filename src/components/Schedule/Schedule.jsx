@@ -17,7 +17,6 @@ function Browse() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    setTimeout(() => {}, 500);
     dispatch({ type: 'FETCH_SCHEDULE', payload: user.id }),
     console.log('logged in')
   }, []);
@@ -62,8 +61,8 @@ function Browse() {
                           type="button"
                           variant="contained"
                           name="try-again"
-                          onClick={() => {history.push('/');}}>
-                          Home
+                          onClick={() => {history.push('/browse');}}>
+                          Browse
                         </Button>
                       </Box>
                     </Box>
