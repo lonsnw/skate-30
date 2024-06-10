@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -12,43 +13,40 @@ import Loading from '../Loading/Loading';
 function RSVP(){
     const dispatch = useDispatch();
     const details = useSelector(store => store.details.details);
+    const rsvp = useSelector(store => store.rsvp.rsvp);
     const user = useSelector((store) => store.user);
+    const [position, setPosition] = useState();
+    const [pucks, setPucks] = useState(rsvp.pucks);
+    const [tutor, setTutor] = useState(rsvp.tutor);
+    const [drinks, setDrinks] = useState(rsvp.drinks);
     const [notes, setNotes] = useState();
-    const [attend, setAttend] = useState(true);
-    const [position, setPosition] = useState(false);
-    const [pucks, setPucks] = useState();
-    const [tutor, setTutor] = useState();
-    const [drinks, setDrinks] = useState();
+    const rsvpId = rsvp.rsvp_id;
 
     const sendRsvp = (event) => {
         event.preventDefault();
-        {
-            attend === false ? (
-                // DELETE if RSVP is no
-                dispatch ({ type: 'DELETE_RSVP', payload: tutor })
-            ) : (
-                // Sending RSVP info to RSVP table
-                dispatch ({ type: 'RESPOND_SVP', payload: {
-                    attending: attend,
-                    position: position,
-                    pucks: pucks,
-                    tutor: tutor,
-                    drinks: drinks
-                }} )
-        )};
+        // Sending RSVP info to RSVP table
+        dispatch ({ type: 'RESPOND_SVP', payload: {
+            position: position,
+            pucks: pucks,
+            tutor: tutor,
+            drinks: drinks
+        }} );
         // Sending notes to event table to add to event
         dispatch ({ type: 'RSVP_NOTES', payload: {
             notes: notes }
             });
     }
 
+    const deleteRsvp = (rsvpId) => {
+        event.preventDefault();
+        dispatch ({ type: 'DELETE_SVP', payload: rsvpId })
+    }
+
     useEffect(() => {
         console.log('user id:', user.id);
+        console.log('rsvp:', rsvp)
+        console.log('rsvp id:', rsvp.rsvp_id)
     }, []);
-
-    const handleAttend = () => {
-        setAttend();
-    }
 
     const handlePosition = () => {
         setPosition();
@@ -139,21 +137,12 @@ function RSVP(){
                             <Typography variant="subtitle1">{new Date(details[0].date).toLocaleDateString('en-us', { weekday:"long", month:"short", day:"numeric"})} - {details[0].time} - {details[0].duration} mins</Typography>
                             <Stack 
                                 direction="row" 
-                                spacing={1} >
-                                <Typography>No</Typography>
-                                <AntSwitch 
-                                    checked={attend}
-                                    onChange={() => {handleAttend()}} />
-                                <Typography>Yes</Typography>
-                            </Stack>
-                            <Stack 
-                                direction="row" 
                                 paddingRight='6px'
                                 spacing={1} >
                                 <Typography>Skater</Typography>
                                 <AntSwitch 
                                     checked={position}
-                                    onChange={() => {handlePosition()}} />
+                                    onChange={() => {setPosition}} />
                                 <Typography>Goalie</Typography>
                             </Stack>
                         </Box>
@@ -238,11 +227,20 @@ function RSVP(){
                         gap={1}
                         margin='10px'>
                         <Button 
-                        type="submit" 
-                        variant="contained"
-                        name="register"
-                        value="Register">
-                        Register
+                            type="button"
+                            variant="contained"
+                            color="secondary"
+                            name="Remove"
+                            value="Remove me"
+                            onClick={() => {deleteRsvp(rsvpId)}} >
+                            Remove me
+                        </Button>
+                        <Button 
+                            type="submit" 
+                            variant="contained"
+                            name="register"
+                            value="Register">
+                            Register
                         </Button>
                     </Box>
                     </Item>

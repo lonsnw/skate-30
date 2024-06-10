@@ -15,17 +15,6 @@ function DetailRsvpToggle({eventId}) {
     // currentUser will be the object of RSVP information for the current user
     let currentUser = {};
 
-    const handleChange = (eventId) => {
-        console.log('event id:', eventId);
-        dispatch({ type: 'RESPOND_SVP', payload: {event: eventId} })
-        dispatch({ type: 'DELETE_SVP', payload: {event: eventId} })
-        {/* If no user is logged in, do this */}
-        {!user.id && (history.push(`/login`))}
-        {/* If a user is logged in, do this */}
-        {user.id && (history.push(`/rsvp`))
-        }
-      };
-
     useEffect(() => {
         // On load setting currentUser with user RSVP (or undefined)
         for(let detail of details){
@@ -36,11 +25,21 @@ function DetailRsvpToggle({eventId}) {
                 // setCurrentUser seems to be the point of failure
                 currentUser = detail;
             }
-        }
+        };
         // sets toggle to false if no currentUser (i.e. no RSVP)
         // and true if there is a currentUser
-        {Object.keys(currentUser).length > 0 && setToggle(!toggle)}
+        {Object.keys(currentUser).length > 0 && setToggle(!toggle)};
+        dispatch({ type: 'SAVE_RSVP', payload: currentUser });
     }, []);
+
+    const handleChange = (eventId) => {
+        console.log('event id:', eventId);
+        {/* If no user is logged in, do this */}
+        {!user.id && (history.push(`/login`))}
+        {/* If a user is logged in, do this */}
+        {user.id && (history.push(`/rsvp`))
+        }
+      };
 
 // STYLING
     const AntSwitch = styled(Switch)(({ theme }) => ({
