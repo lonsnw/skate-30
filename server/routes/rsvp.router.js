@@ -4,18 +4,18 @@ const router = express.Router();
 
 // POST for RSVPs
 router.post('/', (req, res) => {
-  console.log('in rsvp POST');
+  console.log('in rsvp POST', req.body);
   const query = `
   INSERT INTO "rsvp" ("event_id", "user_id", "position", "pucks", "tutor", "drinks")
   VALUES ($1, $2, $3, $4, $5, $6)
   ;`
   pool.query(query, 
-    req.params.event, 
+    [req.params.event, 
     req.user.id, 
     req.params.position, 
     req.params.pucks, 
     req.params.tutor, 
-    req.params.drinks
+    req.params.drinks]
   ).then(result => {
       res.send(result.rows);
     }).catch(error => {

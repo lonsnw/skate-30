@@ -92,7 +92,7 @@ function DetailRsvpToggle({eventId}) {
             <Typography>No</Typography>
             <AntSwitch 
                 checked={toggle}
-                onChange={() => {handleChange(parseInt(details[0].eventId))}} />
+                onChange={() => {handleChange(parseInt(details[0].event_id))}} />
             <Typography>Yes</Typography>
         </Stack>
         </>

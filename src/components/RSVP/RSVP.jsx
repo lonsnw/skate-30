@@ -20,11 +20,11 @@ function RSVP(){
     const [tutor, setTutor] = useState(false);
     const [drinks, setDrinks] = useState(false);
     const [notes, setNotes] = useState('');
-    const event = details.event_id;
-    let {eventId} = useParams();
+    const eventId = details[0].event_id;
+    // let {eventId} = useParams();
 
-    console.log(eventId);
-    console.log(details);
+    console.log('eventId', event);
+    console.log('DEETS', details);
 
     const sendRsvp = (event) => {
         console.log('testing1');
@@ -32,7 +32,7 @@ function RSVP(){
         console.log('testing');
         // Sending RSVP info to RSVP table
         dispatch ({ type: 'RESPOND_SVP', payload: {
-            event: parseInt(eventId),
+            event: event,
             position: position,
             pucks: pucks,
             tutor: tutor,

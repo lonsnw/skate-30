@@ -15,7 +15,7 @@ function* fetchRsvp(action) {
 
 function* respondSvp(action) {
     console.log('in respondSVP');
-    console.log('payload', action.payload)
+    console.log('payload', action.payload);
     try {
         console.log('in try');
         yield axios.post('/api/rsvp', action.payload);

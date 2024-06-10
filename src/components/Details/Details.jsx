@@ -14,7 +14,7 @@ import DetailRsvpToggle from '../DetailRsvpToggle/DetailRsvpToggle'
 function Details(){
     const details = useSelector(store => store.details.details);
     const user = useSelector((store) => store.user);
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
 
     // useEffect(() => {
     //     console.log('details of this event', details[0])
@@ -92,7 +92,7 @@ function Details(){
                             then this will show the details.length as an RSVP.  Otherwise it shows 0.  This is to 
                             prevent the length being counted as an auto-rsvp because there is an entry for every event
                             regardless of RSVPs. */}
-                            {!details[0].event_id ? (
+                            {!details[0].rsvp_id ? (
                                 <Card
                                 sx={{  
                                 backgroundColor: '#baccde', 
