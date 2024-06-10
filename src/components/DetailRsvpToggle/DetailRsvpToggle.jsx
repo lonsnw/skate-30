@@ -30,13 +30,14 @@ function DetailRsvpToggle({eventId}) {
         // and true if there is a currentUser
         {Object.keys(currentUser).length > 0 && setToggle(!toggle)};
         dispatch({ type: 'SAVE_RSVP', payload: currentUser });
+        console.log(details[0]);
     }, []);
 
-    const handleChange = () => {
+    const handleChange = (eventId) => {
         {/* If no user is logged in, do this */}
         {!user.id && (history.push(`/login`))}
         {/* If a user is logged in, do this */}
-        {user.id && (history.push(`/rsvp`))
+        {user.id && (history.push(`/rsvp/${eventId}`))
         }
       };
 
@@ -91,7 +92,7 @@ function DetailRsvpToggle({eventId}) {
             <Typography>No</Typography>
             <AntSwitch 
                 checked={toggle}
-                onChange={() => {handleChange()}} />
+                onChange={() => {handleChange(parseInt(details[0].eventId))}} />
             <Typography>Yes</Typography>
         </Stack>
         </>

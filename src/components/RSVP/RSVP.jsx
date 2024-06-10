@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
 // MUI imports
 import { styled } from '@mui/material/styles';
@@ -14,18 +15,16 @@ function RSVP(){
     const dispatch = useDispatch();
     const details = useSelector(store => store.details.details);
     const rsvp = useSelector(store => store.rsvp.rsvp);
-    const [position, setPosition] = useState();
-    const [pucks, setPucks] = useState();
-    const [tutor, setTutor] = useState();
-    const [drinks, setDrinks] = useState();
+    const [position, setPosition] = useState(false);
+    const [pucks, setPucks] = useState(false);
+    const [tutor, setTutor] = useState(false);
+    const [drinks, setDrinks] = useState(false);
     const [notes, setNotes] = useState('');
+    const event = details.event_id;
+    let {eventId} = useParams();
 
-    useEffect(() => {
-        // Setting initial values for RSVP form if there's an existing RSVP
-        setPucks(rsvp.pucks);
-        setTutor(rsvp.tutor);
-        setDrinks(rsvp.drinks);
-    }, []);
+    console.log(eventId);
+    console.log(details);
 
     const sendRsvp = (event) => {
         console.log('testing1');
@@ -33,18 +32,18 @@ function RSVP(){
         console.log('testing');
         // Sending RSVP info to RSVP table
         dispatch ({ type: 'RESPOND_SVP', payload: {
-            event: rsvp.event_id,
+            event: parseInt(eventId),
             position: position,
             pucks: pucks,
             tutor: tutor,
             drinks: drinks,
         },} );
-        // Sending notes to event table to add to event
-        dispatch ({ type: 'RSVP_NOTES', payload: {
-            event: rsvp.event_id,
-            notes: (rsvp.notes, "|", notes),
-        }, });
-        // window.location.reload();
+        // // Sending notes to event table to add to event
+        // dispatch ({ type: 'RSVP_NOTES', payload: {
+        //     event: rsvp.event_id,
+        //     notes: (rsvp.notes, "|", notes),
+        // }, });
+        // // window.location.reload();
     }
 
 // STYLING
@@ -157,17 +156,17 @@ function RSVP(){
                                         value="pucks"
                                         checked={pucks}
                                         control={<Checkbox />} 
-                                        onChange={() => {setPucks}} />
+                                        onChange={() => {setPucks(true)}} />
                                     <FormControlLabel 
                                         value="tutor"
                                         checked={tutor}
                                         control={<Checkbox />} 
-                                        onChange={() => {setTutor}} />
+                                        onChange={() => {setTutor(true)}} />
                                     <FormControlLabel 
                                         value="drinks"
                                         checked={drinks}
                                         control={<Checkbox />} 
-                                        onChange={() => {setDrinks}} />
+                                        onChange={() => {setDrinks(true)}} />
                                 </Stack>
                                 <Stack 
                                     direction="column"
@@ -180,7 +179,7 @@ function RSVP(){
                                 </Stack>
                             </Stack>
                         </Box>
-                        <Box
+                        {/* <Box
                             display='flex'
                             flexDirection='column'
                             alignItems='center'
@@ -212,7 +211,7 @@ function RSVP(){
                                     onChange={(event) => setNotes(event.target.value)}
                                 />
                             </Card>
-                        </Box>
+                        </Box> */}
                     </Grid>
                     <Box
                         display='flex'

@@ -12,7 +12,7 @@ const userRouter = require('./routes/user.router');
 const browseRouter = require('./routes/browse.router');
 const searchRouter = require('./routes/search.router');
 const detailsRouter = require('./routes/details.router');
-const rsvpRouter = require('./routes/rsvp.router')
+const rsvpRouter = require('./routes/rsvp.router');
 
 // Express Middleware
 app.use(express.json());

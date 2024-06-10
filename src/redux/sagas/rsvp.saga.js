@@ -14,8 +14,11 @@ function* fetchRsvp(action) {
 }
 
 function* respondSvp(action) {
+    console.log('in respondSVP');
+    console.log('payload', action.payload)
     try {
-        yield axios.post(`/api/rsvp`, action.payload);
+        console.log('in try');
+        yield axios.post('/api/rsvp', action.payload);
     } catch (error) {
         console.log('respondSvp error', error);
     }

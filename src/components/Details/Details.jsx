@@ -1,5 +1,5 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 // MUI imports
 import { styled } from '@mui/material/styles';
@@ -14,6 +14,13 @@ import DetailRsvpToggle from '../DetailRsvpToggle/DetailRsvpToggle'
 function Details(){
     const details = useSelector(store => store.details.details);
     const user = useSelector((store) => store.user);
+    const dispatch = useDispatch();
+
+    // useEffect(() => {
+    //     console.log('details of this event', details[0])
+    //     dispatch({ type: 'SAVE_DETAILS', payload: details[0] })
+    //     // add this reducer
+    // }, []);
 
 // STYLING
     const Item = styled(Paper)(({ theme }) => ({
