@@ -31,11 +31,21 @@ function* deleteSvp(action) {
     }
 };
 
+function* rsvpNotes(action) {
+    try {
+        const eventId = action.payload.event;
+        yield axios.put(`/api/rsvp/notes/${eventId}`, action.payload.notes);
+    } catch (error) {
+        console.log('rsvpNotes error', error);
+    }
+}
+
 
 function* rsvpSaga() {
     yield takeLatest('FETCH_RSVP', fetchRsvp);
     yield takeLatest('RESPOND_SVP', respondSvp);
     yield takeLatest('DELETE_SVP', deleteSvp);
+    yield takeLatest('RSVP_NOTES', rsvpNotes);
 }
 
 export default rsvpSaga;

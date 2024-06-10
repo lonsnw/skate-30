@@ -7,6 +7,8 @@ import { Box, Button, Card, CardContent, Checkbox, FormControlLabel, Grid, Paper
 
 // CUSTOM COMPONENTS
 import Footer from '../Footer/Footer';
+import Loading from '../Loading/Loading';
+import RsvpDetails from '../RsvpDetails/RsvpDetails';
 
 function RSVP(){
     const dispatch = useDispatch();
@@ -18,12 +20,12 @@ function RSVP(){
     const [tutor, setTutor] = useState();
     const [drinks, setDrinks] = useState();
     const [notes, setNotes] = useState();
-    const rsvpId = rsvp.rsvp_id;
 
     const sendRsvp = (event) => {
         event.preventDefault();
         // Sending RSVP info to RSVP table
         dispatch ({ type: 'RESPOND_SVP', payload: {
+            event: rsvp.event_id,
             position: position,
             pucks: pucks,
             tutor: tutor,
@@ -31,13 +33,10 @@ function RSVP(){
         }} );
         // Sending notes to event table to add to event
         dispatch ({ type: 'RSVP_NOTES', payload: {
+            event: rsvp.event_id,
             notes: notes }
             });
-    }
-
-    const deleteRsvp = (rsvpId) => {
-        event.preventDefault();
-        dispatch ({ type: 'DELETE_SVP', payload: rsvpId })
+        window.location.reload();
     }
 
     useEffect(() => {
@@ -100,6 +99,12 @@ function RSVP(){
 
     return(
         <div>
+        { 
+            rsvp.rsvp_id > 0 ? (
+            <RsvpDetails />
+        ) : ( (details[0].length === 0 ? (
+            <Loading />
+        ) : (
             <Box>
                 <Box 
                     className="details"
@@ -216,14 +221,6 @@ function RSVP(){
                         gap={1}
                         margin='10px'>
                         <Button 
-                            type="button"
-                            variant="contained"
-                            color="secondary"
-                            name="Remove"
-                            onClick={() => deleteRsvp(rsvpId)} >
-                            Remove me
-                        </Button>
-                        <Button 
                             type="submit" 
                             variant="contained"
                             name="register">
@@ -233,6 +230,7 @@ function RSVP(){
                     </Item>
                 </Box>
             </Box>
+        )))}
         <Box
             width='100vw'
             position='absolute'
