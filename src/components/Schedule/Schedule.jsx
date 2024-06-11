@@ -14,7 +14,7 @@ import NoneFound from '../NoneFound/NoneFound'
 
 function Browse() {
   const user = useSelector((store) => store.user);
-  const events = useSelector((store) => store.browse.browseAll);
+  const events = useSelector((store) => store.browse.browseUser);
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -29,6 +29,16 @@ function Browse() {
     marginTop: '20px'
   }));
 
+  let render = '';
+
+  if (events.length === 0) {
+    render = <NoneFound />
+  } else if (events.length > 0) {
+    render = <ScheduleCard />
+  } else {
+    render = <Loading />
+  };
+
   return (
     <div>
       <Item 
@@ -36,13 +46,14 @@ function Browse() {
         flexDirection='column'>
           <Grid className='events'>
               <Grid >
-              {events.length === 0 ? (
+                {render}
+              {/* {events.length === 0 ? (
                 <NoneFound />
                 ) : ( (events.length > 0 ? (
                 <ScheduleCard />
                 ) : (
                 <Loading />
-              )))}
+              )))} */}
               </Grid>
           </Grid>
       </Item>
