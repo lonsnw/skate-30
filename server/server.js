@@ -13,6 +13,7 @@ const browseRouter = require('./routes/browse.router');
 const searchRouter = require('./routes/search.router');
 const detailsRouter = require('./routes/details.router');
 const rsvpRouter = require('./routes/rsvp.router');
+const eventsRouter = require('./routes/events.router');
 
 // Express Middleware
 app.use(express.json());
@@ -32,6 +33,7 @@ app.use('/api/browse', browseRouter);
 app.use('/api/search', searchRouter);
 app.use('/api/details', detailsRouter);
 app.use('/api/rsvp', rsvpRouter);
+app.use('/api/input', eventsRouter);
 
 // Listen Server & Port
 app.listen(PORT, () => {
