@@ -4,7 +4,8 @@ import user from './user.reducer';
 import search from './search.reducer';
 import browse from './browse.reducer';
 import details from './details.reducer';
-import rsvp from './rsvp.reducer'
+import rsvp from './rsvp.reducer';
+import events from './events.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   browse,
   details,
   rsvp,
+  events,
 });
 
 export default rootReducer;
