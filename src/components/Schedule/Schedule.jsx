@@ -8,11 +8,13 @@ import { styled } from '@mui/material/styles';
 
 // CUSTOM COMPONENTS
 import ScheduleCard from '../ScheduleCard/ScheduleCard';
+import Loading from '../Loading/Loading';
 import Footer from '../Footer/Footer'
+import NoneFound from '../NoneFound/NoneFound'
 
 function Browse() {
   const user = useSelector((store) => store.user);
-  const events = useSelector((store) => store.browse.browseAll);
+  const events = useSelector((store) => store.browse.browseUser);
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -27,6 +29,16 @@ function Browse() {
     marginTop: '20px'
   }));
 
+  let render = '';
+
+  if (events.length === 0) {
+    render = <NoneFound />
+  } else if (events.length > 0) {
+    render = <ScheduleCard />
+  } else {
+    render = <Loading />
+  };
+
   return (
     <div>
       <Item 
@@ -34,41 +46,14 @@ function Browse() {
         flexDirection='column'>
           <Grid className='events'>
               <Grid >
-              {
-                  events.length === 0 ? (
-                    <Box 
-                      sx={{ height: '74vh' }}
-                      display='flex'
-                      flexDirection='column'
-                      justifyContent='center'
-                      textAlign='center'>
-                      <Typography variant="h5">No entries were found.</Typography>
-                      <Box
-                        display='flex'
-                        flexDirection='row'
-                        justifyContent='center'
-                        gap={1}
-                        margin='10px'>
-                        <Button
-                          type="button"
-                          variant="contained"
-                          color="secondary"
-                          name="input"
-                          onClick={() => {history.push('/input');}}>
-                          Add event
-                        </Button>
-                        <Button
-                          type="button"
-                          variant="contained"
-                          name="try-again"
-                          onClick={() => {history.push('/browse');}}>
-                          Browse
-                        </Button>
-                      </Box>
-                    </Box>
-                  ) : (
+                {render}
+              {/* {events.length === 0 ? (
+                <NoneFound />
+                ) : ( (events.length > 0 ? (
                 <ScheduleCard />
-                )}
+                ) : (
+                <Loading />
+              )))} */}
               </Grid>
           </Grid>
       </Item>

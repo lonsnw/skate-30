@@ -1,0 +1,45 @@
+import { useHistory } from 'react-router-dom';
+
+// MUI imports
+import { Box, Button, Typography } from '@mui/material';
+
+function NoneFound() {
+    const history = useHistory();
+
+    return (
+        <>
+            <Box 
+                sx={{ height: '74vh' }}
+                display='flex'
+                flexDirection='column'
+                justifyContent='center'
+                textAlign='center'>
+                <Typography variant="h5">No entries were found.</Typography>
+                <Box
+                display='flex'
+                flexDirection='row'
+                justifyContent='center'
+                gap={1}
+                margin='10px'>
+                <Button
+                    type="button"
+                    variant="contained"
+                    color="secondary"
+                    name="input"
+                    onClick={() => {history.push('/input/location');}}>
+                    Add event
+                </Button>
+                <Button
+                    type="button"
+                    variant="contained"
+                    name="try-again"
+                    onClick={() => {history.push('/browse');}}>
+                    Browse
+                </Button>
+                </Box>
+            </Box>
+        </>
+    )
+}
+
+export default NoneFound;
