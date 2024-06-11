@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 // MUI imports
 import { styled } from '@mui/material/styles';
-import { Box, Button, Card, CardContent, Checkbox, FormControlLabel, Grid, Paper, Stack, Switch, TextField, Typography } from '@mui/material';
+import { Box, Button, Checkbox, FormControlLabel, Grid, Paper, Stack, Switch, Typography } from '@mui/material';
 
 // CUSTOM COMPONENTS
 import Footer from '../Footer/Footer';
@@ -13,13 +13,13 @@ import RsvpDetails from '../RsvpDetails/RsvpDetails';
 
 function RSVP(){
     const dispatch = useDispatch();
+    const history = useHistory();
     const details = useSelector(store => store.details.details);
     const rsvp = useSelector(store => store.rsvp.rsvp);
     const [position, setPosition] = useState(false);
     const [pucks, setPucks] = useState(false);
     const [tutor, setTutor] = useState(false);
     const [drinks, setDrinks] = useState(false);
-    // const [notes, setNotes] = useState('');
 
     const sendRsvp = (event) => {
         console.log('testing1');
@@ -33,12 +33,8 @@ function RSVP(){
             tutor: tutor,
             drinks: drinks,
         },} );
-        // // Sending notes to event table to add to event
-        // dispatch ({ type: 'RSVP_NOTES', payload: {
-        //     event: rsvp.event_id,
-        //     notes: (rsvp.notes, "|", notes),
-        // }, });
-        // // window.location.reload();
+        // Redirect to browse after submitting RSVP
+        history.push('/schedule');
     }
 
 // STYLING
@@ -125,7 +121,7 @@ function RSVP(){
                                 <Typography>Skater</Typography>
                                 <AntSwitch 
                                     checked={position}
-                                    onChange={() => {setPosition}} />
+                                    onChange={() => {setPosition(!position)}} />
                                 <Typography>Goalie</Typography>
                             </Stack>
                         </Box>
@@ -166,39 +162,6 @@ function RSVP(){
                                 </Stack>
                             </Stack>
                         </Box>
-                        {/* <Box
-                            display='flex'
-                            flexDirection='column'
-                            alignItems='center'
-                            padding='5px'>
-                            <Typography>Notes:</Typography>
-                            <Card
-                                sx={{ 
-                                    maxWidth: '80vw', 
-                                    backgroundColor: '#fff', 
-                                    color: 'primary.light',
-                                    margin:'auto',
-                                    minHeight: '10vh',
-                                    width: '70vw', 
-                                    padding:'5px',
-                                    textAlign: 'center',
-                                    alignContent: 'center'
-                                    }}>
-                                <CardContent>
-                                    { details[0].notes }
-                                </CardContent>
-                                <TextField
-                                    sx={{ backgroundColor: "fff"}}
-                                    type="text"
-                                    name="notes"
-                                    variant="outlined"
-                                    label="Add more notes"
-                                    fullWidth
-                                    value={notes}
-                                    onChange={(event) => setNotes(event.target.value)}
-                                />
-                            </Card>
-                        </Box> */}
                     </Grid>
                     <Box
                         display='flex'
