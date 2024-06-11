@@ -14,13 +14,9 @@ import DetailRsvpToggle from '../DetailRsvpToggle/DetailRsvpToggle'
 function Details(){
     const details = useSelector(store => store.details.details);
     const user = useSelector((store) => store.user);
-    // const dispatch = useDispatch();
 
-    // useEffect(() => {
-    //     console.log('details of this event', details[0])
-    //     dispatch({ type: 'SAVE_DETAILS', payload: details[0] })
-    //     // add this reducer
-    // }, []);
+    console.log('DEEETS', details);
+    console.log('test')
 
 // STYLING
     const Item = styled(Paper)(({ theme }) => ({
@@ -88,7 +84,7 @@ function Details(){
                         {/* If no user is logged in, do this */}
                         {!user.id && (
                         <div>
-                            {/* Conditional rendering: if there's an "event_id" (i.e. an entry in the RSVP table),
+                            {/* Conditional rendering: if there's an "rsvp_id" (i.e. an entry in the RSVP table),
                             then this will show the details.length as an RSVP.  Otherwise it shows 0.  This is to 
                             prevent the length being counted as an auto-rsvp because there is an entry for every event
                             regardless of RSVPs. */}
@@ -129,7 +125,7 @@ function Details(){
                         {/* If a user is logged in, do this */}
                         {user.id && (
                             <div>
-                                {!details[0].event_id ? (
+                                {!details.event_id ? (
                                 <Card
                                 sx={{  
                                 backgroundColor: '#baccde', 
