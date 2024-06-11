@@ -125,7 +125,7 @@ function Details(){
                         {/* If a user is logged in, do this */}
                         {user.id && (
                             <div>
-                                {!details.event_id ? (
+                                {!details[0].event_id ? (
                                 <Card
                                 sx={{  
                                 backgroundColor: '#baccde', 

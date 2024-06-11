@@ -29,8 +29,9 @@ function DetailRsvpToggle({eventId}) {
         // sets toggle to false if no currentUser (i.e. no RSVP)
         // and true if there is a currentUser
         {Object.keys(currentUser).length > 0 && setToggle(!toggle)};
-        dispatch({ type: 'SAVE_RSVP', payload: currentUser });
-        console.log(details[0]);
+        dispatch({ type: 'SAVE_RSVP', payload: ( currentUser ) });
+        console.log('details[0] on RSVP toggle', details[0]);
+        console.log('currentUser RSVP on RSVP toggle', currentUser);
     }, []);
 
     const handleChange = (eventId) => {

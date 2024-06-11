@@ -6,16 +6,16 @@ const router = express.Router();
 router.post('/', (req, res) => {
   console.log('in rsvp POST', req.body);
   const query = `
-  INSERT INTO "rsvp" ("event_id", "user_id", "position", "pucks", "tutor", "drinks")
+  INSERT INTO "rsvp" (user_id, position, pucks, tutor, drinks, event_id)
   VALUES ($1, $2, $3, $4, $5, $6)
   ;`
   pool.query(query, 
-    [req.params.event_id, 
-    req.user.id, 
-    req.params.position, 
-    req.params.pucks, 
-    req.params.tutor, 
-    req.params.drinks]
+    [req.user.id, 
+    req.body.position, 
+    req.body.pucks, 
+    req.body.tutor, 
+    req.body.drinks, 
+    req.body.event_id,]
   ).then(result => {
       res.send(result.rows);
     }).catch(error => {

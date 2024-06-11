@@ -27,7 +27,7 @@ function RSVP(){
         console.log('event:', details[0].id);
         // Sending RSVP info to RSVP table
         dispatch ({ type: 'RESPOND_SVP', payload: {
-            event_id: details[0].id,
+            event_id: details[0].event_id,
             position: position,
             pucks: pucks,
             tutor: tutor,
