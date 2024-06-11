@@ -83,6 +83,11 @@ function InputLocation(){
         },
     }));
 
+    'Northeast Ice'
+    '1306 Central Ave NE'
+    'Anyone want to go to Dogwood after?'
+
+
     return(
         <div>
             <Box

@@ -34,9 +34,9 @@ function InputReview(){
             type: input[0].type, 
             level: input[0].level,
             exposure: input[0].exposure,
-            date: input[0].date, 
-            time: input[0].time, 
-            duration: input[0].duration, 
+            date: input[1].date, 
+            time: input[1].time, 
+            duration: input[1].duration, 
         } });
         // STRETCH: send to details page for the event; this will require refactoring
         // as the details page currently gets its event id from the EventCard,
@@ -56,9 +56,10 @@ function InputReview(){
         <div>
             <Box
                 component='form'
+                marginTop='30px'
+                className="events"
                 onSubmit={handleClick}>
-                <Item 
-                    className="rsvp">
+                <Item >
                 {/* PostgreSQL pulls all RSVPs for one event
                 Adding data to the page by pulling the info from the first event in the array
                 All event details in the array are the same, but the event is multiplied by the number of RSVPs */}
@@ -72,9 +73,7 @@ function InputReview(){
                             margin='auto'>
                             <Typography variant='h4'>Review your event</Typography>
                             <Typography variant='h5'>Location:</Typography>
-                            <Typography variant="h6">Rink: <br />
-                            {input[0].rink}</Typography>            
-                            <Typography variant="h6">Address:</Typography>
+                            <Typography variant="h6">{input[0].rink}</Typography>            
                             <Item>
                                 <Stack 
                                     direction="column" 
@@ -98,14 +97,20 @@ function InputReview(){
                                 alignContent: 'center'
                                 }}>
                                 {input[0].notes}</Card>           
+                            <Typography variant='h6'>Date and time:</Typography>
+                            <Item>
+                                {input[1].date}
+                                {input[1].time}
+                                {input[1].duration} minutes
+                            </Item>
                             <Typography variant="h6">Other details:</Typography>
                             <Stack 
                                 direction="column"
                                 spacing={1.1}
                                 marginTop={1.4}>
-                                <li>{input[0].type ? 'Pickup' : 'Free skate'}</li>
-                                <li>{input[0].level ? 'Beginner' : 'Advanced'}</li>
-                                <li>{input[0].exposure ? 'Indoor' : 'Outdoor'}</li>
+                                <li>{input[0].type ? 'Free skate' : 'Pickup'}</li>
+                                <li>{input[0].level ? 'Advanced' : 'Beginner'}</li>
+                                <li>{input[0].exposure ? 'Outdoor' : 'Indoor'}</li>
                             </Stack>
                         </Box>
                     </Grid>
