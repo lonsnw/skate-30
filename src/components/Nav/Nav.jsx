@@ -33,7 +33,7 @@ function Nav() {
                 {logoIcon}
               </Link>
             </div>
-            <Link to="/input">
+            <Link to="/input/location">
               <IconButton color="primary">
                 <AddBoxOutlinedIcon style={{ fontSize: 40 }} />
               </IconButton>
@@ -55,7 +55,7 @@ function Nav() {
               </IconButton>
             </Link>
 
-            <Link to="/input">
+            <Link to="/input/location">
               <IconButton color="primary">
                 <AddBoxOutlinedIcon style={{ fontSize: 40 }} />
               </IconButton>

@@ -23,6 +23,8 @@ import Search from '../Search/Search'
 import Details from '../Details/Details'
 import Schedule from '../Schedule/Schedule'
 import RSVP from '../RSVP/RSVP'
+import InputLocation from '../Input/InputLocation';
+
 
 // MUI imports
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -254,6 +256,14 @@ function App() {
             path="/schedule"
           >
             <Schedule />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows Input page for location else shows LoginPage
+            exact
+            path="/input/location"
+          >
+            <InputLocation />
           </ProtectedRoute>
 
           <Route
