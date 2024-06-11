@@ -1,53 +1,46 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 // MUI imports
 import { styled } from '@mui/material/styles';
-import { Box, Card, Grid, Link, Paper, Stack, Switch, Typography } from '@mui/material';
+import { Stack, Switch, Typography } from '@mui/material';
 
-function RsvpToggle() {
+function DetailRsvpToggle({eventId}) {
     const history = useHistory();
+    const dispatch = useDispatch();
     const details = useSelector(store => store.details.details);
     const user = useSelector((store) => store.user);
     const [toggle, setToggle] = useState(false);
-    // currentUser is the array of RSVP information for the current user
-    const [currentUser, setCurrentUser] = useState();
+    // currentUser will be the object of RSVP information for the current user
+    let currentUser = {};
 
+    useEffect(() => {
+        // On load setting currentUser with user RSVP (or undefined)
+        for(let detail of details){
+        // Using an if statement to remove the possibility of the loop continuing after
+        // finding a match
+            if (detail.user_id === user.id) {
+                console.log('console logging detail', detail);
+                // setCurrentUser seems to be the point of failure
+                currentUser = detail;
+            }
+        };
+        // sets toggle to false if no currentUser (i.e. no RSVP)
+        // and true if there is a currentUser
+        {Object.keys(currentUser).length > 0 && setToggle(!toggle)};
+        dispatch({ type: 'SAVE_RSVP', payload: ( currentUser ) });
+        console.log('details[0] on RSVP toggle', details[0]);
+        console.log('currentUser RSVP on RSVP toggle', currentUser);
+    }, []);
 
-    const handleChange = () => {
+    const handleChange = (eventId) => {
         {/* If no user is logged in, do this */}
         {!user.id && (history.push(`/login`))}
         {/* If a user is logged in, do this */}
-        {user.id && (history.push(`/rsvp/${details[0].id}`)
-        )}
+        {user.id && (history.push(`/rsvp/${eventId}`))
+        }
       };
-
-
-    useEffect(() => {
-        console.log(user.id);
-        // Giving time to load
-        setTimeout(() => {
-         }, 500);
-        // On load setting currentUser with user RSVP (or undefined)
-        for(let detail of details){
-        {detail.user_id === user.id ? (
-            setCurrentUser([detail])
-        ) : (
-            ''
-        );}}
-        console.log('current user', currentUser)
-        {!currentUser ? (
-            // sets toggle to false if no currentUser (i.e. no RSVP)
-            // and true if there is a currentUser
-            setToggle(false)
-        ) : (
-            setToggle(true)
-        )}
-        console.log(toggle);
-    }, []);
-
-
 
 // STYLING
     const AntSwitch = styled(Switch)(({ theme }) => ({
@@ -100,11 +93,11 @@ function RsvpToggle() {
             <Typography>No</Typography>
             <AntSwitch 
                 checked={toggle}
-                onChange={handleChange} />
+                onChange={() => {handleChange(parseInt(details[0].event_id))}} />
             <Typography>Yes</Typography>
         </Stack>
         </>
     )
 }
 
-export default RsvpToggle;
+export default DetailRsvpToggle;

@@ -22,6 +22,7 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import Search from '../Search/Search'
 import Details from '../Details/Details'
 import Schedule from '../Schedule/Schedule'
+import RSVP from '../RSVP/RSVP'
 
 // MUI imports
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -217,6 +218,14 @@ function App() {
             path="/details"
           >
             <Details />
+          </Route>
+
+          <Route
+            // shows RSVP at all times (logged in or not)
+            exact
+            path="/rsvp/:eventId"
+          >
+            <RSVP />
           </Route>
 
           {/* For protected routes, the view could show one of several things on the same route.

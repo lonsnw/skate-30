@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 // MUI imports
 import { styled } from '@mui/material/styles';
@@ -10,12 +9,14 @@ import { Box, Card, Grid, Link, Paper, Stack, Switch, Typography } from '@mui/ma
 import Footer from '../Footer/Footer';
 import GoogleMap from '../GoogleMap/GoogleMap';
 import Loading from '../Loading/Loading';
-import RsvpToggle from '../RsvpToggle/RsvpToggle'
+import DetailRsvpToggle from '../DetailRsvpToggle/DetailRsvpToggle'
 
 function Details(){
-    const history = useHistory();
     const details = useSelector(store => store.details.details);
     const user = useSelector((store) => store.user);
+
+    console.log('DEEETS', details);
+    console.log('test')
 
 // STYLING
     const Item = styled(Paper)(({ theme }) => ({
@@ -53,7 +54,7 @@ function Details(){
                         alignItems='center'
                         padding='5px'>
                         <Typography variant='h6'>RSVP</Typography>
-                        <RsvpToggle />
+                        <DetailRsvpToggle eventId={details[0].event_id} />
                     </Box>
                     <Item>
                         <Stack 
@@ -83,11 +84,11 @@ function Details(){
                         {/* If no user is logged in, do this */}
                         {!user.id && (
                         <div>
-                            {/* Conditional rendering: if there's an "event_id" (i.e. an entry in the RSVP table),
+                            {/* Conditional rendering: if there's an "rsvp_id" (i.e. an entry in the RSVP table),
                             then this will show the details.length as an RSVP.  Otherwise it shows 0.  This is to 
                             prevent the length being counted as an auto-rsvp because there is an entry for every event
                             regardless of RSVPs. */}
-                            {!details[0].event_id ? (
+                            {!details[0].rsvp_id ? (
                                 <Card
                                 sx={{  
                                 backgroundColor: '#baccde', 
@@ -115,7 +116,8 @@ function Details(){
                                 }}>
                                 { details.length } RSVP(s).
                                 <br />
-                                <Link href="/login">Log in</Link> to see more information.
+                                {/* Added # to link here because it was redirecting Home instead without # */}
+                                <Link href="#/login">Log in</Link> to see more information.
                             </Card>
                             ) }  
                         </div>

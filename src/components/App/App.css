@@ -49,6 +49,13 @@ Scroll container on Browse/Search, Details
   overflow-y: scroll;
 }
 
+.rsvp {
+  margin-top: 20px;
+  height: 76vh;
+  background-color: #DCE6EF;
+  overflow-y: scroll;
+}
+
 /* --------------------------------------------------------------------------------
 Alert
 -------------------------------------------------------------------------------- */

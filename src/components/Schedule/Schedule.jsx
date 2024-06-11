@@ -61,8 +61,8 @@ function Browse() {
                           type="button"
                           variant="contained"
                           name="try-again"
-                          onClick={() => {history.push('/');}}>
-                          Home
+                          onClick={() => {history.push('/browse');}}>
+                          Browse
                         </Button>
                       </Box>
                     </Box>

@@ -31,8 +31,6 @@ function UserPage() {
 
   const updateUser = (event) => {
     event.preventDefault();
-    // {!name ? (setName(user.name)) : (name)};
-    // {!email ? (setEmail(user.email)) : (email)};
     console.log(name, email);
     dispatch({
       type: 'UPDATE_USER',

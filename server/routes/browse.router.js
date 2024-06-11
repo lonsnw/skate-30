@@ -6,7 +6,7 @@ const router = express.Router();
 router.get('/', (req, res) => {
     console.log('In browse GET');
     const query = `
-        SELECT (COUNT(NULLIF("position" = FALSE, TRUE))) AS "skaters", (COUNT(NULLIF("position" = TRUE, TRUE))) AS "goalies", "events"."id", "events"."rink", "events"."type", "events"."date", "events"."time", "events"."duration" FROM "events"
+        SELECT (COUNT(NULLIF("position" = FALSE, TRUE))) AS "goalies", (COUNT(NULLIF("position" = TRUE, TRUE))) AS "skaters", "events"."id", "events"."rink", "events"."type", "events"."date", "events"."time", "events"."duration" FROM "events"
         LEFT JOIN "rsvp" ON "events"."id" = "rsvp"."event_id"
         GROUP BY "events"."id";     
     `;
@@ -26,9 +26,9 @@ router.get('/:id', (req, res) => {
     const query = `
         SELECT (
             SELECT (COUNT(NULLIF("position" = FALSE, TRUE))) FROM "rsvp" WHERE "rsvp"."event_id" = "events"."id"
-            ) AS "skaters", (
+            ) AS "goalies", (
             SELECT (COUNT(NULLIF("position" = TRUE, TRUE))) FROM "rsvp" WHERE "rsvp"."event_id" = "events"."id"
-            ) AS "goalies", "events"."id", "events"."rink", "events"."type", "events"."date", "events"."time", "events"."duration" FROM "events"
+            ) AS "skaters", "events"."id", "events"."rink", "events"."type", "events"."date", "events"."time", "events"."duration" FROM "events"
             LEFT JOIN "rsvp" ON "events"."id" = "rsvp"."event_id"
             WHERE "rsvp"."user_id" = $1
             GROUP BY "events"."id";   
