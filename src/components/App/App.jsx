@@ -24,6 +24,8 @@ import Details from '../Details/Details'
 import Schedule from '../Schedule/Schedule'
 import RSVP from '../RSVP/RSVP'
 import InputLocation from '../Input/InputLocation';
+import InputDate from '../Input/InputDate';
+import InputReview from '../Input/InputReview';
 
 
 // MUI imports
@@ -264,6 +266,22 @@ function App() {
             path="/input/location"
           >
             <InputLocation />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows Input page for date else shows LoginPage
+            exact
+            path="/input/date"
+          >
+            <InputDate />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows Input page for reviewing/submitting event info else shows LoginPage
+            exact
+            path="/input/review"
+          >
+            <InputReview />
           </ProtectedRoute>
 
           <Route
