@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 
 // MUI imports
 import { styled } from '@mui/material/styles';
-import { Box, Button, Card, Grid, Paper, Stack, Switch, TextField, Typography } from '@mui/material';
+import { Box, Button, Card, Grid, Paper, Stack, Typography } from '@mui/material';
 
 // CUSTOM COMPONENTS
 import Footer from '../Footer/Footer';
@@ -14,29 +14,23 @@ import GoogleMap from '../GoogleMap/GoogleMap';
 function InputReview(){
     const dispatch = useDispatch();
     const history = useHistory();
-    const input = useSelector(store => store.events.events)
-    const [rink, setRink] = useState('');
-    const [address, setAddress] = useState('');
-    const [notes, setNotes] = useState('');
-    const [type, setType] = useState(false);
-    const [level, setLevel] = useState(false);
-    const [exposure, setExposure] = useState(false);
+    const input = useSelector(store => store.input);
 
     useEffect(() => {
-        console.log(input[0])
+        console.log(input)
     }, []);
 
     const handleClick = () => {
         dispatch({ type: 'ADD_EVENT', payload: {
-            rink: input[0].rink, 
-            address: input[0].address, 
-            notes: input[0].notes, 
-            type: input[0].type, 
-            level: input[0].level,
-            exposure: input[0].exposure,
-            date: input[1].date, 
-            time: input[1].time, 
-            duration: input[1].duration, 
+            rink: input.rink, 
+            address: input.address, 
+            notes: input.notes, 
+            type: input.type, 
+            level: input.level,
+            exposure: input.exposure,
+            date: input.date, 
+            time: input.time, 
+            duration: input.duration, 
         } });
         // STRETCH: send to details page for the event; this will require refactoring
         // as the details page currently gets its event id from the EventCard,
@@ -73,14 +67,14 @@ function InputReview(){
                             margin='auto'>
                             <Typography variant='h4'>Review your event</Typography>
                             <Typography variant='h5'>Location:</Typography>
-                            <Typography variant="h6">{input[0].rink}</Typography>            
+                            <Typography variant="h6">{input.rink}</Typography>            
                             <Item>
                                 <Stack 
                                     direction="column" 
                                     spacing={1} 
                                     alignItems="center">
                                     <GoogleMap />
-                                    {input[0].address}
+                                    {input.address}
                                 </Stack>
                             </Item>            
                             <Typography variant="h6">Notes:</Typography> 
@@ -96,21 +90,21 @@ function InputReview(){
                                 textAlign: 'center',
                                 alignContent: 'center'
                                 }}>
-                                {input[0].notes}</Card>           
+                                {input.notes}</Card>           
                             <Typography variant='h6'>Date and time:</Typography>
                             <Item>
-                                {input[1].date}
-                                {input[1].time}
-                                {input[1].duration} minutes
+                                {input.date}
+                                {input.time}
+                                {input.duration} minutes
                             </Item>
                             <Typography variant="h6">Other details:</Typography>
                             <Stack 
                                 direction="column"
                                 spacing={1.1}
                                 marginTop={1.4}>
-                                <li>{input[0].type ? 'Free skate' : 'Pickup'}</li>
-                                <li>{input[0].level ? 'Advanced' : 'Beginner'}</li>
-                                <li>{input[0].exposure ? 'Outdoor' : 'Indoor'}</li>
+                                <li>{input.type ? 'Free skate' : 'Pickup'}</li>
+                                <li>{input.level ? 'Advanced' : 'Beginner'}</li>
+                                <li>{input.exposure ? 'Outdoor' : 'Indoor'}</li>
                             </Stack>
                         </Box>
                     </Grid>

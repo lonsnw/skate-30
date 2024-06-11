@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
@@ -13,9 +13,9 @@ import Loading from '../Loading/Loading';
 function InputLocation(){
     const dispatch = useDispatch();
     const history = useHistory();
-    const [rink, setRink] = useState('');
-    const [address, setAddress] = useState('');
-    const [notes, setNotes] = useState('');
+    const [rink, setRink] = useState();
+    const [address, setAddress] = useState();
+    const [notes, setNotes] = useState();
     const [type, setType] = useState(false);
     const [level, setLevel] = useState(false);
     const [exposure, setExposure] = useState(false);
@@ -83,9 +83,9 @@ function InputLocation(){
         },
     }));
 
-    'Northeast Ice'
-    '1306 Central Ave NE'
-    'Anyone want to go to Dogwood after?'
+    // 'Northeast Ice'
+    // '1306 Central Ave NE'
+    // 'Anyone want to go to Dogwood after?'
 
 
     return(
@@ -98,7 +98,6 @@ function InputLocation(){
                 {/* PostgreSQL pulls all RSVPs for one event
                 Adding data to the page by pulling the info from the first event in the array
                 All event details in the array are the same, but the event is multiplied by the number of RSVPs */}
-                    <Grid>
                         <Box
                             display='flex'
                             flexDirection='column'
@@ -180,7 +179,6 @@ function InputLocation(){
                                 </Stack>
                             </Stack>
                         </Box>
-                    </Grid>
                     <Box
                         display='flex'
                         flexDirection='row'

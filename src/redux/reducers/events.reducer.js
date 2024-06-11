@@ -1,9 +1,9 @@
 import { combineReducers } from "redux";
 
-const events = (state = [], action) => {
+const input = (state = {}, action) => {
     switch (action.type) {
         case 'ADD_EVENT':
-            return [...state, action.payload];
+            return {...state, ...action.payload};
         case 'RESET_EVENT':
             return [];
         default:
@@ -12,5 +12,5 @@ const events = (state = [], action) => {
 }
 
 export default combineReducers({
-    events,
+    input,
 });

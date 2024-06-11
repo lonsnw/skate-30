@@ -5,8 +5,9 @@ import { useHistory } from 'react-router-dom';
 // MUI imports
 import { styled } from '@mui/material/styles';
 import { Box, Button, Grid, Paper, Stack, Switch, TextField, Typography } from '@mui/material';
-import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 
@@ -16,15 +17,13 @@ import Footer from '../Footer/Footer';
 function InputDate(){
     const dispatch = useDispatch();
     const history = useHistory();
-    const [date, setDate] = useState('');
-    const [time, setTime] = useState('');
+    const [date, setDate] = useState(null);
+    const [dateAndTime, setDateAndTime] = useState(null);
+    const [time, setTime] = useState(null);
     const [duration, setDuration] = useState('');
-    const [rink, setRink] = useState('');
-    const [address, setAddress] = useState('');
-    const [notes, setNotes] = useState('');
-    const [type, setType] = useState(false);
-    const [level, setLevel] = useState(false);
-    const [exposure, setExposure] = useState(false);
+
+    console.log({ date });
+    console.log({ time });
 
     const addDate = () => {
         dispatch({ type: 'ADD_EVENT', payload: {
@@ -64,13 +63,22 @@ function InputDate(){
                             margin='auto'>
                             <Typography variant='h4'>Add a new event</Typography>
                             <Typography variant='h5'>Date and time:</Typography>
-                            <Typography variant="p1">Date</Typography>    
+                            <Typography variant="p1">Enter or select a date and time</Typography>    
                             <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                <MobileDatePicker 
-                                    onChange={(event) => setDate(event.target.value)}/>
+                                <DateTimePicker 
+                                    label="Date and time" 
+                                    value={dateAndTime}
+                                    onChange={(newValue) => setDateAndTime(newValue)}/>
+                                <DatePicker 
+                                    label='Enter a date'
+                                    renderInput={(params) => <TextField {...params} />}
+                                    value={date}
+                                    onChange={(newValue) => setDate(newValue)}/>
                                 <Typography variant="p1">Time</Typography>            
                                 <TimePicker 
-                                    onChange={(event) => setTime(event.target.value)}/>  
+                                    label='Enter a time'
+                                    value={time}
+                                    onChange={(newValue) => setTime(newValue)}/>  
                             </LocalizationProvider> 
                             <Typography variant="p1">Duration</Typography>            
                             <Box
