@@ -24,10 +24,10 @@ function RSVP(){
     const sendRsvp = (event) => {
         console.log('testing1');
         event.preventDefault();
-        console.log('testing');
+        console.log('event:', details[0].id);
         // Sending RSVP info to RSVP table
         dispatch ({ type: 'RESPOND_SVP', payload: {
-            event: event,
+            event_id: details[0].id,
             position: position,
             pucks: pucks,
             tutor: tutor,

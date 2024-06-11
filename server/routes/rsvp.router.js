@@ -10,7 +10,7 @@ router.post('/', (req, res) => {
   VALUES ($1, $2, $3, $4, $5, $6)
   ;`
   pool.query(query, 
-    [req.params.event, 
+    [req.params.event_id, 
     req.user.id, 
     req.params.position, 
     req.params.pucks, 
