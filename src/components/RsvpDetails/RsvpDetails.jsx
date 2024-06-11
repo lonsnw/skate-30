@@ -23,7 +23,7 @@ function RSVP(){
     const newRsvp = (rsvpId) => {
         // Deletes RSVP and refreshes page to pull the other version of thr RSVP page
         dispatch ({ type: 'DELETE_SVP', payload: rsvpId });
-        window.location.reload();
+        history.push(`/rsvp/${rsvpId}`)
     }
 
 // STYLING
