@@ -14,13 +14,13 @@ function* fetchEvents() {
 
 function* fetchSchedule(action) {
     try {
-      // Get the details:
+      // Get the schedule:
       const userId = action.payload;
       console.log(userId);
-      const detailsResponse = yield axios.get(`/api/browse/${userId}`);
-      yield put({ type: 'SET_SCHEDULE', payload: detailsResponse.data })
+      const scheduleResponse = yield axios.get(`/api/browse/schedule`, userId);
+      yield put({ type: 'SET_SCHEDULE', payload: scheduleResponse.data })
     } catch (error) {
-      console.log('fetchDetails error', error);
+      console.log('fetchSchedule error', error);
     }
   }
 

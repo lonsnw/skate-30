@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 // MUI imports
-import { Box, Button, Paper, Stack, TextField, Typography } from '@mui/material';
+import { Box, Button, Stack, TextField, Typography } from '@mui/material';
 
 // Custom styling imports
 import { CustomInput, CustomLabel, CustomSwitch } from '../Styles/Styles';
@@ -37,12 +37,7 @@ function InputLocation(){
     return(
         <div>
             <Box 
-                className="rsvp"
-                component='form'
-                onSubmit={addLocation}>
-            {/* PostgreSQL pulls all RSVPs for one event
-            Adding data to the page by pulling the info from the first event in the array
-            All event details in the array are the same, but the event is multiplied by the number of RSVPs */}
+                className="rsvp">
                 <Box
                     display='flex'
                     flexDirection='column'
@@ -142,10 +137,11 @@ function InputLocation(){
                     gap={1}
                     margin='10px'>
                     <Button 
-                        type='submit'
+                        type="button"
                         variant="contained"
                         name="next"
-                        value="Next">
+                        value="Next"
+                        onClick={addLocation}>
                         Next
                     </Button>
                 </Box>

@@ -21,8 +21,8 @@ router.get('/', (req, res) => {
         })
 });
 
-router.get('/:id', (req, res) => {
-    console.log('In browse GET');
+router.get('/schedule', (req, res) => {
+    console.log('In schedule GET');
     const query = `
         SELECT (
             SELECT (COUNT(NULLIF("position" = FALSE, TRUE))) FROM "rsvp" WHERE "rsvp"."event_id" = "events"."id"

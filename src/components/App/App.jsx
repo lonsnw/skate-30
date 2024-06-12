@@ -239,7 +239,7 @@ function App() {
           <ProtectedRoute
             // logged in shows Browse for user else shows LoginPage
             exact
-            path="/schedule"
+            path="/browse/schedule"
           >
             <Schedule />
           </ProtectedRoute>
