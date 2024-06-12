@@ -10,7 +10,6 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import About from '../About/About';
 import Browse from '../Browse/Browse'
 import UserPage from '../UserPage/UserPage';
-import InfoPage from '../InfoPage/InfoPage';
 import Home from '../Home/Home';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';

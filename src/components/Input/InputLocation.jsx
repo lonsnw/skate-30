@@ -14,9 +14,9 @@ import Footer from '../Footer/Footer';
 function InputLocation(){
     const dispatch = useDispatch();
     const history = useHistory();
-    const [rink, setRink] = useState();
-    const [address, setAddress] = useState();
-    const [notes, setNotes] = useState();
+    const [rink, setRink] = useState('');
+    const [address, setAddress] = useState('');
+    const [notes, setNotes] = useState('');
     const [type, setType] = useState(false);
     const [level, setLevel] = useState(false);
     const [exposure, setExposure] = useState(false);
@@ -132,16 +132,14 @@ function InputLocation(){
                 </Box>
                 <Box
                     display='flex'
-                    flexDirection='row'
                     justifyContent='center'
-                    gap={1}
                     margin='10px'>
                     <Button 
                         type="button"
                         variant="contained"
                         name="next"
                         value="Next"
-                        onClick={addLocation}>
+                        onClick={() => addLocation}>
                         Next
                     </Button>
                 </Box>
