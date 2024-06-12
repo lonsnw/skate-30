@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import moment from 'moment';
+import dayjs from 'dayjs';
 
 // MUI imports
-import { styled } from '@mui/material/styles';
 import { Box, Button, Grid, Paper, Stack, Switch, TextField, Typography } from '@mui/material';
-import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { TimeField } from '@mui/x-date-pickers/TimeField';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 
@@ -17,61 +20,76 @@ function InputDate(){
     const dispatch = useDispatch();
     const history = useHistory();
     const [date, setDate] = useState('');
+    const [dateAndTime, setDateAndTime] = useState(null);
     const [time, setTime] = useState('');
     const [duration, setDuration] = useState('');
-    const [rink, setRink] = useState('');
-    const [address, setAddress] = useState('');
-    const [notes, setNotes] = useState('');
-    const [type, setType] = useState(false);
-    const [level, setLevel] = useState(false);
-    const [exposure, setExposure] = useState(false);
 
-    const addDate = () => {
-        dispatch({ type: 'ADD_EVENT', payload: {
-            date: date, 
-            time: time, 
-            duration: duration, 
-        } });
-        history.push('/input/review');
+    // const handleDate = (newDate) => {
+    //     setDate(new Date("YYYY-MM-DD"));
+    //     console.log('date:', date)
+    // }
+
+    const addDate = (event) => {
+        event.preventDefault();
+        // require data to submit
+        if (date && time && duration){
+            dispatch({ type: 'ADD_EVENT', payload: {
+                date: date, 
+                time: time, 
+                duration: duration, 
+            } });
+            history.push('/input/review');
+        } else {
+            alert('Date, time, and duration are required.')
+        }
     }
-
-// STYLING
-    const Item = styled(Paper)(({ theme }) => ({
-        padding: theme.spacing(1),
-        borderColor: '#7599BD',
-        borderStyle: 'solid',
-        borderWidth: '1px',
-        height: '74vh',
-    }));
 
     return(
         <div>
             <Box
                 component='form'
                 onSubmit={addDate}>
-                <Item 
+                <Paper 
                     className="rsvp">
                 {/* PostgreSQL pulls all RSVPs for one event
                 Adding data to the page by pulling the info from the first event in the array
                 All event details in the array are the same, but the event is multiplied by the number of RSVPs */}
                     <Grid>
-                        <Box
+                        <Stack
                             display='flex'
                             flexDirection='column'
                             alignItems='center'
+                            direction="column"
+                            spacing={2}
+                            marginTop={1.4}
                             padding='5px'
                             width='80vw'
                             margin='auto'>
                             <Typography variant='h4'>Add a new event</Typography>
                             <Typography variant='h5'>Date and time:</Typography>
-                            <Typography variant="p1">Date</Typography>    
-                            <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                <MobileDatePicker 
-                                    onChange={(event) => setDate(event.target.value)}/>
-                                <Typography variant="p1">Time</Typography>            
-                                <TimePicker 
-                                    onChange={(event) => setTime(event.target.value)}/>  
-                            </LocalizationProvider> 
+                            <Typography variant="p1">Enter a date and time</Typography>
+                            <TextField
+                                sx={{ backgroundColor: "#eef2f7" }}
+                                type="text"
+                                name="date"
+                                required
+                                variant="outlined"
+                                fullWidth
+                                label="Date: YYYY/MM/DD"
+                                value={date}
+                                onChange={(event) => setDate(event.target.value)}
+                            />
+                            <TextField
+                                sx={{ backgroundColor: "#eef2f7" }}
+                                type="text"
+                                name="time"
+                                required
+                                variant="outlined"
+                                fullWidth
+                                label="Time: HH:MM:SS"
+                                value={time}
+                                onChange={(event) => setTime(event.target.value)}
+                            />
                             <Typography variant="p1">Duration</Typography>            
                             <Box
                                 display='flex'
@@ -92,7 +110,7 @@ function InputDate(){
                                 /> 
                                 <Typography variant='p1'>minutes</Typography>
                             </Box>
-                        </Box>
+                        </Stack>
                     </Grid>
                     <Box
                         display='flex'
@@ -108,7 +126,7 @@ function InputDate(){
                             Next
                         </Button>
                     </Box>
-                </Item>
+                </Paper>
             </Box>
         <Box
             width='100vw'

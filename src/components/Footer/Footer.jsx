@@ -8,7 +8,7 @@ import { Icon } from '@mui/material';
 function Footer() {
 
   const logoIcon = (
-    <Icon style={{ fontSize: 80 }} >
+    <Icon style={{ fontSize: 90 }} >
       <img src="/images/skates.svg" alt="logo" />
     </Icon>
   );
