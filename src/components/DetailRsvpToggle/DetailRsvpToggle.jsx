@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 // MUI imports
-import { Stack, Switch, Typography } from '@mui/material';
+import { Stack, Typography } from '@mui/material';
 
 // Custom styling imports
 import { CustomInput, CustomLabel, CustomSwitch } from '../Styles/Styles';

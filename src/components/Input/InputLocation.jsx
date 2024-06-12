@@ -1,17 +1,15 @@
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 // MUI imports
-import { Box, Button, Grid, Paper, Stack, Switch, TextField, Typography } from '@mui/material';
-import { styled } from '@mui/material/styles';
+import { Box, Button, Paper, Stack, TextField, Typography } from '@mui/material';
 
 // Custom styling imports
 import { CustomInput, CustomLabel, CustomSwitch } from '../Styles/Styles';
 
 // CUSTOM COMPONENTS
 import Footer from '../Footer/Footer';
-import ToggleSwitch from '../ToggleSwitch/ToggleSwitch';
 
 function InputLocation(){
     const dispatch = useDispatch();
@@ -37,123 +35,120 @@ function InputLocation(){
 
     return(
         <div>
-            <Box
-                component='form'
-                onSubmit={addLocation}>
-                <Paper 
-                    className="rsvp">
-                {/* PostgreSQL pulls all RSVPs for one event
-                Adding data to the page by pulling the info from the first event in the array
-                All event details in the array are the same, but the event is multiplied by the number of RSVPs */}
-                        <Box
-                            display='flex'
-                            flexDirection='column'
-                            alignItems='center'
-                            padding='5px'
-                            width='80vw'
-                            margin='auto'>
-                            <Typography variant='h4'>Add a new event</Typography>
-                            <Typography variant='h5'>Location:</Typography>
-                                <Typography variant="p1">Rink</Typography>            
-                                <TextField
-                                    sx={{ backgroundColor: "#eef2f7" }}
-                                    type="text"
-                                    name="rink"
-                                    required
-                                    variant="outlined"
-                                    fullWidth
-                                    label="Rink"
-                                    value={rink}
-                                    onChange={(event) => setRink(event.target.value)}
-                                />
-                                <Typography variant="p1">Address</Typography>            
-                                <TextField
-                                    sx={{ backgroundColor: "#eef2f7" }}
-                                    type="text"
-                                    name="address"
-                                    required
-                                    variant="outlined"
-                                    fullWidth
-                                    label="Address"
-                                    value={address}
-                                    onChange={(event) => setAddress(event.target.value)}
-                                />
-                                <Typography variant="p1">Notes</Typography>            
-                                <TextField
-                                    sx={{ backgroundColor: "#eef2f7" }}
-                                    type="text"
-                                    name="notes"
-                                    required
-                                    variant="outlined"
-                                    fullWidth
-                                    label="Notes"
-                                    value={notes}
-                                    onChange={(event) => setNotes(event.target.value)}
-                                />
-                            <Stack 
-                                direction="column"
-                                spacing={1.1}
-                                marginTop={1.4} >
-                                <Stack 
-                                    direction="row" 
-                                    paddingLeft='30px'
-                                    spacing={1} >
-                                    <CustomLabel>
-                                        <Typography>Pickup</Typography>
-                                        <CustomInput 
-                                        type='checkbox'
-                                        checked={type}
-                                        onChange={() => {setType(!type)}} />
-                                        <CustomSwitch />
-                                        <Typography>Free skate</Typography>
-                                    </CustomLabel>
-                                </Stack>
-                                <Stack 
-                                    direction="row" 
-                                    paddingLeft='14px'
-                                    spacing={1} >
-                                    <CustomLabel>
-                                        <Typography>Beginner</Typography>
-                                        <CustomInput 
-                                        type='checkbox'
-                                        checked={level}
-                                        onChange={() => {setLevel(!level)}} />
-                                        <CustomSwitch />
-                                        <Typography>Advanced</Typography>
-                                    </CustomLabel>
-                                </Stack>
-                                <Stack 
-                                    direction="row" 
-                                    paddingLeft='32px'
-                                    spacing={1} >
-                                    <CustomLabel>
-                                        <Typography>Indoor</Typography>
-                                        <CustomInput 
-                                        type='checkbox'
-                                        checked={exposure}
-                                        onChange={() => {setExposure(!exposure)}} />
-                                        <CustomSwitch />
-                                        <Typography>Outdoor</Typography>
-                                    </CustomLabel>
-                                </Stack>
-                            </Stack>
-                        </Box>
-                    <Box
-                        display='flex'
-                        flexDirection='row'
-                        justifyContent='center'
-                        gap={1}
-                        margin='10px'>
-                        <Button 
-                            type="submit" 
-                            variant="contained"
-                            name="next"
-                            value="Next">
-                            Next
-                        </Button>
-                    </Box>
-                </Paper>
-            </Box>
+            <Paper 
+                className="rsvp">
+            {/* PostgreSQL pulls all RSVPs for one event
+            Adding data to the page by pulling the info from the first event in the array
+            All event details in the array are the same, but the event is multiplied by the number of RSVPs */}
+                <Box
+                    display='flex'
+                    flexDirection='column'
+                    alignItems='center'
+                    padding='5px'
+                    width='80vw'
+                    margin='auto'>
+                    <Typography variant='h4'>Add a new event</Typography>
+                    <Typography variant='h5'>Location:</Typography>
+                        <Typography variant="p1">Rink</Typography>            
+                        <TextField
+                            sx={{ backgroundColor: "#eef2f7" }}
+                            type="text"
+                            name="rink"
+                            required
+                            variant="outlined"
+                            fullWidth
+                            label="Rink"
+                            value={rink}
+                            onChange={(event) => setRink(event.target.value)}
+                        />
+                        <Typography variant="p1">Address</Typography>            
+                        <TextField
+                            sx={{ backgroundColor: "#eef2f7" }}
+                            type="text"
+                            name="address"
+                            required
+                            variant="outlined"
+                            fullWidth
+                            label="Address"
+                            value={address}
+                            onChange={(event) => setAddress(event.target.value)}
+                        />
+                        <Typography variant="p1">Notes</Typography>            
+                        <TextField
+                            sx={{ backgroundColor: "#eef2f7" }}
+                            type="text"
+                            name="notes"
+                            required
+                            variant="outlined"
+                            fullWidth
+                            label="Notes"
+                            value={notes}
+                            onChange={(event) => setNotes(event.target.value)}
+                        />
+                    <Stack 
+                        direction="column"
+                        spacing={1.1}
+                        marginTop={1.4} >
+                        <Stack 
+                            direction="row" 
+                            paddingLeft='30px'
+                            spacing={1} >
+                            <CustomLabel>
+                                <Typography>Pickup</Typography>
+                                <CustomInput 
+                                type='checkbox'
+                                checked={type}
+                                onChange={() => {setType(!type)}} />
+                                <CustomSwitch />
+                                <Typography>Free skate</Typography>
+                            </CustomLabel>
+                        </Stack>
+                        <Stack 
+                            direction="row" 
+                            paddingLeft='14px'
+                            spacing={1} >
+                            <CustomLabel>
+                                <Typography>Beginner</Typography>
+                                <CustomInput 
+                                type='checkbox'
+                                checked={level}
+                                onChange={() => {setLevel(!level)}} />
+                                <CustomSwitch />
+                                <Typography>Advanced</Typography>
+                            </CustomLabel>
+                        </Stack>
+                        <Stack 
+                            direction="row" 
+                            paddingLeft='32px'
+                            spacing={1} >
+                            <CustomLabel>
+                                <Typography>Indoor</Typography>
+                                <CustomInput 
+                                type='checkbox'
+                                checked={exposure}
+                                onChange={() => {setExposure(!exposure)}} />
+                                <CustomSwitch />
+                                <Typography>Outdoor</Typography>
+                            </CustomLabel>
+                        </Stack>
+                    </Stack>
+                </Box>
+                <Box
+                    display='flex'
+                    flexDirection='row'
+                    justifyContent='center'
+                    gap={1}
+                    margin='10px'>
+                    <Button 
+                        type="button" 
+                        variant="contained"
+                        name="next"
+                        value="Next"
+                        onClick={addLocation}>
+                        Next
+                    </Button>
+                </Box>
+            </Paper>
         <Box
             width='100vw'
             position='absolute'

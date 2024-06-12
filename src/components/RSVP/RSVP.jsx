@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 
 // MUI imports
 import { styled } from '@mui/material/styles';
-import { Box, Button, Checkbox, FormControlLabel, Grid, Paper, Stack, Switch, Typography } from '@mui/material';
+import { Box, Button, Checkbox, FormControlLabel, Grid, Paper, Stack, Typography } from '@mui/material';
 
 // Custom styling imports
 import { CustomInput, CustomLabel, CustomSwitch } from '../Styles/Styles'
