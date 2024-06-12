@@ -37,7 +37,7 @@ function RSVP(){
             drinks: drinks,
         },} );
         // Redirect to browse after submitting RSVP
-        history.push('/schedule');
+        history.push('/browse/schedule');
     }
 
 // STYLING
