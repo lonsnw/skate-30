@@ -100,9 +100,12 @@ function InputReview(){
                                 borderColor='#7599BD'
                                 borderStyle='solid'
                                 borderWidth='1px'>
-                                {input.date}
-                                {input.time}
-                                {input.duration} minutes
+                                <Box
+                                    textAlign='center'>
+                                    {input.date} <br />
+                                    {input.time} <br />
+                                    {input.duration} minutes
+                                </Box>
                             </Item>
                             <Typography variant="h6">Other details:</Typography>
                             <Stack 

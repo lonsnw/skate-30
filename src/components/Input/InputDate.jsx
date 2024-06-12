@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import moment from 'moment';
+import dayjs from 'dayjs';
 
 // MUI imports
 import { Box, Button, Grid, Paper, Stack, Switch, TextField, Typography } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { TimeField } from '@mui/x-date-pickers/TimeField';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -16,15 +19,18 @@ import Footer from '../Footer/Footer';
 function InputDate(){
     const dispatch = useDispatch();
     const history = useHistory();
-    const [date, setDate] = useState(null);
+    const [date, setDate] = useState('');
     const [dateAndTime, setDateAndTime] = useState(null);
-    const [time, setTime] = useState(null);
+    const [time, setTime] = useState('');
     const [duration, setDuration] = useState('');
 
-    console.log({ date });
-    console.log({ time });
+    // const handleDate = (newDate) => {
+    //     setDate(new Date("YYYY-MM-DD"));
+    //     console.log('date:', date)
+    // }
 
-    const addDate = () => {
+    const addDate = (event) => {
+        event.preventDefault();
         // require data to submit
         if (date && time && duration){
             dispatch({ type: 'ADD_EVENT', payload: {
@@ -61,13 +67,29 @@ function InputDate(){
                             margin='auto'>
                             <Typography variant='h4'>Add a new event</Typography>
                             <Typography variant='h5'>Date and time:</Typography>
-                            <Typography variant="p1">Enter a date and time</Typography>    
-                            <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                <DateTimePicker 
-                                    label="Date and time" 
-                                    value={dateAndTime}
-                                    onChange={(newValue) => setDateAndTime(newValue)}/>
-                            </LocalizationProvider> 
+                            <Typography variant="p1">Enter a date and time</Typography>
+                            <TextField
+                                sx={{ backgroundColor: "#eef2f7" }}
+                                type="text"
+                                name="date"
+                                required
+                                variant="outlined"
+                                fullWidth
+                                label="Date: YYYY/MM/DD"
+                                value={date}
+                                onChange={(event) => setDate(event.target.value)}
+                            />
+                            <TextField
+                                sx={{ backgroundColor: "#eef2f7" }}
+                                type="text"
+                                name="time"
+                                required
+                                variant="outlined"
+                                fullWidth
+                                label="Time: HH:MM:SS"
+                                value={time}
+                                onChange={(event) => setTime(event.target.value)}
+                            />
                             <Typography variant="p1">Duration</Typography>            
                             <Box
                                 display='flex'
