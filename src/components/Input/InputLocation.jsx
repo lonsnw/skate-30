@@ -24,15 +24,20 @@ function InputLocation(){
     const addLocation = (event) => {
         event.preventDefault();
         console.log('in addLocation');
-        dispatch({ type: 'ADD_EVENT', payload: {
-            rink: rink, 
-            address: address, 
-            notes: notes, 
-            type: type, 
-            level: level,
-            exposure: exposure,
-        } });
-        history.push('/input/date');
+        // require data to submit
+        if (rink && address){
+            dispatch({ type: 'ADD_EVENT', payload: {
+                rink: rink, 
+                address: address, 
+                notes: notes, 
+                type: type, 
+                level: level,
+                exposure: exposure,
+            } });
+            history.push('/input/date');
+        } else {
+            alert('Rink name and location are required.')
+        }
     }
 
     return(

@@ -10,15 +10,23 @@ import { Box, Button, Card, Grid, Paper, Stack, Typography } from '@mui/material
 import Footer from '../Footer/Footer';
 import GoogleMap from '../GoogleMap/GoogleMap';
 
-
 function InputReview(){
     const dispatch = useDispatch();
     const history = useHistory();
-    const input = useSelector(store => store.input);
+    const input = useSelector(store => store.input.input);
 
     useEffect(() => {
-        console.log(input)
+        console.log(input);
+        console.log(input.rink)
     }, []);
+
+    const Item = styled(Paper)(({ theme }) => ({
+        padding: theme.spacing(1),
+        textAlign: 'left',
+        borderColor: '#7599BD',
+        borderStyle:'solid',
+        borderWidth:'1px',
+      }));
 
     const handleClick = () => {
         dispatch({ type: 'ADD_EVENT', payload: {
@@ -34,7 +42,7 @@ function InputReview(){
         } });
         // STRETCH: send to details page for the event; this will require refactoring
         // as the details page currently gets its event id from the EventCard,
-        // and there's nowhere to pull the event id here because it's a new event.
+        // and there's nowhere to pull the event id here (?) because it's a new event.
         history.push('/browse');
     }
 
@@ -61,7 +69,7 @@ function InputReview(){
                             <Typography variant='h4'>Review your event</Typography>
                             <Typography variant='h5'>Location:</Typography>
                             <Typography variant="h6">{input.rink}</Typography>            
-                            <Paper
+                            <Item
                                 borderColor='#7599BD'
                                 borderStyle='solid'
                                 borderWidth='1px'>
@@ -72,7 +80,7 @@ function InputReview(){
                                     <GoogleMap />
                                     {input.address}
                                 </Stack>
-                            </Paper>            
+                            </Item>            
                             <Typography variant="h6">Notes:</Typography> 
                             <Card
                                 sx={{ 
@@ -88,14 +96,14 @@ function InputReview(){
                                 }}>
                                 {input.notes}</Card>           
                             <Typography variant='h6'>Date and time:</Typography>
-                            <Paper
+                            <Item
                                 borderColor='#7599BD'
                                 borderStyle='solid'
                                 borderWidth='1px'>
                                 {input.date}
                                 {input.time}
                                 {input.duration} minutes
-                            </Paper>
+                            </Item>
                             <Typography variant="h6">Other details:</Typography>
                             <Stack 
                                 direction="column"

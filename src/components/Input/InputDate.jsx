@@ -25,12 +25,17 @@ function InputDate(){
     console.log({ time });
 
     const addDate = () => {
-        dispatch({ type: 'ADD_EVENT', payload: {
-            date: date, 
-            time: time, 
-            duration: duration, 
-        } });
-        history.push('/input/review');
+        // require data to submit
+        if (date && time && duration){
+            dispatch({ type: 'ADD_EVENT', payload: {
+                date: date, 
+                time: time, 
+                duration: duration, 
+            } });
+            history.push('/input/review');
+        } else {
+            alert('Date, time, and duration are required.')
+        }
     }
 
     return(
@@ -44,31 +49,24 @@ function InputDate(){
                 Adding data to the page by pulling the info from the first event in the array
                 All event details in the array are the same, but the event is multiplied by the number of RSVPs */}
                     <Grid>
-                        <Box
+                        <Stack
                             display='flex'
                             flexDirection='column'
                             alignItems='center'
+                            direction="column"
+                            spacing={2}
+                            marginTop={1.4}
                             padding='5px'
                             width='80vw'
                             margin='auto'>
                             <Typography variant='h4'>Add a new event</Typography>
                             <Typography variant='h5'>Date and time:</Typography>
-                            <Typography variant="p1">Enter or select a date and time</Typography>    
+                            <Typography variant="p1">Enter a date and time</Typography>    
                             <LocalizationProvider dateAdapter={AdapterDayjs}>
                                 <DateTimePicker 
                                     label="Date and time" 
                                     value={dateAndTime}
                                     onChange={(newValue) => setDateAndTime(newValue)}/>
-                                <DatePicker 
-                                    label='Enter a date'
-                                    renderInput={(params) => <TextField {...params} />}
-                                    value={date}
-                                    onChange={(newValue) => setDate(newValue)}/>
-                                <Typography variant="p1">Time</Typography>            
-                                <TimePicker 
-                                    label='Enter a time'
-                                    value={time}
-                                    onChange={(newValue) => setTime(newValue)}/>  
                             </LocalizationProvider> 
                             <Typography variant="p1">Duration</Typography>            
                             <Box
@@ -90,7 +88,7 @@ function InputDate(){
                                 /> 
                                 <Typography variant='p1'>minutes</Typography>
                             </Box>
-                        </Box>
+                        </Stack>
                     </Grid>
                     <Box
                         display='flex'
