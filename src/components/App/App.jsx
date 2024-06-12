@@ -22,7 +22,6 @@ import InputLocation from '../Input/InputLocation';
 import InputDate from '../Input/InputDate';
 import InputReview from '../Input/InputReview';
 
-
 // MUI imports
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import "@fontsource/lato";
@@ -66,105 +65,105 @@ function App() {
         paper: '#dce6ef',
       },
       typography: {
-          fontFamily: "'Lato', sans-serif",
-          fontColor: "primary",
-          h1: {
-            fontSize: 48,
-            fontWeight: 300,
-          },
-          h2: {
-            fontSize: 39,
-            fontWeight: 300,
-          },
-          h3: {
-            fontSize: 33,
-          },
-          h4: {
-            fontSize: 28,
-          },
-          h5: {
-            fontSize: 23,
-          },
-          h6: {
-            fontSize: 20,
-          },
-          subtitle1: {
-            fontSize: 18,
-          },
-          subtitle2: {
-            fontSize: 16,
-          },
-          body1: {
-            fontSize: 14,
-          },
-          body2: {
-            fontSize: 12,
-          },
-          button: {
-            fontSize: 14,
-            fontWeight: 600,
-          },
-          caption: {
-            fontSize: 12,
-          },
-          overline: {
-            fontSize: 12,
-            lineHeight: 1.8,
-          },
+        fontFamily: "'Lato', sans-serif",
+        fontColor: "primary",
+        h1: {
+          fontSize: 48,
+          fontWeight: 300,
         },
-        spacing: (factor) => `${0.5 * factor}rem`,
-        shape: {
-          borderRadius: 4,
+        h2: {
+          fontSize: 39,
+          fontWeight: 300,
         },
-        props: {
-          MuiButton: {
-            size: 'small',
-          },
-          MuiButtonGroup: {
-            size: 'small',
-          },
-          MuiCheckbox: {
-            size: 'small',
-          },
-          MuiFab: {
-            size: 'small',
-          },
-          MuiFormControl: {
-            margin: 'dense',
-            size: 'small',
-          },
-          MuiFormHelperText: {
-            margin: 'dense',
-          },
-          MuiIconButton: {
-            size: 'small',
-          },
-          MuiInputBase: {
-            margin: 'dense',
-          },
-          MuiInputLabel: {
-            margin: 'dense',
-          },
-          MuiRadio: {
-            size: 'small',
-          },
-          MuiSwitch: {
-            size: 'small',
-          },
-          MuiTextField: {
-            margin: 'dense',
-            size: 'small',
-          },
-          MuiList: {
-            dense: true,
-          },
-          MuiMenuItem: {
-            dense: true,
-          },
-          MuiTable: {
-            size: 'small',
-          },
+        h3: {
+          fontSize: 33,
         },
+        h4: {
+          fontSize: 28,
+        },
+        h5: {
+          fontSize: 23,
+        },
+        h6: {
+          fontSize: 20,
+        },
+        subtitle1: {
+          fontSize: 18,
+        },
+        subtitle2: {
+          fontSize: 16,
+        },
+        body1: {
+          fontSize: 14,
+        },
+        body2: {
+          fontSize: 12,
+        },
+        button: {
+          fontSize: 14,
+          fontWeight: 600,
+        },
+        caption: {
+          fontSize: 12,
+        },
+        overline: {
+          fontSize: 12,
+          lineHeight: 1.8,
+        },
+      },
+      spacing: (factor) => `${0.5 * factor}rem`,
+      shape: {
+        borderRadius: 4,
+      },
+      props: {
+        MuiButton: {
+          size: 'small',
+        },
+        MuiButtonGroup: {
+          size: 'small',
+        },
+        MuiCheckbox: {
+          size: 'small',
+        },
+        MuiFab: {
+          size: 'small',
+        },
+        MuiFormControl: {
+          margin: 'dense',
+          size: 'small',
+        },
+        MuiFormHelperText: {
+          margin: 'dense',
+        },
+        MuiIconButton: {
+          size: 'small',
+        },
+        MuiInputBase: {
+          margin: 'dense',
+        },
+        MuiInputLabel: {
+          margin: 'dense',
+        },
+        MuiRadio: {
+          size: 'small',
+        },
+        MuiSwitch: {
+          size: 'small',
+        },
+        MuiTextField: {
+          margin: 'dense',
+          size: 'small',
+        },
+        MuiList: {
+          dense: true,
+        },
+        MuiMenuItem: {
+          dense: true,
+        },
+        MuiTable: {
+          size: 'small',
+        },
+      },
     },
   });
 

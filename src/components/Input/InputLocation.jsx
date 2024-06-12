@@ -6,9 +6,11 @@ import { useHistory } from 'react-router-dom';
 import { Box, Button, Grid, Paper, Stack, Switch, TextField, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
+// Custom styling imports
+import { CustomInput, CustomLabel, CustomSwitch } from '../Styles/Styles';
+
 // CUSTOM COMPONENTS
 import Footer from '../Footer/Footer';
-import ScreenItem from '../ScreenItem/ScreenItem';
 import ToggleSwitch from '../ToggleSwitch/ToggleSwitch';
 
 function InputLocation(){
@@ -39,10 +41,7 @@ function InputLocation(){
                 component='form'
                 onSubmit={addLocation}>
                 <Paper 
-                    className="rsvp"
-                    borderColor='#7599BD'
-                    borderStyle='solid'
-                    borderWidth='1px'>
+                    className="rsvp">
                 {/* PostgreSQL pulls all RSVPs for one event
                 Adding data to the page by pulling the info from the first event in the array
                 All event details in the array are the same, but the event is multiplied by the number of RSVPs */}
@@ -97,33 +96,45 @@ function InputLocation(){
                                 marginTop={1.4} >
                                 <Stack 
                                     direction="row" 
-                                    paddingLeft='22px'
+                                    paddingLeft='30px'
                                     spacing={1} >
-                                    <Typography>Pickup</Typography>
-                                    <ToggleSwitch 
+                                    <CustomLabel>
+                                        <Typography>Pickup</Typography>
+                                        <CustomInput 
+                                        type='checkbox'
                                         checked={type}
                                         onChange={() => {setType(!type)}} />
-                                    <Typography>Free skate</Typography>
+                                        <CustomSwitch />
+                                        <Typography>Free skate</Typography>
+                                    </CustomLabel>
                                 </Stack>
                                 <Stack 
                                     direction="row" 
-                                    paddingLeft='6px'
+                                    paddingLeft='14px'
                                     spacing={1} >
-                                    <Typography>Beginner</Typography>
-                                    <ToggleSwitch 
+                                    <CustomLabel>
+                                        <Typography>Beginner</Typography>
+                                        <CustomInput 
+                                        type='checkbox'
                                         checked={level}
                                         onChange={() => {setLevel(!level)}} />
-                                    <Typography>Advanced</Typography>
+                                        <CustomSwitch />
+                                        <Typography>Advanced</Typography>
+                                    </CustomLabel>
                                 </Stack>
                                 <Stack 
                                     direction="row" 
-                                    paddingLeft='24px'
+                                    paddingLeft='32px'
                                     spacing={1} >
-                                    <Typography>Indoor</Typography>
-                                    <ToggleSwitch 
+                                    <CustomLabel>
+                                        <Typography>Indoor</Typography>
+                                        <CustomInput 
+                                        type='checkbox'
                                         checked={exposure}
                                         onChange={() => {setExposure(!exposure)}} />
-                                    <Typography>Outdoor</Typography>
+                                        <CustomSwitch />
+                                        <Typography>Outdoor</Typography>
+                                    </CustomLabel>
                                 </Stack>
                             </Stack>
                         </Box>

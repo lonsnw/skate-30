@@ -38,14 +38,6 @@ function InputReview(){
         history.push('/browse');
     }
 
-// STYLING
-    const Item = styled(Paper)(({ theme }) => ({
-        padding: theme.spacing(1),
-        borderColor: '#7599BD',
-        borderStyle: 'solid',
-        borderWidth: '1px',
-    }));
-
     return(
         <div>
             <Box
@@ -53,7 +45,8 @@ function InputReview(){
                 marginTop='30px'
                 className="events"
                 onSubmit={handleClick}>
-                <Item >
+                <Paper 
+                    className="events">
                 {/* PostgreSQL pulls all RSVPs for one event
                 Adding data to the page by pulling the info from the first event in the array
                 All event details in the array are the same, but the event is multiplied by the number of RSVPs */}
@@ -68,7 +61,10 @@ function InputReview(){
                             <Typography variant='h4'>Review your event</Typography>
                             <Typography variant='h5'>Location:</Typography>
                             <Typography variant="h6">{input.rink}</Typography>            
-                            <Item>
+                            <Paper
+                                borderColor='#7599BD'
+                                borderStyle='solid'
+                                borderWidth='1px'>
                                 <Stack 
                                     direction="column" 
                                     spacing={1} 
@@ -76,7 +72,7 @@ function InputReview(){
                                     <GoogleMap />
                                     {input.address}
                                 </Stack>
-                            </Item>            
+                            </Paper>            
                             <Typography variant="h6">Notes:</Typography> 
                             <Card
                                 sx={{ 
@@ -92,11 +88,14 @@ function InputReview(){
                                 }}>
                                 {input.notes}</Card>           
                             <Typography variant='h6'>Date and time:</Typography>
-                            <Item>
+                            <Paper
+                                borderColor='#7599BD'
+                                borderStyle='solid'
+                                borderWidth='1px'>
                                 {input.date}
                                 {input.time}
                                 {input.duration} minutes
-                            </Item>
+                            </Paper>
                             <Typography variant="h6">Other details:</Typography>
                             <Stack 
                                 direction="column"
@@ -130,7 +129,7 @@ function InputReview(){
                             Add event
                         </Button>
                     </Box>
-                </Item>
+                </Paper>
             </Box>
         <Box
             width='100vw'

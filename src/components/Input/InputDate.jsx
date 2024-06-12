@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 // MUI imports
-import { styled } from '@mui/material/styles';
 import { Box, Button, Grid, Paper, Stack, Switch, TextField, Typography } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
@@ -34,21 +33,12 @@ function InputDate(){
         history.push('/input/review');
     }
 
-// STYLING
-    const Item = styled(Paper)(({ theme }) => ({
-        padding: theme.spacing(1),
-        borderColor: '#7599BD',
-        borderStyle: 'solid',
-        borderWidth: '1px',
-        height: '74vh',
-    }));
-
     return(
         <div>
             <Box
                 component='form'
                 onSubmit={addDate}>
-                <Item 
+                <Paper 
                     className="rsvp">
                 {/* PostgreSQL pulls all RSVPs for one event
                 Adding data to the page by pulling the info from the first event in the array
@@ -116,7 +106,7 @@ function InputDate(){
                             Next
                         </Button>
                     </Box>
-                </Item>
+                </Paper>
             </Box>
         <Box
             width='100vw'

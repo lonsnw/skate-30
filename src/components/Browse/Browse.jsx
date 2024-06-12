@@ -8,12 +8,12 @@ import { styled } from '@mui/material/styles';
 
 // CUSTOM COMPONENTS
 import EventCard from '../EventCard/EventCard';
-import Footer from '../Footer/Footer'
+import Footer from '../Footer/Footer';
+import NoneFound from '../NoneFound/NoneFound';
 
 function Browse() {
   const events = useSelector((store) => store.browse.browseAll);
-  const history = useHistory();
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch({ type: 'FETCH_EVENTS' })
@@ -34,36 +34,7 @@ function Browse() {
               <Grid >
               {
                   events.length === 0 ? (
-                    <Box 
-                      sx={{ height: '74vh' }}
-                      display='flex'
-                      flexDirection='column'
-                      justifyContent='center'
-                      textAlign='center'>
-                      <Typography variant="h5">No entries were found.</Typography>
-                      <Box
-                        display='flex'
-                        flexDirection='row'
-                        justifyContent='center'
-                        gap={1}
-                        margin='10px'>
-                        <Button
-                          type="button"
-                          variant="contained"
-                          color="secondary"
-                          name="input"
-                          onClick={() => {history.push('/input');}}>
-                          Add event
-                        </Button>
-                        <Button
-                          type="button"
-                          variant="contained"
-                          name="try-again"
-                          onClick={() => {history.push('/');}}>
-                          Try again
-                        </Button>
-                      </Box>
-                    </Box>
+                    <NoneFound />
                   ) : (
                 <EventCard />
                   )

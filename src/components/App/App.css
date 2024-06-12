@@ -35,7 +35,7 @@ li {
 }
 
 /* --------------------------------------------------------------------------------
-Scroll container on Browse/Search, Details
+Scroll containers
 -------------------------------------------------------------------------------- */
 
 .events {
@@ -53,6 +53,12 @@ Scroll container on Browse/Search, Details
   margin-top: 20px;
   height: 76vh;
   background-color: #DCE6EF;
+  overflow-y: scroll;
+}
+
+.browse {
+  margin-top: 23px;
+  height: 75vh;
   overflow-y: scroll;
 }
 
