@@ -21,7 +21,8 @@ function InputLocation(){
     const [level, setLevel] = useState(false);
     const [exposure, setExposure] = useState(false);
 
-    const addLocation = () => {
+    const addLocation = (event) => {
+        event.preventDefault();
         console.log('in addLocation');
         dispatch({ type: 'ADD_EVENT', payload: {
             rink: rink, 
@@ -37,6 +38,8 @@ function InputLocation(){
     return(
         <div>
             <Box 
+                component='form'
+                onSubmit={addLocation}
                 className="rsvp">
                 <Box
                     display='flex'
@@ -135,11 +138,10 @@ function InputLocation(){
                     justifyContent='center'
                     margin='10px'>
                     <Button 
-                        type="button"
+                        type="submit"
                         variant="contained"
                         name="next"
-                        value="Next"
-                        onClick={() => addLocation}>
+                        value="Next">
                         Next
                     </Button>
                 </Box>
