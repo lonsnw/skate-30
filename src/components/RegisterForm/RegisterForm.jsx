@@ -12,7 +12,6 @@ function RegisterForm() {
   const [email, setEmail] = useState('');
   const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
-  const history = useHistory();
 
   const registerUser = (event) => {
     event.preventDefault();

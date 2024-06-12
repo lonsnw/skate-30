@@ -12,7 +12,7 @@ function About() {
           display='flex'
           flexDirection='column'
           justifyContent='center'
-          marginTop='20px' >
+          marginTop='40px' >
             <Box
               marginTop='34vh' >
               <Typography variant="h3">Technologies used</Typography>
@@ -31,20 +31,20 @@ function About() {
               <Typography variant="h5"><li>Material UI</li></Typography>
 
               <Typography variant="h3">Tools used</Typography>
+              <Typography variant="h5"><li>DB Designer</li></Typography>
               <Typography variant="h5"><li>Figma</li></Typography>
               <Typography variant="h5"><li>GitHub</li></Typography>
               <Typography variant="h5"><li>Google Workspace</li></Typography>
 
               <Typography variant="h3">Future state tech and tools</Typography>
+              <Typography variant="h5"><li>Google Maps API</li></Typography>
               <Typography variant="h5"><li>Hostinger or Heroku</li></Typography>
 
               <Box
-                display='flex'
-                flexDirection='row'
-                justifyContent='center'
-                gap={1}
-                marginTop='80px'>
-                  <Typography>Hero image is a photograph of a puck on a frozen lake in NY.</Typography>
+                margin='auto'
+                width='50vw'
+                marginTop='30px'>
+                  <Typography variant='h5'>Hero image is a photograph of a puck on a frozen lake in NY.</Typography>
               </Box>
             </Box>
         </Box>

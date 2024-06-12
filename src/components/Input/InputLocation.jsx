@@ -22,6 +22,7 @@ function InputLocation(){
     const [exposure, setExposure] = useState(false);
 
     const addLocation = () => {
+        console.log('in addLocation');
         dispatch({ type: 'ADD_EVENT', payload: {
             rink: rink, 
             address: address, 
@@ -35,8 +36,10 @@ function InputLocation(){
 
     return(
         <div>
-            <Paper 
-                className="rsvp">
+            <Box 
+                className="rsvp"
+                component='form'
+                onSubmit={addLocation}>
             {/* PostgreSQL pulls all RSVPs for one event
             Adding data to the page by pulling the info from the first event in the array
             All event details in the array are the same, but the event is multiplied by the number of RSVPs */}
@@ -78,7 +81,6 @@ function InputLocation(){
                             sx={{ backgroundColor: "#eef2f7" }}
                             type="text"
                             name="notes"
-                            required
                             variant="outlined"
                             fullWidth
                             label="Notes"
@@ -140,15 +142,14 @@ function InputLocation(){
                     gap={1}
                     margin='10px'>
                     <Button 
-                        type="button" 
+                        type='submit'
                         variant="contained"
                         name="next"
-                        value="Next"
-                        onClick={addLocation}>
+                        value="Next">
                         Next
                     </Button>
                 </Box>
-            </Paper>
+            </Box>
         <Box
             width='100vw'
             position='absolute'
