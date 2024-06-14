@@ -86,7 +86,7 @@ function InputDate(){
                                 required
                                 variant="outlined"
                                 fullWidth
-                                label="Time: HH:MM:SS"
+                                label="Time: HH:MM"
                                 value={time}
                                 onChange={(event) => setTime(event.target.value)}
                             />
