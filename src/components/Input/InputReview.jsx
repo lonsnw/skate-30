@@ -28,8 +28,9 @@ function InputReview(){
         borderWidth:'1px',
       }));
 
-    const handleClick = () => {
-        dispatch({ type: 'ADD_EVENT', payload: {
+    const handleClick = (event) => {
+        event.preventDefault();
+        dispatch({ type: 'POST_EVENT', payload: {
             rink: input.rink, 
             address: input.address, 
             notes: input.notes, 

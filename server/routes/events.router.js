@@ -6,7 +6,7 @@ const router = express.Router();
 router.post('/', (req, res) => {
   console.log('in events POST', req.body);
   const query = `
-  INSERT INTO "events" (rink, address, notes, type, level, exposure, date, time, duration)
+  INSERT INTO "events" ("rink", "address", "notes", "type", "level", "exposure", "date", "time", "duration")
   VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
   ;`
   pool.query(query, 
