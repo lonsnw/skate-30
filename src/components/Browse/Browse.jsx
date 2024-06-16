@@ -30,19 +30,11 @@ function Browse() {
     <div>
       {/* If no user is logged in, navigate here */}
       {!user.id && (
-        ''
-      )}
-      {/* If a user is logged in, navigate here */}
-      {user.id && (
-        <Box 
-          marginTop='20px'>
-          <SearchBar />
-        </Box>
-      )}
-      <Item 
+        <Item 
         display='flex'
-        flexDirection='column'>
-          <Grid className='browse'>
+        flexDirection='column'
+        className='browse-logged-out'>
+          <Grid >
               <Grid >
               {
                   events.length === 0 ? (
@@ -53,7 +45,32 @@ function Browse() {
                 }
               </Grid>
           </Grid>
-      </Item>
+        </Item>
+      )}
+      {/* If a user is logged in, navigate here */}
+      {user.id && (
+        <div>
+          <Box 
+            marginTop='20px'>
+            <SearchBar />
+          </Box>
+          <Item 
+          display='flex'
+          flexDirection='column'>
+            <Grid className='browse'>
+                <Grid >
+                {
+                    events.length === 0 ? (
+                      <NoneFound />
+                    ) : (
+                  <EventCard />
+                    )
+                  }
+                </Grid>
+            </Grid>
+          </Item>
+        </div>
+      )}
       <Box
         width='100vw'
         position='absolute'
