@@ -57,26 +57,23 @@ Scroll containers
   overflow-y: scroll;
 }
 
-.details {
+.top-margin-and-scroll {
   margin-top: 20px;
   height: 76vh;
   overflow-y: scroll;
 }
 
-.rsvp {
+.loading {
   margin-top: 20px;
   height: 76vh;
-  background-color: #DCE6EF;
+}
+
+.list-with-search {
+  height: 65vh;
   overflow-y: scroll;
 }
 
-.browse {
-  /* margin-top: 23px; */
-  height: 66vh;
-  overflow-y: scroll;
-}
-
-.browse-logged-out {
+.list-no-search {
   margin-top: 20px;
   height: 74vh;
   overflow-y: scroll;

@@ -5,8 +5,11 @@ import axios from 'axios';
 import './SearchBar.css';
 
 // MUI imports
-import { Divider, IconButton, InputBase, Paper } from '@mui/material';
+import { Divider, IconButton, InputBase } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
+
+// Custom styling imports
+import { CustomSearch } from '../Styles/Styles';
 
 function SearchBar() {
   const history = useHistory();
@@ -46,7 +49,7 @@ function SearchBar() {
 
   return (
     <div className="input-wrapper">
-      <Paper
+      <CustomSearch
           component="form"
           sx={{ p: '2px 4px', display: 'flex', alignItems: 'center' }}
           >
@@ -59,7 +62,7 @@ function SearchBar() {
           <IconButton sx={{ p: '10px' }} aria-label="search" onClick={() => {getTerm(input)}} >
               <SearchIcon />
         </IconButton>
-      </Paper>
+      </CustomSearch>
     </div>
   )
 }

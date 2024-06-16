@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 // MUI imports
-import { styled } from '@mui/material/styles';
-import { Box, Card, Grid, Link, Paper, Stack, Switch, Typography } from '@mui/material';
+import { Box, Card, Grid, Link, Stack, Typography } from '@mui/material';
+
+// Custom styling imports
+import { InfoCard, SolidWrap } from '../Styles/Styles';
 
 // CUSTOM COMPONENTS
 import Footer from '../Footer/Footer';
@@ -18,14 +19,6 @@ function Details(){
     console.log('DEEETS', details);
     console.log('test')
 
-// STYLING
-    const Item = styled(Paper)(({ theme }) => ({
-        padding: theme.spacing(1),
-        borderColor: '#7599BD',
-        borderStyle: 'solid',
-        borderWidth: '1px',
-    }));
-
     return(
         <div>
         { 
@@ -34,20 +27,20 @@ function Details(){
             <Loading />
             </div>
         ) : (
-            <Grid className="details">
+            <Grid className="top-margin-and-scroll">
             {/* PostgreSQL pulls all RSVPs for one event
             Adding data to the page by pulling the info from the first event in the array
             All event details in the array are the same, but the event is multiplied by the number of RSVPs */}
-                <Item 
+                <SolidWrap 
                     key={details[0].id}
                     display='flex'
                     flexDirection='column'>
                 <Grid>
-                    <Item >
+                    <InfoCard >
                         {/* On load, it sometimes throws an error that .type isn't recognized; if I comment out and then let it load, it works and I can comment it back in. */}
                         <Typography variant='h6'><li>{ details[0].type ? 'Pickup' : 'Open Skate' } - { details[0].rink }</li></Typography>
                         <Typography variant="subtitle1">{new Date(details[0].date).toLocaleDateString('en-us', { weekday:"long", month:"short", day:"numeric"})} - {details[0].time} - {details[0].duration} mins</Typography>
-                    </Item>
+                    </InfoCard>
                     <Box
                         display='flex'
                         flexDirection='column'
@@ -56,7 +49,7 @@ function Details(){
                         <Typography variant='h6'>RSVP</Typography>
                         <DetailRsvpToggle eventId={details[0].event_id} />
                     </Box>
-                    <Item>
+                    <InfoCard>
                         <Stack 
                             direction="column" 
                             spacing={1} 
@@ -65,7 +58,7 @@ function Details(){
                             <GoogleMap />
                             { details[0].address }
                         </Stack>
-                    </Item>
+                    </InfoCard>
                     <Box
                         display='flex'
                         flexDirection='column'
@@ -184,7 +177,7 @@ function Details(){
                         </Card>
                     </Box>
                 </Grid>
-                </Item>
+                </SolidWrap>
             </Grid>
         )}
         <Box

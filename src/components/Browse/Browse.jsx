@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 
 // MUI imports
-import { Box, Grid, Paper } from '@mui/material';
-import { styled } from '@mui/material/styles';
+import { Box, Grid } from '@mui/material';
+
+// Custom styling imports
+import { MainWrap } from '../Styles/Styles';
 
 // CUSTOM COMPONENTS
 import EventCard from '../EventCard/EventCard';
@@ -21,19 +22,14 @@ function Browse() {
     dispatch({ type: 'FETCH_EVENTS' })
   }, []);
 
-  const Item = styled(Paper)(({ theme }) => ({
-    padding: theme.spacing(1),
-    textAlign: 'left'
-  }));
-
   return (
     <div>
       {/* If no user is logged in, navigate here */}
       {!user.id && (
-        <Item 
+        <MainWrap 
         display='flex'
         flexDirection='column'
-        className='browse-logged-out'>
+        className='list-no-search'>
           <Grid >
               <Grid >
               {
@@ -45,19 +41,20 @@ function Browse() {
                 }
               </Grid>
           </Grid>
-        </Item>
+        </MainWrap>
       )}
       {/* If a user is logged in, navigate here */}
       {user.id && (
         <div>
           <Box 
-            marginTop='20px'>
+            marginTop='20px'
+            padding='0px 5px 5px'>
             <SearchBar />
           </Box>
-          <Item 
+          <MainWrap 
           display='flex'
           flexDirection='column'>
-            <Grid className='browse'>
+            <Grid className='list-with-search'>
                 <Grid >
                 {
                     events.length === 0 ? (
@@ -68,7 +65,7 @@ function Browse() {
                   }
                 </Grid>
             </Grid>
-          </Item>
+          </MainWrap>
         </div>
       )}
       <Box

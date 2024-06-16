@@ -3,8 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 // MUI imports
-import { Box, Button, Grid, Paper, Typography } from '@mui/material';
-import { styled } from '@mui/material/styles';
+import { Box, Grid } from '@mui/material';
+
+// Custom styling imports
+import { MainWrap } from '../Styles/Styles';
 
 // CUSTOM COMPONENTS
 import ScheduleCard from '../ScheduleCard/ScheduleCard';
@@ -15,7 +17,6 @@ import NoneFound from '../NoneFound/NoneFound'
 function Browse() {
   const user = useSelector((store) => store.user);
   const events = useSelector((store) => store.browse.browseUser);
-  const history = useHistory();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -23,11 +24,6 @@ function Browse() {
     console.log('logged in')
   }, []);
 
-  const Item = styled(Paper)(({ theme }) => ({
-    padding: theme.spacing(1),
-    textAlign: 'left',
-    marginTop: '20px'
-  }));
 
   let render = '';
 
@@ -41,10 +37,11 @@ function Browse() {
 
   return (
     <div>
-      <Item 
+      <MainWrap 
         display='flex'
-        flexDirection='column'>
-          <Grid className='events'>
+        flexDirection='column'
+        className='list-no-search'>
+          <Grid >
               <Grid >
                 {render}
               {/* {events.length === 0 ? (
@@ -56,7 +53,7 @@ function Browse() {
               )))} */}
               </Grid>
           </Grid>
-      </Item>
+      </MainWrap>
       <Box
         width='100vw'
         position='absolute'

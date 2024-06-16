@@ -3,8 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 // MUI imports
-import { styled } from '@mui/material/styles';
-import { Box, Button, Card, CardContent, Checkbox, FormControlLabel, Grid, Paper, Stack, Switch, TextField, Typography } from '@mui/material';
+import { Box, Button, Card, CardContent, Grid, Typography } from '@mui/material';
 
 // CUSTOM COMPONENTS
 import Footer from '../Footer/Footer';
@@ -25,15 +24,6 @@ function RSVP(){
         dispatch ({ type: 'DELETE_SVP', payload: rsvpId });
         history.push(`/rsvp/${rsvpId}`)
     }
-
-// STYLING
-    const Item = styled(Paper)(({ theme }) => ({
-        padding: theme.spacing(1),
-        borderColor: '#7599BD',
-        borderStyle: 'solid',
-        borderWidth: '1px',
-        marginTop: '50px',
-    }));
 
     return(
         <div >

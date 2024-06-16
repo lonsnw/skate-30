@@ -4,49 +4,7 @@ import styled from 'styled-components';
 import { createTheme } from '@mui/material/styles';
 import "@fontsource/lato";
 
-export const CustomLabel = styled.label`
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  cursor: pointer;
-`;
-
-export const CustomSwitch = styled.div`
-  position: relative;
-  width: 60px;
-  height: 28px;
-  background: #b3b3b3;
-  border-radius: 32px;
-  padding: 4px;
-  transition: 300ms all;
-
-  &:before {
-    transition: 300ms all;
-    content: "";
-    position: absolute;
-    width: 28px;
-    height: 28px;
-    border-radius: 35px;
-    top: 50%;
-    left: 4px;
-    background: white;
-    transform: translate(0, -50%);
-  }
-`;
-
-export const CustomInput = styled.input`
-  opacity: 0;
-  position: absolute;
-
-  &:checked + ${CustomSwitch} {
-    background: #213345;
-
-    &:before {
-      transform: translate(32px, -50%);
-    }
-  }
-`;
-
+// Uses MUI to create a theme for the entire app
 export const theme = createTheme({
   palette: {
     mode: 'light',
@@ -182,3 +140,109 @@ export const theme = createTheme({
     },
   },
 });
+
+// Formats search bar to ensure contrast on Browse pages and keep consistent styling
+export const CustomSearch = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 6;
+  background: #ECEBEB;
+  border-radius: 4px;
+  padding: 2px;
+  margin: 0px 3px ;
+  border: solid #A09B9D 1px;
+  ;`
+
+// Wraps main content of page and gives a gradient to ease from white nav bar to background color
+export const MainWrap = styled.div`
+  background: linear-gradient(0deg, #DCE6EF 54%, #ffffff 100%);
+  border-radius: 0px;
+  overflow-wrap: break-word;
+  text-align: left;
+  padding: 8px;
+  :`
+
+// Wraps content with solid color and no border
+export const SolidWrap = styled.div`
+  background: #DCE6EF;
+  border-radius: 0px;
+  overflow-wrap: break-word;
+  text-align: left;
+  padding: 8px;
+  :`
+
+// Wraps and formats all scheduling cards for consistency and clarity
+export const ItemCard = styled.div`
+  border: 1px solid #7599BD;
+  border-radius: 4px;
+  overflow-wrap: break-word;
+  text-align: left;
+  padding: 8px;
+  :`
+
+// Wraps and formats all user info cards for consistency and clarity
+export const UserCard = styled.div`
+  border: 1px solid #7599BD;
+  background: #EEF2F7;
+  box-shadow: 0px 1px 1px 1px #B3AFB1;  
+  border-radius: 4px;
+  overflow-wrap: break-word;
+  text-align: left;
+  padding: 16px;
+  :`
+
+// Wraps and formats all other cards for consistency and clarity
+export const InfoCard = styled.div`
+  border: 1px solid #7599BD;
+  box-shadow: 0px 1px 1px 1px #B3AFB1;  
+  border-radius: 4px;
+  overflow-wrap: break-word;
+  text-align: left;
+  padding: 8px;
+  :`
+
+/////////////////////////////////// Custom switch formatting ///////////////////////////////////
+export const CustomLabel = styled.label`
+display: flex;
+align-items: center;
+gap: 10px;
+cursor: pointer;
+`;
+
+export const CustomSwitch = styled.div`
+position: relative;
+width: 60px;
+height: 28px;
+background: #b3b3b3;
+border-radius: 32px;
+padding: 4px;
+transition: 300ms all;
+
+&:before {
+  transition: 300ms all;
+  content: "";
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  border-radius: 35px;
+  top: 50%;
+  left: 4px;
+  background: white;
+  transform: translate(0, -50%);
+}
+`;
+
+export const CustomInput = styled.input`
+opacity: 0;
+position: absolute;
+
+&:checked + ${CustomSwitch} {
+  background: #213345;
+
+  &:before {
+    transform: translate(32px, -50%);
+  }
+}
+`;
+////////////////////////////////////////////////////////////////////////////////////////////////

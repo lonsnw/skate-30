@@ -45,7 +45,7 @@ function InputLocation(){
             <Box 
                 component='form'
                 onSubmit={addLocation}
-                className="rsvp">
+                className="top-margin-and-scroll">
                 <Box
                     display='flex'
                     flexDirection='column'
