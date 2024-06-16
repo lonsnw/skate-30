@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 // MUI imports
 import { createTheme } from '@mui/material/styles';
+import { Paper } from '@mui/material';
 import "@fontsource/lato";
 
 export const CustomLabel = styled.label`
@@ -182,3 +183,14 @@ export const theme = createTheme({
     },
   },
 });
+
+export const CustomSearch = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 6;
+  background: #ECEBEB;
+  border-radius: 4px;
+  padding: 4px;
+  border: solid #A09B9D 1px;
+  ;`

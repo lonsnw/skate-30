@@ -72,7 +72,7 @@ Scroll containers
 
 .browse {
   /* margin-top: 23px; */
-  height: 66vh;
+  height: 65vh;
   overflow-y: scroll;
 }
 

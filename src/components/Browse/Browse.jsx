@@ -51,7 +51,8 @@ function Browse() {
       {user.id && (
         <div>
           <Box 
-            marginTop='20px'>
+            marginTop='20px'
+            padding='0px 5px 5px'>
             <SearchBar />
           </Box>
           <Item 
