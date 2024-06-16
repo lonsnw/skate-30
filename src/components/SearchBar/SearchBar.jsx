@@ -5,11 +5,11 @@ import axios from 'axios';
 import './SearchBar.css';
 
 // MUI imports
-import { Box, Divider, IconButton, InputBase, Paper } from '@mui/material';
+import { Divider, IconButton, InputBase } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 
 // Custom styling imports
-import { CustomSearch } from '../Styles/Styles'
+import { CustomSearch } from '../Styles/Styles';
 
 function SearchBar() {
   const history = useHistory();

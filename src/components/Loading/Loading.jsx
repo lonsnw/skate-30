@@ -1,26 +1,16 @@
-import React from 'react';
-import LoginForm from '../LoginForm/LoginForm';
-import { useHistory } from 'react-router-dom';
-
 // MUI imports
-import { styled } from '@mui/material/styles';
-import { Box, Container, Paper, Stack, Typography } from '@mui/material';
+import { Box, Stack, Typography } from '@mui/material';
+
+// Custom styling imports
+import { MainWrap } from '../Styles/Styles';
 
 // Loading bar import
 import BarLoader from 'react-spinners/BarLoader'
 
 function Loading() {
 
-  // STYLING
-  const Item = styled(Paper)(({ theme }) => ({
-    padding: theme.spacing(1),
-    borderColor: '#7599BD',
-    borderStyle: 'solid',
-    borderWidth: '1px',
-  }));
-
   return (
-      <Item className="details">
+      <MainWrap className="loading">
         <Box
           marginTop='30vh'
           minHeight='80vh'
@@ -39,7 +29,7 @@ function Loading() {
             <BarLoader color="#8F220F" />
           </Stack>
         </Box>
-      </Item>
+      </MainWrap>
   );
 }
 

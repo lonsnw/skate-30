@@ -3,8 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 // MUI imports
-import { styled } from '@mui/material/styles';
-import { Box, Button, Card, Grid, Paper, Stack, Typography } from '@mui/material';
+import { Box, Button, Card, Grid, Stack, Typography } from '@mui/material';
+
+// Custom styling imports
+import { InfoCard, SolidWrap } from '../Styles/Styles';
 
 // CUSTOM COMPONENTS
 import Footer from '../Footer/Footer';
@@ -19,14 +21,6 @@ function InputReview(){
         console.log(input);
         console.log(input.rink)
     }, []);
-
-    const Item = styled(Paper)(({ theme }) => ({
-        padding: theme.spacing(1),
-        textAlign: 'left',
-        borderColor: '#7599BD',
-        borderStyle:'solid',
-        borderWidth:'1px',
-      }));
 
     const handleClick = (event) => {
         event.preventDefault();
@@ -54,8 +48,7 @@ function InputReview(){
                 marginTop='30px'
                 className="events"
                 onSubmit={handleClick}>
-                <Paper 
-                    className="events">
+                <SolidWrap >
                 {/* PostgreSQL pulls all RSVPs for one event
                 Adding data to the page by pulling the info from the first event in the array
                 All event details in the array are the same, but the event is multiplied by the number of RSVPs */}
@@ -70,10 +63,7 @@ function InputReview(){
                             <Typography variant='h4'>Review your event</Typography>
                             <Typography variant='h5'>Location:</Typography>
                             <Typography variant="h6">{input.rink}</Typography>            
-                            <Item
-                                borderColor='#7599BD'
-                                borderStyle='solid'
-                                borderWidth='1px'>
+                            <InfoCard>
                                 <Stack 
                                     direction="column" 
                                     spacing={1} 
@@ -81,7 +71,7 @@ function InputReview(){
                                     <GoogleMap />
                                     {input.address}
                                 </Stack>
-                            </Item>            
+                            </InfoCard>            
                             <Typography variant="h6">Notes:</Typography> 
                             <Card
                                 sx={{ 
@@ -97,17 +87,14 @@ function InputReview(){
                                 }}>
                                 {input.notes}</Card>           
                             <Typography variant='h6'>Date and time:</Typography>
-                            <Item
-                                borderColor='#7599BD'
-                                borderStyle='solid'
-                                borderWidth='1px'>
+                            <InfoCard>
                                 <Box
                                     textAlign='center'>
                                     {input.date} <br />
                                     {input.time} <br />
                                     {input.duration} minutes
                                 </Box>
-                            </Item>
+                            </InfoCard>
                             <Typography variant="h6">Other details:</Typography>
                             <Stack 
                                 direction="column"
@@ -141,7 +128,7 @@ function InputReview(){
                             Add event
                         </Button>
                     </Box>
-                </Paper>
+                </SolidWrap>
             </Box>
         <Box
             width='100vw'

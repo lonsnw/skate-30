@@ -3,8 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 // MUI imports
-import { Box, Button, Container, Divider, Paper, TextField, Typography } from '@mui/material';
-import { styled } from '@mui/material/styles';
+import { Box, Button, Container, Divider, TextField, Typography } from '@mui/material';
+
+// Custom styling imports
+import { UserCard } from '../Styles/Styles';
 
 // CUSTOM COMPONENTS
 import LogOutButton from '../LogOutButton/LogOutButton';
@@ -42,13 +44,6 @@ function UserPage() {
     window.location.reload();
   };
 
-  const Item = styled(Paper)(({ theme }) => ({
-    padding: '16px',
-    textAlign: 'left',
-    backgroundColor: "#eef2f7",
-    border: '1px solid',
-  }));
-
   return (
     <>
     <Container>
@@ -66,17 +61,17 @@ function UserPage() {
           <div>
             <br />
             <Typography variant="h6">User name</Typography>
-              <Item>
+              <UserCard>
                 {user.username}
-              </Item>           
+              </UserCard>           
           </div>
           <div>
             <Typography variant="h6">Name</Typography>
               {!isNameSelected ? (
-                <Item
+                <UserCard
                   onClick={() => setIsNameSelected(true)}>
                   {user.name}
-                </Item>  
+                </UserCard>  
               ) : (
                 <TextField
                 sx={{ backgroundColor: "#eef2f7" }}
@@ -94,10 +89,10 @@ function UserPage() {
           <div>
             <Typography variant="h6">Email</Typography>
               {!isEmailSelected ? (
-                  <Item
+                  <UserCard
                     onClick={() => setIsEmailSelected(true)}>
                     {user.email}
-                  </Item>  
+                  </UserCard>  
               ) : (
                   <TextField
                   sx={{ backgroundColor: "#eef2f7" }}

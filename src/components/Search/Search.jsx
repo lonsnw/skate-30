@@ -3,8 +3,10 @@ import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 // MUI imports
-import { Box, Button, Grid, Paper, Typography } from '@mui/material';
-import { styled } from '@mui/material/styles';
+import { Box, Button, Grid, Typography } from '@mui/material';
+
+// Custom styling imports
+import { MainWrap } from '../Styles/Styles';
 
 // CUSTOM COMPONENTS
 import SearchCard from '../SearchCard/SearchCard';
@@ -14,18 +16,13 @@ function Search() {
   const history = useHistory();
   const events = useSelector((store) => store.search.sendSearch);
 
-  const Item = styled(Paper)(({ theme }) => ({
-    padding: theme.spacing(1),
-    textAlign: 'left',
-    marginTop: '20px'
-  }));
-
   return (
     <div>
-      <Item 
+      <MainWrap 
         display='flex'
-        flexDirection='column'>
-          <Grid className='events'>
+        flexDirection='column'
+        className='list-no-search'>
+          <Grid >
               <Grid >
                 {
                   events.length === 0 ? (
@@ -71,7 +68,7 @@ function Search() {
                 }            
               </Grid>
           </Grid>
-      </Item>
+      </MainWrap>
       <Box
         width='100vw'
         position='absolute'

@@ -15,7 +15,7 @@ router.get('/:id', (req, res) => {
     pool.query(query, [req.params.id])
       .then(result => {
         // For testing Loading page
-        // setTimeout(() => {res.send(result.rows);}, 2000);
+        // setTimeout(() => {res.send(result.rows);}, 20000);
         res.send(result.rows);
       })
       .catch(error => {

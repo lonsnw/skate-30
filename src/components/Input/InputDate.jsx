@@ -5,13 +5,16 @@ import moment from 'moment';
 import dayjs from 'dayjs';
 
 // MUI imports
-import { Box, Button, Grid, Paper, Stack, Switch, TextField, Typography } from '@mui/material';
+import { Box, Button, Grid, Stack, TextField, Typography } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { TimeField } from '@mui/x-date-pickers/TimeField';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+
+// Custom styling imports
+import { SolidWrap } from '../Styles/Styles';
 
 // CUSTOM COMPONENTS
 import Footer from '../Footer/Footer';
@@ -49,8 +52,8 @@ function InputDate(){
             <Box
                 component='form'
                 onSubmit={addDate}>
-                <Paper 
-                    className="rsvp">
+                <SolidWrap 
+                    className="top-margin-and-scroll">
                 {/* PostgreSQL pulls all RSVPs for one event
                 Adding data to the page by pulling the info from the first event in the array
                 All event details in the array are the same, but the event is multiplied by the number of RSVPs */}
@@ -126,7 +129,7 @@ function InputDate(){
                             Next
                         </Button>
                     </Box>
-                </Paper>
+                </SolidWrap>
             </Box>
         <Box
             width='100vw'

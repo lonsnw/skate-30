@@ -3,11 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 // MUI imports
-import { styled } from '@mui/material/styles';
-import { Box, Button, Checkbox, FormControlLabel, Grid, Paper, Stack, Typography } from '@mui/material';
+import { Box, Button, Checkbox, FormControlLabel, Grid, Stack, Typography } from '@mui/material';
 
 // Custom styling imports
-import { CustomInput, CustomLabel, CustomSwitch } from '../Styles/Styles'
+import { CustomInput, CustomLabel, CustomSwitch, SolidWrap } from '../Styles/Styles'
 
 // CUSTOM COMPONENTS
 import Footer from '../Footer/Footer';
@@ -40,15 +39,6 @@ function RSVP(){
         history.push('/browse/schedule');
     }
 
-// STYLING
-    const Item = styled(Paper)(({ theme }) => ({
-        padding: theme.spacing(1),
-        borderColor: '#7599BD',
-        borderStyle: 'solid',
-        borderWidth: '1px',
-        height: '74vh',
-    }));
-
     return(
         <div>
         { 
@@ -61,11 +51,11 @@ function RSVP(){
                 component='form'
                 onSubmit={sendRsvp}>
                 <Box 
-                    className="rsvp">
+                    className="top-margin-and-scroll">
                 {/* PostgreSQL pulls all RSVPs for one event
                 Adding data to the page by pulling the info from the first event in the array
                 All event details in the array are the same, but the event is multiplied by the number of RSVPs */}
-                    <Item >
+                    <SolidWrap >
                     <Grid>
                         <Box
                             display='flex'
@@ -142,7 +132,7 @@ function RSVP(){
                             Register
                         </Button>
                     </Box>
-                    </Item>
+                    </SolidWrap>
                 </Box>
             </Box>
         )))}
