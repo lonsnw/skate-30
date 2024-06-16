@@ -71,8 +71,14 @@ Scroll containers
 }
 
 .browse {
-  margin-top: 23px;
-  height: 75vh;
+  /* margin-top: 23px; */
+  height: 66vh;
+  overflow-y: scroll;
+}
+
+.browse-logged-out {
+  margin-top: 20px;
+  height: 74vh;
   overflow-y: scroll;
 }
 
