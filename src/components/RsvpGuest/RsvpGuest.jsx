@@ -37,7 +37,7 @@ function RSVP(){
             drinks: drinks,
         },} );
         // Redirect to browse after submitting RSVP
-        history.push('/rsvp/guest/thanks');
+        history.push('/thanks');
     }
 
     return(

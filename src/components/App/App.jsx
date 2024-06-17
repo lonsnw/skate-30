@@ -16,11 +16,12 @@ import LoginPage from '../LoginPage/LoginPage';
 import Nav from '../Nav/Nav';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import RegisterPage from '../RegisterPage/RegisterPage';
-import RSVP from '../RSVP/RSVP'
-import RsvpGuest from '../RsvpGuest/RsvpGuest'
+import RSVP from '../RSVP/RSVP';
+import RsvpGuest from '../RsvpGuest/RsvpGuest';
 import RsvpLogin from '../RsvpLogin/RsvpLogin';
-import Schedule from '../Schedule/Schedule'
-import Search from '../Search/Search'
+import Schedule from '../Schedule/Schedule';
+import Search from '../Search/Search';
+import Thanks from '../Thanks/Thanks';
 import UserPage from '../UserPage/UserPage';
 
 // MUI imports
@@ -97,6 +98,14 @@ function App() {
             path="/guest"
           >
             <RsvpGuest />
+          </Route>
+
+          <Route
+            // shows thanks at all times (logged in or not)
+            exact
+            path="/thanks"
+          >
+            <Thanks />
           </Route>
 
           {/* For protected routes, the view could show one of several things on the same route.
