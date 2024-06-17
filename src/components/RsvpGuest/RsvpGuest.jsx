@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 // MUI imports
-import { Box, Button, Checkbox, FormControlLabel, Grid, Stack, Typography } from '@mui/material';
+import { Box, Button, Checkbox, FormControlLabel, Grid, Stack, TextField, Typography } from '@mui/material';
 
 // Custom styling imports
 import { CustomInput, CustomLabel, CustomSwitch, SolidWrap } from '../Styles/Styles'
@@ -11,7 +11,6 @@ import { CustomInput, CustomLabel, CustomSwitch, SolidWrap } from '../Styles/Sty
 // CUSTOM COMPONENTS
 import Footer from '../Footer/Footer';
 import Loading from '../Loading/Loading';
-import RsvpDetails from '../RsvpDetails/RsvpDetails';
 
 function RSVP(){
     const dispatch = useDispatch();
@@ -19,6 +18,7 @@ function RSVP(){
     const details = useSelector(store => store.details.details);
     const rsvp = useSelector(store => store.rsvp.rsvp);
     const [position, setPosition] = useState(false);
+    const [name, setName] = useState('');
     const [pucks, setPucks] = useState(false);
     const [tutor, setTutor] = useState(false);
     const [drinks, setDrinks] = useState(false);
@@ -28,23 +28,22 @@ function RSVP(){
         event.preventDefault();
         console.log('event:', details[0].id);
         // Sending RSVP info to RSVP table
-        dispatch ({ type: 'RESPOND_SVP', payload: {
+        dispatch ({ type: 'GUEST_RSVP', payload: {
             event_id: details[0].event_id,
+            name: name,
             position: position,
             pucks: pucks,
             tutor: tutor,
             drinks: drinks,
         },} );
         // Redirect to browse after submitting RSVP
-        history.push('/browse/schedule');
+        history.push('/thanks');
     }
 
     return(
         <div>
         { 
-            rsvp.rsvp_id > 0 ? (
-            <RsvpDetails />
-        ) : ( (details[0].length === 0 ? (
+            (details[0].length === 0 ? (
             <Loading />
         ) : (
             <Box
@@ -64,6 +63,24 @@ function RSVP(){
                             <Typography variant='h4'>RSVP</Typography>
                             <Typography variant='h6'>{ details[0].type ? 'Pickup' : 'Open Skate' } - { details[0].rink }</Typography>
                             <Typography variant="subtitle1">{new Date(details[0].date).toLocaleDateString('en-us', { weekday:"long", month:"short", day:"numeric"})} - {details[0].time} - {details[0].duration} mins</Typography>
+                            <Box
+                                display='flex'
+                                flexDirection='column'
+                                alignItems='center'
+                                padding='5px'>
+                                <Typography variant="h6">Name</Typography>
+                                <TextField
+                                    sx={{ backgroundColor: "#eef2f7" }}
+                                    type="name"
+                                    name="name"
+                                    required
+                                    variant="outlined"
+                                    fullWidth
+                                    label="First and last name"
+                                    value={name}
+                                    onChange={(event) => setName(event.target.value)}
+                                />
+                            </Box>
                             <Stack 
                                 direction="row" 
                                 paddingRight='6px'
@@ -133,7 +150,7 @@ function RSVP(){
                     </Box>
                 </SolidWrap>
             </Box>
-        )))}
+        ))}
         <Box
             width='100vw'
             position='absolute'

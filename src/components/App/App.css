@@ -68,6 +68,11 @@ Scroll containers
   height: 76vh;
 }
 
+.transition {
+  margin-top: 20px;
+  height: 90vh;
+}
+
 .list-with-search {
   height: 65vh;
   overflow-y: scroll;

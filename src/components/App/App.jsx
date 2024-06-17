@@ -5,21 +5,24 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import './App.css';
 
+import About from '../About/About';
+import Browse from '../Browse/Browse';
+import Details from '../Details/Details';
+import Home from '../Home/Home';
+import InputDate from '../Input/InputDate';
+import InputLocation from '../Input/InputLocation';
+import InputReview from '../Input/InputReview';
+import LoginPage from '../LoginPage/LoginPage';
 import Nav from '../Nav/Nav';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-import About from '../About/About';
-import Browse from '../Browse/Browse'
-import UserPage from '../UserPage/UserPage';
-import Home from '../Home/Home';
-import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
-import Search from '../Search/Search'
-import Details from '../Details/Details'
-import Schedule from '../Schedule/Schedule'
-import RSVP from '../RSVP/RSVP'
-import InputLocation from '../Input/InputLocation';
-import InputDate from '../Input/InputDate';
-import InputReview from '../Input/InputReview';
+import RSVP from '../RSVP/RSVP';
+import RsvpGuest from '../RsvpGuest/RsvpGuest';
+import RsvpLogin from '../RsvpLogin/RsvpLogin';
+import Schedule from '../Schedule/Schedule';
+import Search from '../Search/Search';
+import Thanks from '../Thanks/Thanks';
+import UserPage from '../UserPage/UserPage';
 
 // MUI imports
 import { ThemeProvider } from '@mui/material/styles';
@@ -82,11 +85,27 @@ function App() {
           </Route>
 
           <Route
-            // shows RSVP at all times (logged in or not)
+            // shows RSVP at all times (logged in or not); RSVP fails if not logged in
             exact
             path="/rsvp/:eventId"
           >
             <RSVP />
+          </Route>
+
+          <Route
+            // shows guest RSVP at all times (logged in or not)
+            exact
+            path="/guest"
+          >
+            <RsvpGuest />
+          </Route>
+
+          <Route
+            // shows thanks at all times (logged in or not)
+            exact
+            path="/thanks"
+          >
+            <Thanks />
           </Route>
 
           {/* For protected routes, the view could show one of several things on the same route.
@@ -144,6 +163,21 @@ function App() {
               :
               // Otherwise, show the login page
               <LoginPage />
+            }
+          </Route>
+
+          <Route
+            // sends user to login to RSVP with a guest option
+            exact
+            path="/login/rsvp"
+          >
+              {user.id ?
+              // If the user is already logged in, 
+              // redirect to the /user page
+              <Redirect to="/user" />
+              :
+              // Otherwise, show the login page
+              <RsvpLogin />
             }
           </Route>
 

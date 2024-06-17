@@ -38,7 +38,7 @@ function DetailRsvpToggle() {
 
     const handleChange = (eventId) => {
         {/* If no user is logged in, do this */}
-        {!user.id && (history.push(`/login`))}
+        {!user.id && (history.push(`/login/rsvp`))}
         {/* If a user is logged in, do this */}
         {user.id && (history.push(`/rsvp/${eventId}`))
         }

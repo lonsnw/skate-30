@@ -38,7 +38,7 @@ function InputReview(){
         // STRETCH: send to details page for the event; this will require refactoring
         // as the details page currently gets its event id from the EventCard,
         // and there's nowhere to pull the event id here (?) because it's a new event.
-        history.push('/browse');
+        history.push('/thanks');
     }
 
     return(
