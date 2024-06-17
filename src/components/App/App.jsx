@@ -5,21 +5,22 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import './App.css';
 
+import About from '../About/About';
+import Browse from '../Browse/Browse';
+import Details from '../Details/Details';
+import Home from '../Home/Home';
+import InputDate from '../Input/InputDate';
+import InputLocation from '../Input/InputLocation';
+import InputReview from '../Input/InputReview';
+import LoginPage from '../LoginPage/LoginPage';
 import Nav from '../Nav/Nav';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-import About from '../About/About';
-import Browse from '../Browse/Browse'
-import UserPage from '../UserPage/UserPage';
-import Home from '../Home/Home';
-import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
-import Search from '../Search/Search'
-import Details from '../Details/Details'
-import Schedule from '../Schedule/Schedule'
 import RSVP from '../RSVP/RSVP'
-import InputLocation from '../Input/InputLocation';
-import InputDate from '../Input/InputDate';
-import InputReview from '../Input/InputReview';
+import RsvpLogin from '../RsvpLogin/RsvpLogin';
+import Schedule from '../Schedule/Schedule'
+import Search from '../Search/Search'
+import UserPage from '../UserPage/UserPage';
 
 // MUI imports
 import { ThemeProvider } from '@mui/material/styles';
@@ -145,6 +146,14 @@ function App() {
               // Otherwise, show the login page
               <LoginPage />
             }
+          </Route>
+
+          <Route
+            // sends user to login to RSVP with a guest option
+            exact
+            path="/login/rsvp"
+          >
+            <RsvpLogin />
           </Route>
 
           <Route
