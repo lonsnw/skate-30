@@ -8,6 +8,7 @@ router.get('/', (req, res) => {
     const query = `
         SELECT (COUNT(NULLIF("position" = FALSE, TRUE))) AS "goalies", (COUNT(NULLIF("position" = TRUE, TRUE))) AS "skaters", "events"."id", "events"."rink", "events"."type", "events"."date", "events"."time", "events"."duration" FROM "events"
         LEFT JOIN "rsvp" ON "events"."id" = "rsvp"."event_id"
+        WHERE "events"."date" > now()
         GROUP BY "events"."id"
         ORDER BY "events"."date" ASC;     
     `;
