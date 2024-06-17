@@ -3,14 +3,18 @@ import { useHistory } from 'react-router-dom';
 // MUI imports
 import { Box, Button, Typography } from '@mui/material';
 
+// Custom styling imports
+import { MainWrap } from '../Styles/Styles'
+
 function NoneFound() {
     const history = useHistory();
 
     return (
-        <>
+        <MainWrap
+            className='transition'>
             <Box 
-                sx={{ height: '74vh' }}
                 display='flex'
+                height='70vh'
                 flexDirection='column'
                 justifyContent='center'
                 textAlign='center'>
@@ -38,7 +42,7 @@ function NoneFound() {
                 </Button>
                 </Box>
             </Box>
-        </>
+        </MainWrap>
     )
 }
 
