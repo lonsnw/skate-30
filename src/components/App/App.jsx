@@ -17,6 +17,7 @@ import Nav from '../Nav/Nav';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import RSVP from '../RSVP/RSVP'
+import RsvpGuest from '../RsvpGuest/RsvpGuest'
 import RsvpLogin from '../RsvpLogin/RsvpLogin';
 import Schedule from '../Schedule/Schedule'
 import Search from '../Search/Search'
@@ -83,11 +84,19 @@ function App() {
           </Route>
 
           <Route
-            // shows RSVP at all times (logged in or not)
+            // shows RSVP at all times (logged in or not); RSVP fails if not logged in
             exact
             path="/rsvp/:eventId"
           >
             <RSVP />
+          </Route>
+
+          <Route
+            // shows guest RSVP at all times (logged in or not)
+            exact
+            path="/guest"
+          >
+            <RsvpGuest />
           </Route>
 
           {/* For protected routes, the view could show one of several things on the same route.
@@ -153,7 +162,14 @@ function App() {
             exact
             path="/login/rsvp"
           >
-            <RsvpLogin />
+              {user.id ?
+              // If the user is already logged in, 
+              // redirect to the /user page
+              <Redirect to="/user" />
+              :
+              // Otherwise, show the login page
+              <RsvpLogin />
+            }
           </Route>
 
           <Route

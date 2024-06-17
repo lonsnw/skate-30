@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 
 // MUI imports
 import { Box, Chip, Container } from '@mui/material';
@@ -7,8 +8,10 @@ import { Box, Chip, Container } from '@mui/material';
 import LoginForm from '../LoginForm/LoginForm';
 
 function RsvpLogin() {
+  const history = useHistory();
+
   const guestRSVP = () => {
-    history.push('/login/rsvp/guest')
+    history.push('/guest')
   };
 
   return (

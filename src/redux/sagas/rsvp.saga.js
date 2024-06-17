@@ -24,6 +24,17 @@ function* respondSvp(action) {
     }
 };
 
+function* guestRsvp(action) {
+    console.log('in guestRsvp');
+    console.log('payload', action.payload);
+    try {
+        console.log('in try');
+        yield axios.post('/api/rsvp/guest', action.payload);
+    } catch (error) {
+        console.log('guestRsvp error', error);
+    }
+};
+
 function* deleteSvp(action) {
     try {
         const rsvpId = action.payload;
@@ -49,6 +60,7 @@ function* rsvpSaga() {
     yield takeLatest('RESPOND_SVP', respondSvp);
     yield takeLatest('DELETE_SVP', deleteSvp);
     yield takeLatest('RSVP_NOTES', rsvpNotes);
+    yield takeLatest('GUEST_RSVP', guestRsvp);
 }
 
 export default rsvpSaga;
