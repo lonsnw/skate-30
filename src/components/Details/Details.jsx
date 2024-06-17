@@ -147,6 +147,9 @@ function Details(){
                                         return (
                                         <div key={event.user_id} >
                                             <Typography variant="p1">{event.attendees}</Typography>
+                                            {event.pucks ? ' (pucks)' : ''}
+                                            {event.tutor ? ' (shooter tutor)' : ''}
+                                            {event.drinks ? ' (drinks)' : ''}
                                         </div>
                                         );
                                     })}
