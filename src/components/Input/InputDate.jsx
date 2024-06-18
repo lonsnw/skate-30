@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+
 import moment from 'moment';
 import dayjs from 'dayjs';
 
 // MUI imports
 import { Box, Button, Grid, Stack, TextField, Typography } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { TimeField } from '@mui/x-date-pickers/TimeField';
-import { TimePicker } from '@mui/x-date-pickers/TimePicker';
-import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker'
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs/index.js';
+import { TimePicker } from '@mui/x-date-pickers/TimePicker';
+import { MobileDateTimePicker } from '@mui/x-date-pickers/MobileDateTimePicker';
 
 // Custom styling imports
 import { SolidWrap } from '../Styles/Styles';
@@ -27,16 +28,23 @@ function InputDate(){
     const [time, setTime] = useState('');
     const [duration, setDuration] = useState('');
 
-    // const handleDate = (newDate) => {
-    //     setDate(new Date("YYYY-MM-DD"));
-    //     console.log('date:', date)
-    // }
+    const handleDate = (newDate) => {
+        console.log(moment(newDate._d).format('YYYY/MM/DD'));
+        setDate(moment(newDate._d).format('YYYY/MM/DD'));
+        console.log('date:', date)
+    }
+
+    const handleTime = (newTime) => {
+        console.log(moment(newTime._d).format('HH:mm:ss'));
+        setTime(moment(newTime._d).format('HH:mm:ss'));
+        console.log('time:', time)
+    }
 
     const addDate = (event) => {
         event.preventDefault();
         // require data to submit
         if (date && time && duration){
-            dispatch({ type: 'ADD_EVENT', payload: {
+        dispatch({ type: 'ADD_EVENT', payload: {
                 date: date, 
                 time: time, 
                 duration: duration, 
@@ -68,10 +76,18 @@ function InputDate(){
                             padding='5px'
                             width='80vw'
                             margin='auto'>
-                            <Typography variant='h4'>Add a new event</Typography>
+                            {/* <Typography variant='h4'>Add a new event</Typography> */}
                             <Typography variant='h5'>Date and time:</Typography>
-                            <Typography variant="p1">Enter a date and time</Typography>
-                            <TextField
+                            {/* <Typography variant="p1">Enter a date and time</Typography> */}
+                            <LocalizationProvider dateAdapter={AdapterMoment}> 
+                                <DatePicker 
+                                    label="Choose a date" 
+                                    onChange={handleDate} />
+                                <TimePicker 
+                                    label="Choose a time" 
+                                    onChange={handleTime}/>
+                            </LocalizationProvider>
+                            {/* <TextField
                                 sx={{ backgroundColor: "#eef2f7" }}
                                 type="text"
                                 name="date"
@@ -92,7 +108,7 @@ function InputDate(){
                                 label="Time: HH:MM"
                                 value={time}
                                 onChange={(event) => setTime(event.target.value)}
-                            />
+                            /> */}
                             <Typography variant="p1">Duration</Typography>            
                             <Box
                                 display='flex'
