@@ -7,9 +7,9 @@ import { Typography } from '@mui/material';
 // Custom styling imports
 import { ItemCard } from '../Styles/Styles'
 
-function ScheduleCard() {
+function EventCard() {
     const dispatch = useDispatch();
-    const events = useSelector((store) => store.browse.browseUser);
+    const events = useSelector((store) => store.browse.browsePast);
     const history = useHistory();
 
     // sending event ID to saga to load when details page opens
@@ -36,4 +36,4 @@ function ScheduleCard() {
     )
 }
 
-export default ScheduleCard;
+export default EventCard;

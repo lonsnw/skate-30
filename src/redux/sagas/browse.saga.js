@@ -24,9 +24,22 @@ function* fetchSchedule(action) {
     }
   }
 
+function* fetchPast(action) {
+  try {
+    // Get the user's past events:
+    const userId = action.payload;
+    console.log(userId);
+    const pastResponse = yield axios.get(`/api/browse/past`, userId);
+    yield put({ type: 'SET_PAST', payload: pastResponse.data })
+  } catch (error) {
+    console.log('pastResponse error', error);
+  }
+}
+
 function* browseSaga() {
     yield takeLatest('FETCH_EVENTS', fetchEvents);
     yield takeLatest('FETCH_SCHEDULE', fetchSchedule);
+    yield takeLatest('FETCH_PAST', fetchPast);
 }
 
 export default browseSaga;
