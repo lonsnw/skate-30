@@ -18,6 +18,7 @@ function About() {
               <Typography variant="h3">Technologies used</Typography>
               <Typography variant="h5"><li>Material UI</li></Typography>
               <Typography variant="h5"><li>styled-components</li></Typography>
+              <Typography variant="h5"><li>Moment</li></Typography>
               <Typography variant="h5"><li>React</li></Typography>
               <Typography variant="h5"><li>Redux</li></Typography>
               <Typography variant="h5"><li>Sagas</li></Typography>
@@ -27,10 +28,9 @@ function About() {
               <Typography variant="h5"><li>Node.js</li></Typography>
               <Typography variant="h5"><li>Express</li></Typography>
               <Typography variant="h5"><li>PostgreSQL</li></Typography>
-              <Typography variant="h5"><li>Material UI</li></Typography>
-              <Typography variant="h5"><li>Material UI</li></Typography>
 
               <Typography variant="h3">Tools used</Typography>
+              <Typography variant="h5"><li>Canva</li></Typography>
               <Typography variant="h5"><li>DB Designer</li></Typography>
               <Typography variant="h5"><li>Figma</li></Typography>
               <Typography variant="h5"><li>GitHub</li></Typography>
