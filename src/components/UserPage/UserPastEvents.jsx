@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 
 // MUI imports
 import { Box, Grid } from '@mui/material';
@@ -9,18 +8,18 @@ import { Box, Grid } from '@mui/material';
 import { MainWrap } from '../Styles/Styles';
 
 // CUSTOM COMPONENTS
-import ScheduleCard from '../ScheduleCard/ScheduleCard';
+import UserPastCard from './UserPastCard';
 import Loading from '../Loading/Loading';
 import Footer from '../Footer/Footer'
 import NoneFound from '../NoneFound/NoneFound'
 
-function Schedule() {
+function UserPastEvents() {
   const user = useSelector((store) => store.user);
-  const events = useSelector((store) => store.browse.browseUser);
+  const events = useSelector((store) => store.browse.browsePast);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch({ type: 'FETCH_SCHEDULE', payload: user.id }),
+    dispatch({ type: 'FETCH_PAST', payload: user.id }),
     console.log('logged in')
   }, []);
 
@@ -30,7 +29,7 @@ function Schedule() {
   if (events.length === 0) {
     render = <NoneFound />
   } else if (events.length > 0) {
-    render = <ScheduleCard />
+    render = <UserPastCard />
   } else {
     render = <Loading />
   };
@@ -44,13 +43,6 @@ function Schedule() {
           <Grid >
               <Grid >
                 {render}
-              {/* {events.length === 0 ? (
-                <NoneFound />
-                ) : ( (events.length > 0 ? (
-                <ScheduleCard />
-                ) : (
-                <Loading />
-              )))} */}
               </Grid>
           </Grid>
       </MainWrap>
@@ -64,4 +56,4 @@ function Schedule() {
   );
 }
 
-export default Schedule;
+export default UserPastEvents;

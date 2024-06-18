@@ -1,0 +1,15 @@
+.nav {
+  /* flex box layout */
+  display: flex;
+  flex-flow: row;
+  justify-content: space-evenly;
+  align-items: center;
+  padding-bottom: -10px;
+  margin-bottom: -20px;
+  background-color: #fff;
+  height: 8vh;
+}
+
+.logo {
+  margin-top: -17px;
+}

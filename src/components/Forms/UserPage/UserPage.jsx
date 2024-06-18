@@ -3,14 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 // MUI imports
-import { Box, Button, Chip, Container, Divider, TextField, Typography } from '@mui/material';
+import { Box, Button, Container, Divider, TextField, Typography } from '@mui/material';
 
 // Custom styling imports
-import { UserCard } from '../Styles/Styles';
+import { UserCard } from '../../Styles/Styles';
 
 // CUSTOM COMPONENTS
-import LogOutButton from '../LogOutButton/LogOutButton';
-import Footer from '../Footer/Footer'
+import LogOutButton from '../../Basic components/LogOutButton/LogOutButton';
+import Footer from '../../Basic components/Footer/Footer'
 
 // FUTURE GOALS:
 // Allow users to change their username and password
@@ -30,10 +30,6 @@ function UserPage() {
     setName(user.name);
     setEmail(user.email);
   }, [])
-
-  const pastEvents = () => {
-    history.push('/user/past')
-  };
 
   const updateUser = (event) => {
     event.preventDefault();
@@ -125,13 +121,6 @@ function UserPage() {
               Update
             </Button>
             <LogOutButton />
-          </Box>
-          <Box
-            margin='auto'>
-            <Chip 
-              label="View past events" 
-              color="primary" 
-              onClick={pastEvents}  />
           </Box>
         </Box>
     </Container>

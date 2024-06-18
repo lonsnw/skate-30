@@ -23,6 +23,7 @@ import Schedule from '../Schedule/Schedule';
 import Search from '../Search/Search';
 import Thanks from '../Thanks/Thanks';
 import UserPage from '../UserPage/UserPage';
+import UserPastEvents from '../UserPage/UserPastEvents';
 
 // MUI imports
 import { ThemeProvider } from '@mui/material/styles';
@@ -126,6 +127,14 @@ function App() {
             path="/browse/schedule"
           >
             <Schedule />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows Browse for user else shows LoginPage
+            exact
+            path="/user/past"
+          >
+            <UserPastEvents />
           </ProtectedRoute>
 
           <ProtectedRoute
