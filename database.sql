@@ -1,7 +1,3 @@
--- USER is a reserved keyword with Postgres
--- You must use double quotes in every query that user is in:
--- ex. SELECT * FROM "user";
--- Otherwise you will have errors!
 CREATE TABLE "user" (
     "id" SERIAL PRIMARY KEY,
     "username" VARCHAR (80) UNIQUE NOT NULL,
@@ -40,22 +36,37 @@ CREATE TABLE "users_events" (
     "event_id" integer NOT NULL REFERENCES "events"
 );
 
-INSERT INTO "events"
-VALUES (1, 'Augsburg A', '2323 Riverside Ave', 'Can''t use locker rooms after skating', TRUE, TRUE, FALSE, '2024-07-02', '20:30', 90),
-(2, 'Augsburg B', '2323 Riverside Ave', 'Can''t use locker rooms after skating', TRUE, TRUE, FALSE, '2024-07-08', '17:30', 60),
-(3, 'Parade North', '600 Kenwood Parkway', 'The Mighty Ducks played here', TRUE, FALSE, FALSE, '2024-06-28', '18:15', 60),
-(4, 'Roseville', '2661 Civic Center Dr', '', TRUE, TRUE, FALSE, '2024-06-19', '12:15', 60),
-(5, 'Roseville Oval', '2661 Civic Center Dr', 'No concessions stand', FALSE, TRUE, TRUE, '2024-12-19', '12:15', 60),
-(6, 'Pleasant', '848 Pleasant Ave', 'Softest ice in town', TRUE, FALSE, FALSE, '2024-11-02', '19:45', 60),
-(7, 'Highland Arena', '800 South Snelling', 'Not sure which rink', FALSE, TRUE, FALSE, '2024-08-28', '20:00', 120),
-(8, 'TRIA', '400 Wabasha St', '', TRUE, FALSE, FALSE, '2024-08-29', '19:45', 60),
-(9, 'Groveland', '2021 St Clair Ave', 'Rink has boards', TRUE, TRUE, TRUE, '2025-01-20', '18:00', 60),
-(10, 'Edgcumbe', '320 Griggs St S', 'Hockey rink is often busy, might just use the oval', FALSE, TRUE, TRUE, '2024-01-28', '12:15', 60),
-(11, 'Hiawatha', '2701 E 44th St', 'Warming room is closed this season', TRUE, TRUE, TRUE, '2024-01-10', '18:30', 90);
+-- Sample event data
+INSERT INTO "events" ("rink", "address", "notes", "type", "level", "exposure", "date", "time", "duration")
+VALUES ('Augsburg A', '2323 Riverside Ave', 'Can''t use locker rooms after skating', TRUE, TRUE, FALSE, '2024-07-02', '20:30', 90),
+('Augsburg B', '2323 Riverside Ave', 'Can''t use locker rooms after skating', TRUE, TRUE, FALSE, '2024-07-08', '17:30', 60),
+('Parade North', '600 Kenwood Parkway', 'The Mighty Ducks played here', TRUE, FALSE, FALSE, '2024-06-28', '18:15', 60),
+('Roseville', '2661 Civic Center Dr', '', TRUE, TRUE, FALSE, '2024-06-19', '12:15', 60),
+('Roseville Oval', '2661 Civic Center Dr', 'No concessions stand', FALSE, TRUE, TRUE, '2024-12-19', '12:15', 60),
+('Pleasant', '848 Pleasant Ave', 'Softest ice in town', TRUE, FALSE, FALSE, '2024-11-02', '19:45', 60),
+('Highland Arena', '800 South Snelling', 'Not sure which rink', FALSE, TRUE, FALSE, '2024-08-28', '20:00', 120),
+('TRIA', '400 Wabasha St', '', TRUE, FALSE, FALSE, '2024-08-29', '19:45', 60),
+('Groveland', '2021 St Clair Ave', 'Rink has boards', TRUE, TRUE, TRUE, '2025-01-20', '18:00', 60),
+('Edgcumbe', '320 Griggs St S', 'Hockey rink is often busy, might just use the oval', FALSE, TRUE, TRUE, '2024-01-28', '12:15', 60),
+('Hiawatha', '2701 E 44th St', 'Warming room is closed this season', TRUE, TRUE, TRUE, '2024-01-10', '18:30', 90);
 
-INSERT INTO "rsvp"
-VALUES (1, 7, 1, '', TRUE, TRUE, FALSE, FALSE),
-(2, 7, 2, '', TRUE, FALSE, FALSE, FALSE), 
-(3, 7, null, 'Kasey', FALSE, FALSE, FALSE, TRUE), 
-(4, 2, 1, '', TRUE, FALSE, TRUE, FALSE),
-(5, 8, 2, '', TRUE, TRUE, FALSE, TRUE);
+
+-- Sample RSVPs can only be added after events and users are created; 
+-- sample events are above and you will need at least 5 users to not throw errors with this query.
+-- feat. guest RSVPer Kasey, who is a goalie
+INSERT INTO "rsvp" ("event_id", "user_id", "name", "position", "pucks", "tutor", "drinks")
+VALUES (7, 1, '', FALSE, FALSE, TRUE, TRUE),
+(7, 2, '', FALSE, TRUE, FALSE, FALSE), 
+(7, null, 'Kasey R', TRUE, FALSE, FALSE, FALSE), 
+(2, 1, '', FALSE, FALSE, FALSE, FALSE),
+(8, 2, '', FALSE, FALSE, FALSE, TRUE),
+(7, 4, '', FALSE, FALSE, FALSE, FALSE), 
+(2, 5, '', FALSE, FALSE, FALSE, FALSE), 
+(3, null, 'Kasey R', TRUE, FALSE, FALSE, TRUE), 
+(2, 4, '', FALSE, FALSE, TRUE, FALSE),
+(8, 4, '', FALSE, TRUE, FALSE, TRUE),
+(7, 3, '', FALSE, TRUE, FALSE, FALSE),
+(11, 5, '', FALSE, FALSE, FALSE, FALSE), 
+(10, null, 'Kasey R', TRUE, FALSE, FALSE, TRUE), 
+(8, 3, '', FALSE, FALSE, TRUE, FALSE),
+(9, 1, '', FALSE, TRUE, FALSE, FALSE);

@@ -11,8 +11,9 @@ import { MainWrap } from '../Styles/Styles';
 // CUSTOM COMPONENTS
 import ScheduleCard from '../ScheduleCard/ScheduleCard';
 import Loading from '../Loading/Loading';
-import Footer from '../Footer/Footer'
-import NoneFound from '../NoneFound/NoneFound'
+import Footer from '../Footer/Footer';
+import NoneFound from '../NoneFound/NoneFound';
+import ScheduleBar from '../LabelBar/ScheduleBar';
 
 function Schedule() {
   const user = useSelector((store) => store.user);
@@ -37,10 +38,11 @@ function Schedule() {
 
   return (
     <div>
+      <ScheduleBar />
       <MainWrap 
         display='flex'
         flexDirection='column'
-        className='list-no-search'>
+        className='list-with-label'>
           <Grid >
               <Grid >
                 {render}

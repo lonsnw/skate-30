@@ -78,6 +78,11 @@ Scroll containers
   overflow-y: scroll;
 }
 
+.list-with-label {
+  height: 68.3vh;
+  overflow-y: scroll;
+}
+
 .list-no-search {
   margin-top: 20px;
   height: 74vh;

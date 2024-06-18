@@ -160,7 +160,6 @@ export const MainWrap = styled.div`
   border-radius: 0px;
   overflow-wrap: break-word;
   text-align: left;
-  padding: 8px;
   :`
 
 // Wraps content with solid color and no border
