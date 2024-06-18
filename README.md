@@ -22,25 +22,37 @@ SKATE:30 will be deployed using either Heroku or Hostinger in the near future.
 
 ## Screen shots
 
-Gallery with provided content loaded:
+Home page:
 <br />
-<center><image src=public/images/on-load.png width=80%></center>
+<center><image src=public/images/home-page.png width=80%></center>
 <br />
-When entering a new image:
+User page:
 <br />
-<center><image src=public/images/add-image.png width=80%></center>
+<center><image src=public/images/user-profile.png width=80%></center>
 <br />
-With images flipped to show descriptions:
+Browse events:
 <br />
-<center><image src=public/images/flip-cards.png width=80%></center>
+<center><image src=public/images/browse.png width=80%></center>
+<br />
+Event details: 
+<br />
+<center><image src=public/images/event-details.png width=80%></center>
+<br />
+RSVP to event: 
+<br />
+<center><image src=public/images/rsvp.png width=80%></center>
+<br />
+Add an event: 
+<br />
+<center><image src=public/images/add-event.png width=80%></center>
 <br />
 
 ## Prerequisites
 
-- [Node.js](https://nodejs.org/en/)
-- [Postgres](https://www.postgresql.org/download/)
-- [Nodemon](https://nodemon.io)
-- [Material UI](https://mui.com/)
+* [Node.js](https://nodejs.org/en/)
+* [Postgres](https://www.postgresql.org/download/)
+* [Nodemon](https://nodemon.io)
+* [Material UI](https://mui.com/)
 
 ## Installation
 
@@ -49,10 +61,10 @@ The application has been tested and run on a local machine using the browser. It
 1. Clone down a version of this repository
 2. Create a database named `skate-30`
 3. Create and populate the tables needed for the database 
-    - This project is built on [Postgres](https://www.postgresql.org/download/), which you will need to install to use the app
-    - The `database.sql` file contained in this repository provides all of the necessary queries for creating the table needed to run the app
-    - The queries will also populate the `events` and `rsvp` tables with sample data
-      - _Note:_ You will need to create users using the app's interface before creating the `rsvp` table, as the `rsvp` table contains foreign keys that refer to the `user` table IDs.
+    * This project is built on [Postgres](https://www.postgresql.org/download/), which you will need to install to use the app
+    * The `database.sql` file contained in this repository provides all of the necessary queries for creating the table needed to run the app
+    * The queries will also populate the `events` and `rsvp` tables with sample data
+      * **Note:** You will need to create users using the app's interface before creating the `rsvp` table, as the `rsvp` table contains foreign keys that refer to the `user` table IDs.
 4. Open in your editor of choice and run an `npm install`
 5. Run `npm run server` in your terminal
 6. Run `npm run client` in your terminal
@@ -80,26 +92,26 @@ Here's how I got started using SKATE:30:
 
 ## Technologies
 
-- [Material UI](https://mui.com/)
-- [styled-components](https://styled-components.com/)
-- [moment](https://momentjs.com/)
-- React
-- Redux
-- Sagas
-- HTML
-- CSS
-- JavaScript
-- Node.js
-- Express
-- PostgreSQL
+* [Material UI](https://mui.com/)
+* [styled-components](https://styled-components.com/)
+* [moment](https://momentjs.com/)
+* React
+* Redux
+* Sagas
+* HTML
+* CSS
+* JavaScript
+* Node.js
+* Express
+* PostgreSQL
 
 ## Tools
 
-- [Canva](https://www.canva.com/)
-- [DB Designer](https://www.dbdesigner.net/)
-- [Figma](https://www.figma.com)
-- GitHub
-- Google Workspace
+* [Canva](https://www.canva.com/)
+* [DB Designer](https://www.dbdesigner.net/)
+* [Figma](https://www.figma.com)
+* GitHub
+* Google Workspace
 
 ## Design
 This project was designed using [Figma for components and wireframes](https://www.figma.com/design/cvAvrt5cr5zxz75uAspCKX/style-guide-and-design-system?node-id=1879-11810&t=Gx4w4do3Vj2MgEen-1) and using Canva for logo design and the color palette.
@@ -108,6 +120,17 @@ This project was designed using [Figma for components and wireframes](https://ww
 This project included [scope documentation](https://docs.google.com/document/d/1Dx7jnx_YDbxs0hUD6uqEQR_CtspXngCvo_zYZyR-IfI/edit?usp=sharing).
 
 This documentation was built following a [provided template](https://github.com/PrimeAcademy/readme-template/blob/main/README.md).   It has been edited for style,  consistency, and to provide all relevant details.
+
+## Future development
+The following features are planned for development:
+
+* Find your friends feature, which allows authenticated users to search for friends and see their friends' schedules
+* Layered search, which combines search features into a single component with options for where to search
+  * Friend searches will remain available only to authenticated users
+* Direct users directly to the RSVP for an event they have created after they confirm the event information
+* Create "Log in to use" feature that directs users back to the page they came from after login
+* Implement notifications to the user's email and possibly mobile device ahead of the event start time
+
 
 ## Support
 If you have suggestions, issues, or want to discuss my work, please contact me.
