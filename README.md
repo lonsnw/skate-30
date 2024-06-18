@@ -24,27 +24,27 @@ SKATE:30 will be deployed using either Heroku or Hostinger in the near future.
 
 Home page:
 <br />
-<center><image src=public/images/home-page.png width=80%></center>
+<center><image src=public/images/home-page.png width=50%></center>
 <br />
 User page:
 <br />
-<center><image src=public/images/user-profile.png width=80%></center>
+<center><image src=public/images/user-profile.png width=50%></center>
 <br />
 Browse events:
 <br />
-<center><image src=public/images/browse.png width=80%></center>
+<center><image src=public/images/browse.png width=50%></center>
 <br />
 Event details: 
 <br />
-<center><image src=public/images/event-details.png width=80%></center>
+<center><image src=public/images/event-details.png width=50%></center>
 <br />
 RSVP to event: 
 <br />
-<center><image src=public/images/rsvp.png width=80%></center>
+<center><image src=public/images/rsvp.png width=50%></center>
 <br />
 Add an event: 
 <br />
-<center><image src=public/images/add-event.png width=80%></center>
+<center><image src=public/images/add-event.png width=50%></center>
 <br />
 
 ## Prerequisites
