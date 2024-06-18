@@ -3,16 +3,14 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import moment from 'moment';
-import dayjs from 'dayjs';
 
 // MUI imports
 import { Box, Button, Grid, Stack, TextField, Typography } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DesktopTimePicker } from '@mui/x-date-pickers/DesktopTimePicker';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs/index.js';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
-import { MobileDateTimePicker } from '@mui/x-date-pickers/MobileDateTimePicker';
 
 // Custom styling imports
 import { SolidWrap } from '../Styles/Styles';
@@ -24,7 +22,6 @@ function InputDate(){
     const dispatch = useDispatch();
     const history = useHistory();
     const [date, setDate] = useState('');
-    const [dateAndTime, setDateAndTime] = useState(null);
     const [time, setTime] = useState('');
     const [duration, setDuration] = useState('');
 
@@ -76,39 +73,15 @@ function InputDate(){
                             padding='5px'
                             width='80vw'
                             margin='auto'>
-                            {/* <Typography variant='h4'>Add a new event</Typography> */}
                             <Typography variant='h5'>Date and time:</Typography>
-                            {/* <Typography variant="p1">Enter a date and time</Typography> */}
                             <LocalizationProvider dateAdapter={AdapterMoment}> 
                                 <DatePicker 
                                     label="Choose a date" 
                                     onChange={handleDate} />
-                                <TimePicker 
+                                <DesktopTimePicker 
                                     label="Choose a time" 
                                     onChange={handleTime}/>
                             </LocalizationProvider>
-                            {/* <TextField
-                                sx={{ backgroundColor: "#eef2f7" }}
-                                type="text"
-                                name="date"
-                                required
-                                variant="outlined"
-                                fullWidth
-                                label="Date: YYYY/MM/DD"
-                                value={date}
-                                onChange={(event) => setDate(event.target.value)}
-                            />
-                            <TextField
-                                sx={{ backgroundColor: "#eef2f7" }}
-                                type="text"
-                                name="time"
-                                required
-                                variant="outlined"
-                                fullWidth
-                                label="Time: HH:MM"
-                                value={time}
-                                onChange={(event) => setTime(event.target.value)}
-                            /> */}
                             <Typography variant="p1">Duration</Typography>            
                             <Box
                                 display='flex'
