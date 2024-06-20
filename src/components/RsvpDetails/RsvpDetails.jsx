@@ -94,13 +94,16 @@ function RSVP(){
                     onClick={() => deleteRsvp(rsvpId)} >
                     Remove me
                 </Button>
-                <Button 
+            {/* Removing this button for now because there's a bug
+            Not sure what is causing it, but the delete doesn't work correctly
+            if you have volunteered to bring something. */}
+                {/* <Button 
                     type="button"
                     variant="contained"
                     name="register"
-                    onClick={() => newRsvp(rsvp.event_id)} >
+                    onClick={() => newRsvp(rsvpId)} >
                     Change my RSVP
-                </Button>
+                </Button> */}
             </Box>
             <Box
                 width='100vw'
