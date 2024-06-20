@@ -38,7 +38,7 @@ function Details(){
                 <Grid>
                     <InfoCard >
                         {/* On load, it sometimes throws an error that .type isn't recognized; if I comment out and then let it load, it works and I can comment it back in. */}
-                        <Typography variant='h6'><li>{ details[0].type ? 'Pickup' : 'Open Skate' } - { details[0].rink }</li></Typography>
+                        <Typography variant='h6'><li>{ details[0].type ? 'Open skate' : 'Pickup' } - { details[0].rink }</li></Typography>
                         <Typography variant="subtitle1">{new Date(details[0].date).toLocaleDateString('en-us', { weekday:"long", month:"short", day:"numeric"})} - {details[0].time} - {details[0].duration} mins</Typography>
                     </InfoCard>
                     <Box

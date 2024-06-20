@@ -105,7 +105,7 @@ function InputLocation(){
                                 checked={type}
                                 onChange={() => {setType(!type)}} />
                                 <CustomSwitch />
-                                <Typography>Free skate</Typography>
+                                <Typography>Open skate</Typography>
                             </CustomLabel>
                         </Stack>
                         <Stack 

@@ -100,7 +100,7 @@ function InputReview(){
                                 direction="column"
                                 spacing={1.1}
                                 marginTop={1.4}>
-                                <li>{input.type ? 'Free skate' : 'Pickup'}</li>
+                                <li>{input.type ? 'Open skate' : 'Pickup'}</li>
                                 <li>{input.level ? 'Advanced' : 'Beginner'}</li>
                                 <li>{input.exposure ? 'Outdoor' : 'Indoor'}</li>
                             </Stack>

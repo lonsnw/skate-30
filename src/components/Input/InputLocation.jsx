@@ -96,7 +96,7 @@ function InputLocation(){
                         marginTop={1.4} >
                         <Stack 
                             direction="row" 
-                            paddingLeft='30px'
+                            paddingLeft='36px'
                             spacing={1} >
                             <CustomLabel>
                                 <Typography>Pickup</Typography>
@@ -105,12 +105,12 @@ function InputLocation(){
                                 checked={type}
                                 onChange={() => {setType(!type)}} />
                                 <CustomSwitch />
-                                <Typography>Free skate</Typography>
+                                <Typography>Open skate</Typography>
                             </CustomLabel>
                         </Stack>
                         <Stack 
                             direction="row" 
-                            paddingLeft='14px'
+                            paddingLeft='20px'
                             spacing={1} >
                             <CustomLabel>
                                 <Typography>Beginner</Typography>
@@ -124,7 +124,7 @@ function InputLocation(){
                         </Stack>
                         <Stack 
                             direction="row" 
-                            paddingLeft='32px'
+                            paddingLeft='38px'
                             spacing={1} >
                             <CustomLabel>
                                 <Typography>Indoor</Typography>

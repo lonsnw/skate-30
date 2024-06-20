@@ -61,7 +61,7 @@ function RSVP(){
                             alignItems='center'
                             padding='5px'>
                             <Typography variant='h4'>RSVP</Typography>
-                            <Typography variant='h6'>{ details[0].type ? 'Pickup' : 'Open Skate' } - { details[0].rink }</Typography>
+                            <Typography variant='h6'>{ details[0].type ? 'Open skate' : 'Pickup' } - { details[0].rink }</Typography>
                             <Typography variant="subtitle1">{new Date(details[0].date).toLocaleDateString('en-us', { weekday:"long", month:"short", day:"numeric"})} - {details[0].time} - {details[0].duration} mins</Typography>
                             <Box
                                 display='flex'

@@ -4,7 +4,7 @@
 
 _Duration: 3.5 Week Sprint, working part time_
 
-SKATE:30 is a web app that hockey players can use to coordinate pickup hockey and free skate times with their friends in the Twin Cities metro area. The application is optimized for mobile browsers.
+SKATE:30 is a web app that hockey players can use to coordinate pickup hockey and open skate times with their friends in the Twin Cities metro area. The application is optimized for mobile browsers.
 
 Users can:
 

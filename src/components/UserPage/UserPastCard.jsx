@@ -26,7 +26,7 @@ function EventCard() {
                     <ItemCard 
                         key={event.id}
                         onClick={() => {getID(event.id)}} >
-                        <Typography variant="h6"> <li>{event.type ? 'Open Skate' : 'Pickup'} - {event.rink} </li></Typography>
+                        <Typography variant="h6"> <li>{event.type ? 'Open skate' : 'Pickup'} - {event.rink} </li></Typography>
                         <Typography variant="subtitle1">{new Date(event.date).toLocaleDateString('en-us', { weekday:"long", month:"short", day:"numeric"})} - {event.time} - {event.duration} mins</Typography>
                         <Typography variant="subtitle2">{event.skaters} Skaters | {event.goalies} Goalies</Typography>
                     </ItemCard >
